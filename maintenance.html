@@ -1,0 +1,2831 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Maintenance - MAARUTHI AUTOMATION
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =========================================
+           MAINTENANCE CONTAINER
+        ========================================= */
+
+        .maintenance-container {
+            padding: 25px;
+        }
+
+
+        /* =========================================
+           SUMMARY
+        ========================================= */
+
+        .maintenance-summary {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .summary-card {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+        }
+
+
+        .summary-title {
+
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .summary-value {
+
+            color: #4a250f;
+
+            font-size: 27px;
+
+            font-weight: 700;
+        }
+
+
+        .summary-description {
+
+            color: #888;
+
+            font-size: 12px;
+
+            margin-top: 5px;
+        }
+
+
+        /* =========================================
+           TOOLBAR
+        ========================================= */
+
+        .maintenance-toolbar {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            margin-bottom: 20px;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            gap: 15px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+        }
+
+
+        .search-box {
+            flex: 1;
+        }
+
+
+        .search-box input {
+
+            width: 100%;
+
+            padding:
+                12px 15px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius:
+                8px;
+
+            font-size:
+                14px;
+
+            outline:
+                none;
+
+            box-sizing:
+                border-box;
+        }
+
+
+        .search-box input:focus {
+
+            border-color:
+                #c46b20;
+        }
+
+
+        .filter-box {
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .filter-box select {
+
+            padding:
+                12px 15px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius:
+                8px;
+
+            background:
+                white;
+
+            font-size:
+                14px;
+
+            outline:
+                none;
+        }
+
+
+        /* =========================================
+           TABLE
+        ========================================= */
+
+        .maintenance-table-panel {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+
+            overflow-x:
+                auto;
+        }
+
+
+        .maintenance-table {
+
+            width:
+                100%;
+
+            border-collapse:
+                collapse;
+
+            min-width:
+                1000px;
+        }
+
+
+        .maintenance-table th {
+
+            text-align:
+                left;
+
+            padding:
+                14px 12px;
+
+            background:
+                #fff7ef;
+
+            color:
+                #5a3017;
+
+            font-size:
+                13px;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .maintenance-table td {
+
+            padding:
+                14px 12px;
+
+            border-bottom:
+                1px solid #eee;
+
+            color:
+                #555;
+
+            font-size:
+                13px;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .maintenance-table tr:hover {
+
+            background:
+                #fffaf5;
+        }
+
+
+        /* =========================================
+           ISSUE ID
+        ========================================= */
+
+        .issue-id {
+
+            font-weight:
+                700;
+
+            color:
+                #4a250f;
+        }
+
+
+        /* =========================================
+           PRIORITY
+        ========================================= */
+
+        .priority-high {
+
+            color:
+                #d52b2b;
+
+            font-weight:
+                700;
+        }
+
+
+        .priority-medium {
+
+            color:
+                #b77700;
+
+            font-weight:
+                700;
+        }
+
+
+        .priority-low {
+
+            color:
+                #287d3b;
+
+            font-weight:
+                700;
+        }
+
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .status-badge {
+
+            display:
+                inline-block;
+
+            padding:
+                6px 11px;
+
+            border-radius:
+                20px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+        }
+
+
+        .status-open {
+
+            background:
+                #ffe6d6;
+
+            color:
+                #bd5d08;
+        }
+
+
+        .status-progress {
+
+            background:
+                #fff0c9;
+
+            color:
+                #9b6b00;
+        }
+
+
+        .status-resolved {
+
+            background:
+                #e5f5e8;
+
+            color:
+                #287a38;
+        }
+
+
+        /* =========================================
+           VIEW BUTTON
+        ========================================= */
+
+        .view-button {
+
+            border:
+                none;
+
+            background:
+                #4a2a1b;
+
+            color:
+                white;
+
+            padding:
+                8px 14px;
+
+            border-radius:
+                6px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                12px;
+
+            font-weight:
+                600;
+        }
+
+
+        .view-button:hover {
+
+            background:
+                #653d29;
+        }
+
+
+        /* =========================================
+           REPORT BUTTON
+        ========================================= */
+
+        .report-button {
+
+            background:
+                #df8e18;
+
+            color:
+                white;
+
+            border:
+                none;
+
+            padding:
+                11px 18px;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+        }
+
+
+        .report-button:hover {
+
+            background:
+                #c87b0c;
+        }
+
+
+        /* =========================================
+           REPORT ISSUE MODAL
+        ========================================= */
+
+        .report-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(40,25,15,0.58);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 9999;
+        }
+
+
+        .report-overlay.show {
+
+            display: flex;
+        }
+
+
+        .report-modal {
+
+            width: 100%;
+
+            max-width: 780px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background:
+                white;
+
+            border-radius:
+                14px;
+
+            box-shadow:
+                0 15px 50px
+                rgba(0,0,0,0.28);
+        }
+
+
+        .report-modal-header {
+
+            padding:
+                20px 24px;
+
+            border-bottom:
+                1px solid #eee;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+        }
+
+
+        .report-modal-header h2 {
+
+            margin:
+                0;
+
+            color:
+                #4a250f;
+
+            font-size:
+                20px;
+        }
+
+
+        .close-button {
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            border:
+                none;
+
+            border-radius:
+                50%;
+
+            background:
+                #f3eee8;
+
+            color:
+                #4a2a1b;
+
+            font-size:
+                21px;
+
+            cursor:
+                pointer;
+        }
+
+
+        .close-button:hover {
+
+            background:
+                #e8ddd0;
+        }
+
+
+        .report-form {
+
+            padding:
+                24px;
+        }
+
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                18px;
+        }
+
+
+        .form-group {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+        }
+
+
+        .form-group.full {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        .form-group label {
+
+            color:
+                #5b4637;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            margin-bottom:
+                7px;
+        }
+
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width:
+                100%;
+
+            box-sizing:
+                border-box;
+
+            border:
+                1px solid #ddd;
+
+            border-radius:
+                8px;
+
+            padding:
+                11px 12px;
+
+            font-family:
+                inherit;
+
+            font-size:
+                13px;
+
+            color:
+                #4a250f;
+
+            outline:
+                none;
+
+            background:
+                white;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color:
+                #df8e18;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(223,142,24,0.10);
+        }
+
+
+        .form-group textarea {
+
+            min-height:
+                105px;
+
+            resize:
+                vertical;
+
+            line-height:
+                1.6;
+        }
+
+
+        .form-help {
+
+            margin-top:
+                5px;
+
+            color:
+                #999;
+
+            font-size:
+                11px;
+        }
+
+
+        .report-modal-footer {
+
+            padding:
+                18px 24px;
+
+            border-top:
+                1px solid #eee;
+
+            display:
+                flex;
+
+            justify-content:
+                flex-end;
+
+            gap:
+                10px;
+        }
+
+
+        .cancel-button {
+
+            border:
+                none;
+
+            background:
+                #f3eee8;
+
+            color:
+                #4a2a1b;
+
+            padding:
+                11px 20px;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                700;
+
+            font-size:
+                13px;
+        }
+
+
+        .cancel-button:hover {
+
+            background:
+                #e8ddd0;
+        }
+
+
+        .submit-button {
+
+            border:
+                none;
+
+            background:
+                #df8e18;
+
+            color:
+                white;
+
+            padding:
+                11px 22px;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                700;
+
+            font-size:
+                13px;
+        }
+
+
+        .submit-button:hover {
+
+            background:
+                #c87b0c;
+        }
+
+
+        /* =========================================
+           SUCCESS MESSAGE
+        ========================================= */
+
+        .success-message {
+
+            position:
+                fixed;
+
+            right:
+                25px;
+
+            bottom:
+                25px;
+
+            background:
+                #287a38;
+
+            color:
+                white;
+
+            padding:
+                13px 18px;
+
+            border-radius:
+                8px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.18);
+
+            display:
+                none;
+
+            z-index:
+                10000;
+        }
+
+
+        .success-message.show {
+
+            display:
+                block;
+        }
+
+
+        /* =========================================
+           NO RESULTS
+        ========================================= */
+
+        .no-results {
+
+            text-align:
+                center;
+
+            padding:
+                35px;
+
+            color:
+                #888;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .maintenance-summary {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .maintenance-summary {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .maintenance-toolbar {
+
+                flex-direction:
+                    column;
+            }
+
+
+            .filter-box {
+
+                width:
+                    100%;
+            }
+
+
+            .filter-box select {
+
+                flex:
+                    1;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .form-group.full {
+
+                grid-column:
+                    auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                M
+            </div>
+
+            <div>
+
+                <h2>
+                    MAARUTHI
+                </h2>
+
+                <span>
+                    AUTOMATION
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="looms.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▦
+                </span>
+
+                Looms
+
+            </a>
+
+
+            <a
+                href="employees.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                Employees
+
+            </a>
+
+
+            <a
+                href="attendance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◷
+                </span>
+
+                Attendance
+
+            </a>
+
+
+            <a
+                href="production.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▤
+                </span>
+
+                Production
+
+            </a>
+
+
+            <a
+                href="payroll.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ₹
+                </span>
+
+                Payroll
+
+            </a>
+
+
+            <a
+                href="maintenance.html"
+                class="nav-link active"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Maintenance
+
+            </a>
+
+
+            <a
+                href="reports.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                Reports
+
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Settings
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <strong>
+                Textile Automation
+            </strong>
+
+            <span>
+                for a Smarter Future
+            </span>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================= -->
+
+    <main class="main-content">
+
+
+        <header class="top-header">
+
+
+            <div>
+
+                <h1 class="page-title">
+                    Maintenance Management
+                </h1>
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <span class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    System Live
+
+                </span>
+
+
+                <span
+                    class="date"
+                    id="currentDate"
+                ></span>
+
+
+                <button
+                    class="report-button"
+                    onclick="openReportModal()"
+                >
+
+                    + Report Issue
+
+                </button>
+
+
+            </div>
+
+
+        </header>
+
+
+        <div class="maintenance-container">
+
+
+            <!-- =================================
+                 SUMMARY
+            ================================= -->
+
+            <section class="maintenance-summary">
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Total Issues
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="totalIssues"
+                    >
+                        12
+                    </div>
+
+                    <div class="summary-description">
+                        Registered maintenance issues
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Open Issues
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="openIssues"
+                    >
+                        4
+                    </div>
+
+                    <div class="summary-description">
+                        Waiting for maintenance
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        In Progress
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="progressIssues"
+                    >
+                        3
+                    </div>
+
+                    <div class="summary-description">
+                        Currently being serviced
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Resolved
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="resolvedIssues"
+                    >
+                        5
+                    </div>
+
+                    <div class="summary-description">
+                        Successfully completed
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================
+                 SEARCH / FILTER
+            ================================= -->
+
+            <section class="maintenance-toolbar">
+
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search issue, loom, technician..."
+                    >
+
+                </div>
+
+
+                <div class="filter-box">
+
+
+                    <select id="statusFilter">
+
+                        <option value="All">
+                            All Status
+                        </option>
+
+                        <option value="Open">
+                            Open
+                        </option>
+
+                        <option value="In Progress">
+                            In Progress
+                        </option>
+
+                        <option value="Resolved">
+                            Resolved
+                        </option>
+
+                    </select>
+
+
+                    <select id="priorityFilter">
+
+                        <option value="All">
+                            All Priority
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="Low">
+                            Low
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================
+                 TABLE
+            ================================= -->
+
+            <section class="maintenance-table-panel">
+
+
+                <table class="maintenance-table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Issue ID
+                            </th>
+
+                            <th>
+                                Loom
+                            </th>
+
+                            <th>
+                                Issue Type
+                            </th>
+
+                            <th>
+                                Priority
+                            </th>
+
+                            <th>
+                                Reported Time
+                            </th>
+
+                            <th>
+                                Technician
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="maintenanceTableBody"
+                    ></tbody>
+
+
+                </table>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================================
+         REPORT ISSUE MODAL
+    ========================================= -->
+
+    <div
+        class="report-overlay"
+        id="reportOverlay"
+    >
+
+
+        <div class="report-modal">
+
+
+            <div class="report-modal-header">
+
+                <h2>
+                    Report Maintenance Issue
+                </h2>
+
+
+                <button
+                    class="close-button"
+                    onclick="closeReportModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form
+                class="report-form"
+                id="reportForm"
+            >
+
+
+                <div class="form-grid">
+
+
+                    <!-- LOOM -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Loom *
+                        </label>
+
+                        <select
+                            id="newLoom"
+                            required
+                        >
+
+                            <option value="">
+                                Select Loom
+                            </option>
+
+                            <option value="Loom 01">
+                                Loom 01
+                            </option>
+
+                            <option value="Loom 02">
+                                Loom 02
+                            </option>
+
+                            <option value="Loom 03">
+                                Loom 03
+                            </option>
+
+                            <option value="Loom 04">
+                                Loom 04
+                            </option>
+
+                            <option value="Loom 05">
+                                Loom 05
+                            </option>
+
+                            <option value="Loom 06">
+                                Loom 06
+                            </option>
+
+                            <option value="Loom 07">
+                                Loom 07
+                            </option>
+
+                            <option value="Loom 08">
+                                Loom 08
+                            </option>
+
+                            <option value="Loom 09">
+                                Loom 09
+                            </option>
+
+                            <option value="Loom 10">
+                                Loom 10
+                            </option>
+
+                            <option value="Loom 11">
+                                Loom 11
+                            </option>
+
+                            <option value="Loom 12">
+                                Loom 12
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ISSUE TYPE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Issue Type *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="newIssueType"
+                            placeholder="e.g. Motor Overheating"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PRIORITY -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Priority *
+                        </label>
+
+                        <select
+                            id="newPriority"
+                            required
+                        >
+
+                            <option value="High">
+                                High
+                            </option>
+
+                            <option value="Medium">
+                                Medium
+                            </option>
+
+                            <option value="Low">
+                                Low
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- TECHNICIAN -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Technician *
+                        </label>
+
+                        <select
+                            id="newTechnician"
+                            required
+                        >
+
+                            <option value="Ramesh">
+                                Ramesh
+                            </option>
+
+                            <option value="Kumar">
+                                Kumar
+                            </option>
+
+                            <option value="Suresh">
+                                Suresh
+                            </option>
+
+                            <option value="Arun">
+                                Arun
+                            </option>
+
+                            <option value="Manoj">
+                                Manoj
+                            </option>
+
+                            <option value="Vijay">
+                                Vijay
+                            </option>
+
+                            <option value="Dinesh">
+                                Dinesh
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-group full">
+
+                        <label>
+                            Issue Description *
+                        </label>
+
+                        <textarea
+                            id="newDescription"
+                            placeholder="Describe the maintenance problem..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- RECOMMENDED ACTION -->
+
+                    <div class="form-group full">
+
+                        <label>
+                            Recommended Action
+                        </label>
+
+                        <textarea
+                            id="newAction"
+                            placeholder="Enter recommended inspection or repair action..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- REMARKS -->
+
+                    <div class="form-group full">
+
+                        <label>
+                            Maintenance Remarks
+                        </label>
+
+                        <textarea
+                            id="newRemarks"
+                            placeholder="Enter any additional remarks..."
+                        ></textarea>
+
+                    </div>
+
+
+                </div>
+
+
+            </form>
+
+
+            <div class="report-modal-footer">
+
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    onclick="closeReportModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="button"
+                    class="submit-button"
+                    onclick="submitReport()"
+                >
+                    Report Issue
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================================
+         SUCCESS MESSAGE
+    ========================================= -->
+
+    <div
+        class="success-message"
+        id="successMessage"
+    >
+        Maintenance issue reported successfully.
+    </div>
+
+
+    <script>
+
+        /* =========================================
+           DATE
+        ========================================= */
+
+        function updateDate() {
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+
+                new Date().toLocaleDateString(
+                    "en-IN",
+                    {
+                        day: "2-digit",
+
+                        month: "short",
+
+                        year: "numeric"
+                    }
+                );
+
+        }
+
+
+        /* =========================================
+           DEFAULT MAINTENANCE DATA
+        ========================================= */
+
+        const maintenanceData = [
+
+            {
+                id: "MNT-001",
+                loom: "Loom 01",
+                issue: "Motor Overheating",
+                priority: "High",
+                time: "08:15 AM",
+                technician: "Ramesh",
+                status: "Open"
+            },
+
+            {
+                id: "MNT-002",
+                loom: "Loom 03",
+                issue: "Warp Sensor Fault",
+                priority: "Medium",
+                time: "08:45 AM",
+                technician: "Kumar",
+                status: "In Progress"
+            },
+
+            {
+                id: "MNT-003",
+                loom: "Loom 05",
+                issue: "Oil Level Low",
+                priority: "Low",
+                time: "09:10 AM",
+                technician: "Suresh",
+                status: "Resolved"
+            },
+
+            {
+                id: "MNT-004",
+                loom: "Loom 07",
+                issue: "Belt Vibration",
+                priority: "High",
+                time: "09:35 AM",
+                technician: "Arun",
+                status: "Open"
+            },
+
+            {
+                id: "MNT-005",
+                loom: "Loom 09",
+                issue: "Pick Sensor Error",
+                priority: "Medium",
+                time: "10:05 AM",
+                technician: "Ramesh",
+                status: "In Progress"
+            },
+
+            {
+                id: "MNT-006",
+                loom: "Loom 11",
+                issue: "Bearing Noise",
+                priority: "High",
+                time: "10:40 AM",
+                technician: "Kumar",
+                status: "Open"
+            },
+
+            {
+                id: "MNT-007",
+                loom: "Loom 02",
+                issue: "Temperature Warning",
+                priority: "Medium",
+                time: "11:15 AM",
+                technician: "Suresh",
+                status: "Resolved"
+            },
+
+            {
+                id: "MNT-008",
+                loom: "Loom 04",
+                issue: "Weft Sensor Fault",
+                priority: "High",
+                time: "11:50 AM",
+                technician: "Arun",
+                status: "In Progress"
+            },
+
+            {
+                id: "MNT-009",
+                loom: "Loom 06",
+                issue: "Lubrication Required",
+                priority: "Low",
+                time: "12:20 PM",
+                technician: "Ramesh",
+                status: "Resolved"
+            },
+
+            {
+                id: "MNT-010",
+                loom: "Loom 08",
+                issue: "Drive Fault",
+                priority: "High",
+                time: "01:05 PM",
+                technician: "Kumar",
+                status: "Open"
+            },
+
+            {
+                id: "MNT-011",
+                loom: "Loom 10",
+                issue: "Control Panel Error",
+                priority: "Medium",
+                time: "01:40 PM",
+                technician: "Suresh",
+                status: "Resolved"
+            },
+
+            {
+                id: "MNT-012",
+                loom: "Loom 12",
+                issue: "Air Pressure Low",
+                priority: "Low",
+                time: "02:10 PM",
+                technician: "Arun",
+                status: "Resolved"
+            }
+
+        ];
+
+
+        /* =========================================
+           SESSION STORAGE
+        ========================================= */
+
+        function getSavedMaintenance() {
+
+            const saved =
+                sessionStorage.getItem(
+                    "maaruthiMaintenanceData"
+                );
+
+
+            if (!saved) {
+
+                return null;
+
+            }
+
+
+            try {
+
+                return JSON.parse(saved);
+
+            } catch (error) {
+
+                return null;
+
+            }
+
+        }
+
+
+        /* =========================================
+           GET DISPLAY DATA
+        ========================================= */
+
+        function getDisplayData() {
+
+            const saved =
+                getSavedMaintenance();
+
+
+            if (!saved) {
+
+                return maintenanceData;
+
+            }
+
+
+            const displayData =
+                maintenanceData.map(
+                    issue => {
+
+                        const savedIssue =
+                            saved[issue.id];
+
+
+                        if (!savedIssue) {
+
+                            return {
+                                ...issue
+                            };
+
+                        }
+
+
+                        return {
+
+                            ...issue,
+
+                            issue:
+                                savedIssue.issue ||
+                                issue.issue,
+
+                            priority:
+                                savedIssue.priority ||
+                                issue.priority,
+
+                            technician:
+                                savedIssue.technician ||
+                                issue.technician,
+
+                            status:
+                                savedIssue.status ||
+                                issue.status,
+
+                            time:
+                                savedIssue.time ||
+                                issue.time
+
+                        };
+
+                    }
+                );
+
+
+            /* =====================================
+               ADD NEWLY REPORTED ISSUES
+            ===================================== */
+
+            Object.keys(saved).forEach(
+                id => {
+
+                    const exists =
+                        displayData.some(
+                            issue =>
+                                issue.id === id
+                        );
+
+
+                    if (!exists) {
+
+                        displayData.push(
+                            saved[id]
+                        );
+
+                    }
+
+                }
+            );
+
+
+            return displayData;
+
+        }
+
+
+        /* =========================================
+           RENDER TABLE
+        ========================================= */
+
+        function renderMaintenance() {
+
+            const tbody =
+                document.getElementById(
+                    "maintenanceTableBody"
+                );
+
+
+            const search =
+                document.getElementById(
+                    "searchInput"
+                )
+                .value
+                .toLowerCase();
+
+
+            const statusFilter =
+                document.getElementById(
+                    "statusFilter"
+                )
+                .value;
+
+
+            const priorityFilter =
+                document.getElementById(
+                    "priorityFilter"
+                )
+                .value;
+
+
+            const data =
+                getDisplayData();
+
+
+            tbody.innerHTML = "";
+
+
+            let visibleCount = 0;
+
+
+            data.forEach(
+                issue => {
+
+
+                    const matchesSearch =
+
+                        issue.id
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        issue.loom
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        issue.issue
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        issue.technician
+                            .toLowerCase()
+                            .includes(search);
+
+
+                    const matchesStatus =
+
+                        statusFilter === "All"
+
+                        ||
+
+                        issue.status ===
+                        statusFilter;
+
+
+                    const matchesPriority =
+
+                        priorityFilter === "All"
+
+                        ||
+
+                        issue.priority ===
+                        priorityFilter;
+
+
+                    if (
+                        !matchesSearch ||
+                        !matchesStatus ||
+                        !matchesPriority
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    visibleCount++;
+
+
+                    let statusClass =
+                        "status-open";
+
+
+                    if (
+                        issue.status ===
+                        "In Progress"
+                    ) {
+
+                        statusClass =
+                            "status-progress";
+
+                    }
+
+
+                    if (
+                        issue.status ===
+                        "Resolved"
+                    ) {
+
+                        statusClass =
+                            "status-resolved";
+
+                    }
+
+
+                    let priorityClass =
+                        "priority-low";
+
+
+                    if (
+                        issue.priority ===
+                        "High"
+                    ) {
+
+                        priorityClass =
+                            "priority-high";
+
+                    }
+
+
+                    if (
+                        issue.priority ===
+                        "Medium"
+                    ) {
+
+                        priorityClass =
+                            "priority-medium";
+
+                    }
+
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    row.innerHTML = `
+
+                        <td class="issue-id">
+                            ${issue.id}
+                        </td>
+
+                        <td>
+                            ${issue.loom}
+                        </td>
+
+                        <td>
+                            ${issue.issue}
+                        </td>
+
+                        <td class="${priorityClass}">
+                            ${issue.priority}
+                        </td>
+
+                        <td>
+                            ${issue.time}
+                        </td>
+
+                        <td>
+                            ${issue.technician}
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="status-badge ${statusClass}"
+                            >
+                                ${issue.status}
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="view-button"
+                                onclick="viewIssue('${issue.id}')"
+                            >
+                                View
+                            </button>
+
+                        </td>
+
+                    `;
+
+
+                    tbody.appendChild(row);
+
+                }
+            );
+
+
+            if (visibleCount === 0) {
+
+                tbody.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="8"
+                            class="no-results"
+                        >
+                            No maintenance issues found.
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+
+
+            updateSummary();
+
+        }
+
+
+        /* =========================================
+           SUMMARY
+        ========================================= */
+
+        function updateSummary() {
+
+            const data =
+                getDisplayData();
+
+
+            const total =
+                data.length;
+
+
+            const open =
+                data.filter(
+                    issue =>
+                        issue.status ===
+                        "Open"
+                ).length;
+
+
+            const progress =
+                data.filter(
+                    issue =>
+                        issue.status ===
+                        "In Progress"
+                ).length;
+
+
+            const resolved =
+                data.filter(
+                    issue =>
+                        issue.status ===
+                        "Resolved"
+                ).length;
+
+
+            document.getElementById(
+                "totalIssues"
+            ).textContent =
+                total;
+
+
+            document.getElementById(
+                "openIssues"
+            ).textContent =
+                open;
+
+
+            document.getElementById(
+                "progressIssues"
+            ).textContent =
+                progress;
+
+
+            document.getElementById(
+                "resolvedIssues"
+            ).textContent =
+                resolved;
+
+        }
+
+
+        /* =========================================
+           VIEW ISSUE
+        ========================================= */
+
+        function viewIssue(id) {
+
+            const issue =
+                getDisplayData().find(
+                    item =>
+                        item.id === id
+                );
+
+
+            if (!issue) {
+
+                alert(
+                    "Maintenance issue not found."
+                );
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "maintenance-view.html?issue=" +
+                encodeURIComponent(
+                    issue.id
+                );
+
+        }
+
+
+        /* =========================================
+           OPEN REPORT MODAL
+        ========================================= */
+
+        function openReportModal() {
+
+            document.getElementById(
+                "reportOverlay"
+            ).classList.add(
+                "show"
+            );
+
+
+            document.getElementById(
+                "newLoom"
+            ).focus();
+
+        }
+
+
+        /* =========================================
+           CLOSE REPORT MODAL
+        ========================================= */
+
+        function closeReportModal() {
+
+            document.getElementById(
+                "reportOverlay"
+            ).classList.remove(
+                "show"
+            );
+
+        }
+
+
+        /* =========================================
+           GENERATE NEW ISSUE ID
+        ========================================= */
+
+        function generateIssueId() {
+
+            const data =
+                getDisplayData();
+
+
+            let highestNumber = 0;
+
+
+            data.forEach(
+                issue => {
+
+                    const match =
+                        issue.id.match(
+                            /MNT-(\d+)/
+                        );
+
+
+                    if (match) {
+
+                        const number =
+                            parseInt(
+                                match[1]
+                            );
+
+
+                        if (
+                            number >
+                            highestNumber
+                        ) {
+
+                            highestNumber =
+                                number;
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+            return (
+                "MNT-" +
+                String(
+                    highestNumber + 1
+                ).padStart(
+                    3,
+                    "0"
+                )
+            );
+
+        }
+
+
+        /* =========================================
+           SAVE NEW ISSUE
+        ========================================= */
+
+        function submitReport() {
+
+            const loom =
+                document.getElementById(
+                    "newLoom"
+                ).value;
+
+
+            const issueType =
+                document.getElementById(
+                    "newIssueType"
+                ).value.trim();
+
+
+            const priority =
+                document.getElementById(
+                    "newPriority"
+                ).value;
+
+
+            const technician =
+                document.getElementById(
+                    "newTechnician"
+                ).value;
+
+
+            const description =
+                document.getElementById(
+                    "newDescription"
+                ).value.trim();
+
+
+            const action =
+                document.getElementById(
+                    "newAction"
+                ).value.trim();
+
+
+            const remarks =
+                document.getElementById(
+                    "newRemarks"
+                ).value.trim();
+
+
+            if (
+                !loom ||
+                !issueType ||
+                !priority ||
+                !technician ||
+                !description
+            ) {
+
+                alert(
+                    "Please complete all required fields."
+                );
+
+                return;
+
+            }
+
+
+            const issueId =
+                generateIssueId();
+
+
+            const now =
+                new Date();
+
+
+            const reportedTime =
+                now.toLocaleTimeString(
+                    "en-IN",
+                    {
+                        hour:
+                            "2-digit",
+
+                        minute:
+                            "2-digit"
+                    }
+                );
+
+
+            const newIssue = {
+
+                id:
+                    issueId,
+
+                loom:
+                    loom,
+
+                issue:
+                    issueType,
+
+                priority:
+                    priority,
+
+                time:
+                    reportedTime,
+
+                technician:
+                    technician,
+
+                status:
+                    "Open",
+
+                description:
+                    description,
+
+                action:
+                    action ||
+                    "Inspect the loom and identify the cause of the reported issue.",
+
+                remarks:
+                    remarks,
+
+                timeline: [
+
+                    {
+
+                        title:
+                            "Issue Reported",
+
+                        time:
+                            reportedTime,
+
+                        description:
+                            "New maintenance issue reported for " +
+                            loom +
+                            "."
+
+                    }
+
+                ]
+
+            };
+
+
+            /* =====================================
+               GET EXISTING SESSION DATA
+            ===================================== */
+
+            let saved =
+                getSavedMaintenance();
+
+
+            if (!saved) {
+
+                saved = {};
+
+            }
+
+
+            saved[issueId] =
+                newIssue;
+
+
+            sessionStorage.setItem(
+
+                "maaruthiMaintenanceData",
+
+                JSON.stringify(
+                    saved
+                )
+
+            );
+
+
+            /* =====================================
+               CLOSE FORM
+            ===================================== */
+
+            document.getElementById(
+                "reportForm"
+            ).reset();
+
+
+            closeReportModal();
+
+
+            /* =====================================
+               REFRESH TABLE
+            ===================================== */
+
+            renderMaintenance();
+
+
+            showSuccessMessage();
+
+        }
+
+
+        /* =========================================
+           SUCCESS MESSAGE
+        ========================================= */
+
+        function showSuccessMessage() {
+
+            const message =
+                document.getElementById(
+                    "successMessage"
+                );
+
+
+            message.textContent =
+                "Maintenance issue reported successfully.";
+
+
+            message.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    message.classList.remove(
+                        "show"
+                    );
+
+                },
+                3000
+            );
+
+        }
+
+
+        /* =========================================
+           SEARCH
+        ========================================= */
+
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .addEventListener(
+                "input",
+                renderMaintenance
+            );
+
+
+        /* =========================================
+           STATUS FILTER
+        ========================================= */
+
+        document
+            .getElementById(
+                "statusFilter"
+            )
+            .addEventListener(
+                "change",
+                renderMaintenance
+            );
+
+
+        /* =========================================
+           PRIORITY FILTER
+        ========================================= */
+
+        document
+            .getElementById(
+                "priorityFilter"
+            )
+            .addEventListener(
+                "change",
+                renderMaintenance
+            );
+
+
+        /* =========================================
+           CLOSE MODAL OUTSIDE
+        ========================================= */
+
+        document
+            .getElementById(
+                "reportOverlay"
+            )
+            .addEventListener(
+                "click",
+                function(event) {
+
+                    if (
+                        event.target ===
+                        this
+                    ) {
+
+                        closeReportModal();
+
+                    }
+
+                }
+            );
+
+
+        /* =========================================
+           ESCAPE KEY
+        ========================================= */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key ===
+                    "Escape"
+                ) {
+
+                    closeReportModal();
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           LIVE STATUS SIMULATION
+        ========================================= */
+
+        setInterval(
+            () => {
+
+                /*
+                 * Only simulate existing issues.
+                 * Newly reported issues remain Open
+                 * until manually updated.
+                 */
+
+                const saved =
+                    getSavedMaintenance();
+
+
+                if (!saved) {
+
+                    return;
+
+                }
+
+
+                let changed =
+                    false;
+
+
+                Object.keys(saved).forEach(
+                    id => {
+
+                        const issue =
+                            saved[id];
+
+
+                        if (
+                            issue.status ===
+                            "Open"
+                        ) {
+
+                            if (
+                                Math.random() >
+                                0.92
+                            ) {
+
+                                issue.status =
+                                    "In Progress";
+
+                                changed =
+                                    true;
+
+                            }
+
+                        }
+
+
+                        else if (
+                            issue.status ===
+                            "In Progress"
+                        ) {
+
+                            if (
+                                Math.random() >
+                                0.95
+                            ) {
+
+                                issue.status =
+                                    "Resolved";
+
+                                changed =
+                                    true;
+
+                            }
+
+                        }
+
+                    }
+                );
+
+
+                if (changed) {
+
+                    sessionStorage.setItem(
+
+                        "maaruthiMaintenanceData",
+
+                        JSON.stringify(
+                            saved
+                        )
+
+                    );
+
+
+                    renderMaintenance();
+
+                }
+
+            },
+            5000
+        );
+
+
+        /* =========================================
+           START
+        ========================================= */
+
+        updateDate();
+
+        renderMaintenance();
+
+    </script>
+
+
+</body>
+
+</html>

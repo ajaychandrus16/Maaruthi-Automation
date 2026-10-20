@@ -1,0 +1,2949 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Report View - MAARUTHI AUTOMATION
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =========================================
+           REPORT CONTAINER
+        ========================================= */
+
+        .report-container {
+            padding: 25px;
+        }
+
+
+        /* =========================================
+           ACTION BAR
+        ========================================= */
+
+        .report-action-bar {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 18px 20px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .report-heading h2 {
+
+            margin: 0;
+
+            color: #4a250f;
+
+            font-size: 21px;
+        }
+
+
+        .report-heading p {
+
+            margin: 5px 0 0;
+
+            color: #888;
+
+            font-size: 13px;
+        }
+
+
+        .report-actions {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .back-button,
+        .print-button {
+
+            border: none;
+
+            padding:
+                10px 16px;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+        }
+
+
+        .back-button {
+
+            background:
+                #f3eee8;
+
+            color:
+                #4a2a1b;
+        }
+
+
+        .back-button:hover {
+
+            background:
+                #e8ddd0;
+        }
+
+
+        .print-button {
+
+            background:
+                #df8e18;
+
+            color:
+                white;
+        }
+
+
+        .print-button:hover {
+
+            background:
+                #c87b0c;
+        }
+
+
+        /* =========================================
+           REPORT PAPER
+        ========================================= */
+
+        .report-paper {
+
+            background:
+                white;
+
+            border-radius:
+                12px;
+
+            padding:
+                35px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+        }
+
+
+        /* =========================================
+           COMPANY HEADER
+        ========================================= */
+
+        .company-header {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                flex-start;
+
+            padding-bottom:
+                22px;
+
+            border-bottom:
+                2px solid #df8e18;
+
+            margin-bottom:
+                22px;
+        }
+
+
+        .company-name {
+
+            color:
+                #4a250f;
+
+            font-size:
+                24px;
+
+            font-weight:
+                800;
+
+            margin:
+                0;
+        }
+
+
+        .company-subtitle {
+
+            color:
+                #df8e18;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                2px;
+
+            margin-top:
+                4px;
+        }
+
+
+        .company-contact {
+
+            text-align:
+                right;
+
+            color:
+                #777;
+
+            font-size:
+                11px;
+
+            line-height:
+                1.7;
+        }
+
+
+        /* =========================================
+           REPORT TITLE
+        ========================================= */
+
+        .report-title-section {
+
+            margin-bottom:
+                25px;
+        }
+
+
+        .report-title {
+
+            margin:
+                0 0 7px;
+
+            color:
+                #4a250f;
+
+            font-size:
+                25px;
+        }
+
+
+        .report-period {
+
+            color:
+                #777;
+
+            font-size:
+                13px;
+        }
+
+
+        /* =========================================
+           SUMMARY CARDS
+        ========================================= */
+
+        .report-summary {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                15px;
+
+            margin-bottom:
+                28px;
+        }
+
+
+        .report-summary-card {
+
+            background:
+                #fff8ef;
+
+            border:
+                1px solid #f0dfca;
+
+            border-radius:
+                10px;
+
+            padding:
+                17px;
+        }
+
+
+        .report-summary-label {
+
+            color:
+                #8a6a4d;
+
+            font-size:
+                11px;
+
+            margin-bottom:
+                6px;
+        }
+
+
+        .report-summary-value {
+
+            color:
+                #4a250f;
+
+            font-size:
+                21px;
+
+            font-weight:
+                800;
+        }
+
+
+        /* =========================================
+           SECTION
+        ========================================= */
+
+        .report-section {
+
+            margin-top:
+                28px;
+        }
+
+
+        .report-section-title {
+
+            color:
+                #4a250f;
+
+            font-size:
+                17px;
+
+            margin:
+                0 0 13px;
+
+            padding-bottom:
+                10px;
+
+            border-bottom:
+                1px solid #eee;
+        }
+
+
+        /* =========================================
+           TABLE
+        ========================================= */
+
+        .report-table-wrapper {
+
+            overflow-x:
+                auto;
+        }
+
+
+        .report-table {
+
+            width:
+                100%;
+
+            border-collapse:
+                collapse;
+
+            min-width:
+                700px;
+        }
+
+
+        .report-table th {
+
+            text-align:
+                left;
+
+            padding:
+                12px;
+
+            background:
+                #fff7ef;
+
+            color:
+                #5a3017;
+
+            font-size:
+                12px;
+        }
+
+
+        .report-table td {
+
+            padding:
+                12px;
+
+            border-bottom:
+                1px solid #eee;
+
+            color:
+                #555;
+
+            font-size:
+                12px;
+        }
+
+
+        .report-table tr:hover {
+
+            background:
+                #fffaf5;
+        }
+
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .status-badge {
+
+            display:
+                inline-block;
+
+            padding:
+                5px 10px;
+
+            border-radius:
+                20px;
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+        }
+
+
+        .status-running {
+
+            background:
+                #e5f5e8;
+
+            color:
+                #287a38;
+        }
+
+
+        .status-stopped {
+
+            background:
+                #ffe6d6;
+
+            color:
+                #b55700;
+        }
+
+
+        .status-open {
+
+            background:
+                #ffe6d6;
+
+            color:
+                #b55700;
+        }
+
+
+        .status-progress {
+
+            background:
+                #fff0c9;
+
+            color:
+                #916000;
+        }
+
+
+        .status-resolved {
+
+            background:
+                #e5f5e8;
+
+            color:
+                #287a38;
+        }
+
+
+        /* =========================================
+           PROGRESS
+        ========================================= */
+
+        .progress-container {
+
+            width:
+                100%;
+
+            height:
+                8px;
+
+            background:
+                #eee;
+
+            border-radius:
+                20px;
+
+            overflow:
+                hidden;
+        }
+
+
+        .progress-bar {
+
+            height:
+                100%;
+
+            background:
+                #df8e18;
+
+            border-radius:
+                20px;
+        }
+
+
+        /* =========================================
+           REPORT INFORMATION
+        ========================================= */
+
+        .report-info-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                15px;
+
+            margin-top:
+                20px;
+        }
+
+
+        .report-info-item {
+
+            background:
+                #faf7f3;
+
+            padding:
+                14px;
+
+            border-radius:
+                8px;
+        }
+
+
+        .report-info-label {
+
+            color:
+                #8a7a6b;
+
+            font-size:
+                10px;
+
+            margin-bottom:
+                5px;
+        }
+
+
+        .report-info-value {
+
+            color:
+                #4a250f;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .report-footer {
+
+            margin-top:
+                35px;
+
+            padding-top:
+                18px;
+
+            border-top:
+                1px solid #ddd;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            color:
+                #888;
+
+            font-size:
+                10px;
+        }
+
+
+        /* =========================================
+           LOADING / NOT FOUND
+        ========================================= */
+
+        .message-box {
+
+            background:
+                white;
+
+            padding:
+                40px;
+
+            border-radius:
+                12px;
+
+            text-align:
+                center;
+
+            color:
+                #777;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .report-summary {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .report-info-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .report-action-bar {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+            }
+
+
+            .company-header {
+
+                flex-direction:
+                    column;
+
+                gap:
+                    15px;
+            }
+
+
+            .company-contact {
+
+                text-align:
+                    left;
+            }
+
+
+            .report-summary {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .report-info-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .report-paper {
+
+                padding:
+                    20px;
+            }
+
+        }
+
+
+        /* =========================================
+           PRINT
+        ========================================= */
+
+        @media print {
+
+            .sidebar,
+            .top-header,
+            .report-action-bar {
+
+                display:
+                    none !important;
+            }
+
+
+            .main-content {
+
+                margin:
+                    0 !important;
+
+                width:
+                    100% !important;
+            }
+
+
+            .report-container {
+
+                padding:
+                    0;
+            }
+
+
+            .report-paper {
+
+                box-shadow:
+                    none;
+
+                border:
+                    none;
+
+                padding:
+                    20px;
+            }
+
+
+            body {
+
+                background:
+                    white;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                M
+            </div>
+
+            <div>
+
+                <h2>
+                    MAARUTHI
+                </h2>
+
+                <span>
+                    AUTOMATION
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">
+                    ⌂
+                </span>
+                Dashboard
+            </a>
+
+
+            <a
+                href="looms.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">
+                    ▦
+                </span>
+                Looms
+            </a>
+
+
+            <a
+                href="employees.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">
+                    ◉
+                </span>
+                Employees
+            </a>
+
+
+            <a
+                href="attendance.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">
+                    ◷
+                </span>
+                Attendance
+            </a>
+
+
+            <a
+                href="production.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">
+                    ▤
+                </span>
+                Production
+            </a>
+
+
+            <a
+                href="payroll.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">
+                    ₹
+                </span>
+                Payroll
+            </a>
+
+
+            <a
+                href="maintenance.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">
+                    ⚙
+                </span>
+                Maintenance
+            </a>
+
+
+            <a
+                href="reports.html"
+                class="nav-link active"
+            >
+                <span class="nav-icon">
+                    ▥
+                </span>
+                Reports
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">
+                    ⚙
+                </span>
+                Settings
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <strong>
+                Textile Automation
+            </strong>
+
+            <span>
+                for a Smarter Future
+            </span>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================= -->
+
+    <main class="main-content">
+
+
+        <header class="top-header">
+
+
+            <div>
+
+                <h1 class="page-title">
+                    Report View
+                </h1>
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <span class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    System Live
+
+                </span>
+
+
+                <span
+                    class="date"
+                    id="currentDate"
+                ></span>
+
+            </div>
+
+
+        </header>
+
+
+        <div class="report-container">
+
+
+            <!-- =================================
+                 ACTION BAR
+            ================================= -->
+
+            <section class="report-action-bar">
+
+
+                <div class="report-heading">
+
+                    <h2 id="reportHeading">
+                        Production Report
+                    </h2>
+
+                    <p id="reportHeadingPeriod">
+                        September 2026
+                    </p>
+
+                </div>
+
+
+                <div class="report-actions">
+
+
+                    <button
+                        class="back-button"
+                        onclick="goBack()"
+                    >
+                        ← Back to Reports
+                    </button>
+
+
+                    <button
+                        class="print-button"
+                        onclick="printReport()"
+                    >
+                        Print Report
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================
+                 REPORT PAPER
+            ================================= -->
+
+            <section class="report-paper">
+
+
+                <!-- COMPANY HEADER -->
+
+                <div class="company-header">
+
+
+                    <div>
+
+                        <h2 class="company-name">
+                            MAARUTHI AUTOMATION
+                        </h2>
+
+                        <div class="company-subtitle">
+                            TEXTILE AUTOMATION
+                        </div>
+
+                    </div>
+
+
+                    <div class="company-contact">
+
+                        D.No:109,C Brindhavan Nagar,<br>
+
+                        Opp CTC dippo, Karumathampatti (PO),<br>
+
+                        Coimbatore - 641659<br>
+
+                        loomautomation@gmail.com
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- REPORT TITLE -->
+
+                <div class="report-title-section">
+
+                    <h1
+                        class="report-title"
+                        id="reportTitle"
+                    >
+                        Production Report
+                    </h1>
+
+
+                    <div
+                        class="report-period"
+                        id="reportPeriod"
+                    >
+                        Reporting Period: September 2026
+                    </div>
+
+                </div>
+
+
+                <!-- SUMMARY -->
+
+                <div
+                    class="report-summary"
+                    id="reportSummary"
+                ></div>
+
+
+                <!-- REPORT CONTENT -->
+
+                <div
+                    id="reportContent"
+                ></div>
+
+
+                <!-- REPORT INFORMATION -->
+
+                <div class="report-section">
+
+
+                    <h3 class="report-section-title">
+                        Report Information
+                    </h3>
+
+
+                    <div class="report-info-grid">
+
+
+                        <div class="report-info-item">
+
+                            <div class="report-info-label">
+                                Report Type
+                            </div>
+
+                            <div
+                                class="report-info-value"
+                                id="infoType"
+                            >
+                                Production
+                            </div>
+
+                        </div>
+
+
+                        <div class="report-info-item">
+
+                            <div class="report-info-label">
+                                Reporting Period
+                            </div>
+
+                            <div
+                                class="report-info-value"
+                                id="infoPeriod"
+                            >
+                                September 2026
+                            </div>
+
+                        </div>
+
+
+                        <div class="report-info-item">
+
+                            <div class="report-info-label">
+                                Generated On
+                            </div>
+
+                            <div
+                                class="report-info-value"
+                                id="generatedOn"
+                            >
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- FOOTER -->
+
+                <div class="report-footer">
+
+                    <span>
+                        MAARUTHI AUTOMATION
+                    </span>
+
+                    <span>
+                        Textile Loom Management System
+                    </span>
+
+                    <span>
+                        System Generated Report
+                    </span>
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+    <script>
+
+        /* =========================================
+           URL PARAMETERS
+        ========================================= */
+
+        const urlParams =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const reportType =
+            urlParams.get("type") ||
+            "Production";
+
+
+        const reportMonth =
+            urlParams.get("month") ||
+            "September 2026";
+
+
+        /* =========================================
+           DATE
+        ========================================= */
+
+        function updateDate() {
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+
+                new Date().toLocaleDateString(
+                    "en-IN",
+                    {
+                        day:
+                            "2-digit",
+
+                        month:
+                            "short",
+
+                        year:
+                            "numeric"
+                    }
+                );
+
+        }
+
+
+        /* =========================================
+           PRODUCTION DATA
+        ========================================= */
+
+        const productionData = [
+
+            {
+                loom: "Loom 01",
+                employee: "Ramesh",
+                shift: "Shift A",
+                production: 720,
+                target: 800,
+                efficiency: 90,
+                status: "Running"
+            },
+
+            {
+                loom: "Loom 02",
+                employee: "Kumar",
+                shift: "Shift A",
+                production: 680,
+                target: 800,
+                efficiency: 85,
+                status: "Running"
+            },
+
+            {
+                loom: "Loom 03",
+                employee: "Suresh",
+                shift: "Shift A",
+                production: 705,
+                target: 800,
+                efficiency: 88,
+                status: "Running"
+            },
+
+            {
+                loom: "Loom 04",
+                employee: "Arun",
+                shift: "Shift A",
+                production: 640,
+                target: 800,
+                efficiency: 80,
+                status: "Stopped"
+            },
+
+            {
+                loom: "Loom 05",
+                employee: "Manoj",
+                shift: "Shift B",
+                production: 750,
+                target: 800,
+                efficiency: 94,
+                status: "Running"
+            },
+
+            {
+                loom: "Loom 06",
+                employee: "Vijay",
+                shift: "Shift B",
+                production: 690,
+                target: 800,
+                efficiency: 86,
+                status: "Running"
+            },
+
+            {
+                loom: "Loom 07",
+                employee: "Dinesh",
+                shift: "Shift B",
+                production: 670,
+                target: 800,
+                efficiency: 84,
+                status: "Running"
+            },
+
+            {
+                loom: "Loom 08",
+                employee: "Ramesh",
+                shift: "Shift B",
+                production: 710,
+                target: 800,
+                efficiency: 89,
+                status: "Running"
+            },
+
+            {
+                loom: "Loom 09",
+                employee: "Kumar",
+                shift: "Shift A",
+                production: 695,
+                target: 800,
+                efficiency: 87,
+                status: "Running"
+            },
+
+            {
+                loom: "Loom 10",
+                employee: "Suresh",
+                shift: "Shift A",
+                production: 610,
+                target: 800,
+                efficiency: 76,
+                status: "Stopped"
+            },
+
+            {
+                loom: "Loom 11",
+                employee: "Arun",
+                shift: "Shift B",
+                production: 735,
+                target: 800,
+                efficiency: 92,
+                status: "Running"
+            },
+
+            {
+                loom: "Loom 12",
+                employee: "Manoj",
+                shift: "Shift B",
+                production: 700,
+                target: 800,
+                efficiency: 88,
+                status: "Running"
+            }
+
+        ];
+
+
+        /* =========================================
+           ATTENDANCE DATA
+        ========================================= */
+
+        const attendanceData = [
+
+            {
+                id: "EMP001",
+                name: "Ramesh Kumar",
+                loom: "Loom 01",
+                shift: "Shift A",
+                attendance: "Present",
+                checkIn: "07:58 AM",
+                checkOut: "-"
+            },
+
+            {
+                id: "EMP002",
+                name: "Kumar Raj",
+                loom: "Loom 02",
+                shift: "Shift A",
+                attendance: "Present",
+                checkIn: "08:02 AM",
+                checkOut: "-"
+            },
+
+            {
+                id: "EMP003",
+                name: "Suresh B",
+                loom: "Loom 03",
+                shift: "Shift A",
+                attendance: "Present",
+                checkIn: "07:55 AM",
+                checkOut: "-"
+            },
+
+            {
+                id: "EMP004",
+                name: "Arun P",
+                loom: "Loom 04",
+                shift: "Shift A",
+                attendance: "Present",
+                checkIn: "08:06 AM",
+                checkOut: "-"
+            },
+
+            {
+                id: "EMP005",
+                name: "Manoj S",
+                loom: "Loom 05",
+                shift: "Shift B",
+                attendance: "Present",
+                checkIn: "03:57 PM",
+                checkOut: "-"
+            },
+
+            {
+                id: "EMP006",
+                name: "Vijay K",
+                loom: "Loom 06",
+                shift: "Shift B",
+                attendance: "Leave",
+                checkIn: "-",
+                checkOut: "-"
+            },
+
+            {
+                id: "EMP007",
+                name: "Dinesh R",
+                loom: "Loom 07",
+                shift: "Shift B",
+                attendance: "Present",
+                checkIn: "04:01 PM",
+                checkOut: "-"
+            },
+
+            {
+                id: "EMP008",
+                name: "Ravi M",
+                loom: "Loom 08",
+                shift: "Shift B",
+                attendance: "Absent",
+                checkIn: "-",
+                checkOut: "-"
+            }
+
+        ];
+
+
+        /* =========================================
+           PAYROLL DATA
+        ========================================= */
+
+        const payrollData = [
+
+            {
+                id: "EMP001",
+                name: "Ramesh Kumar",
+                days: 26,
+                basic: 18000,
+                allowance: 2500,
+                deduction: 900,
+                net: 19600
+            },
+
+            {
+                id: "EMP002",
+                name: "Kumar Raj",
+                days: 25,
+                basic: 17500,
+                allowance: 2400,
+                deduction: 850,
+                net: 19050
+            },
+
+            {
+                id: "EMP003",
+                name: "Suresh B",
+                days: 26,
+                basic: 18000,
+                allowance: 2600,
+                deduction: 900,
+                net: 19700
+            },
+
+            {
+                id: "EMP004",
+                name: "Arun P",
+                days: 24,
+                basic: 16500,
+                allowance: 2200,
+                deduction: 800,
+                net: 17900
+            },
+
+            {
+                id: "EMP005",
+                name: "Manoj S",
+                days: 26,
+                basic: 19000,
+                allowance: 2800,
+                deduction: 950,
+                net: 20850
+            },
+
+            {
+                id: "EMP006",
+                name: "Vijay K",
+                days: 23,
+                basic: 16000,
+                allowance: 2100,
+                deduction: 750,
+                net: 17350
+            }
+
+        ];
+
+
+        /* =========================================
+           MAINTENANCE DATA
+        ========================================= */
+
+        const maintenanceData = [
+
+            {
+                id: "MNT-001",
+                loom: "Loom 01",
+                issue: "Motor Overheating",
+                priority: "High",
+                technician: "Ramesh",
+                status: "Open",
+                time: "08:15 AM"
+            },
+
+            {
+                id: "MNT-002",
+                loom: "Loom 03",
+                issue: "Warp Sensor Fault",
+                priority: "Medium",
+                technician: "Kumar",
+                status: "In Progress",
+                time: "08:45 AM"
+            },
+
+            {
+                id: "MNT-003",
+                loom: "Loom 05",
+                issue: "Oil Level Low",
+                priority: "Low",
+                technician: "Suresh",
+                status: "Resolved",
+                time: "09:10 AM"
+            },
+
+            {
+                id: "MNT-004",
+                loom: "Loom 07",
+                issue: "Belt Vibration",
+                priority: "High",
+                technician: "Arun",
+                status: "Open",
+                time: "09:35 AM"
+            },
+
+            {
+                id: "MNT-005",
+                loom: "Loom 09",
+                issue: "Pick Sensor Error",
+                priority: "Medium",
+                technician: "Ramesh",
+                status: "In Progress",
+                time: "10:05 AM"
+            },
+
+            {
+                id: "MNT-006",
+                loom: "Loom 11",
+                issue: "Bearing Noise",
+                priority: "High",
+                technician: "Kumar",
+                status: "Open",
+                time: "10:40 AM"
+            }
+
+        ];
+
+
+        /* =========================================
+           FORMAT CURRENCY
+        ========================================= */
+
+        function currency(value) {
+
+            return "₹" +
+                Number(value).toLocaleString(
+                    "en-IN"
+                );
+
+        }
+
+
+        /* =========================================
+           SET REPORT HEADER
+        ========================================= */
+
+        function setReportHeader() {
+
+            document.getElementById(
+                "reportHeading"
+            ).textContent =
+                reportType +
+                " Report";
+
+
+            document.getElementById(
+                "reportHeadingPeriod"
+            ).textContent =
+                reportMonth;
+
+
+            document.getElementById(
+                "reportTitle"
+            ).textContent =
+                reportType +
+                " Report";
+
+
+            document.getElementById(
+                "reportPeriod"
+            ).textContent =
+                "Reporting Period: " +
+                reportMonth;
+
+
+            document.getElementById(
+                "infoType"
+            ).textContent =
+                reportType;
+
+
+            document.getElementById(
+                "infoPeriod"
+            ).textContent =
+                reportMonth;
+
+
+            document.getElementById(
+                "generatedOn"
+            ).textContent =
+
+                new Date().toLocaleString(
+                    "en-IN"
+                );
+
+        }
+
+
+        /* =========================================
+           SUMMARY CARD
+        ========================================= */
+
+        function summaryCard(
+            label,
+            value
+        ) {
+
+            return `
+
+                <div class="report-summary-card">
+
+                    <div class="report-summary-label">
+                        ${label}
+                    </div>
+
+                    <div class="report-summary-value">
+                        ${value}
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =========================================
+           PRODUCTION REPORT
+        ========================================= */
+
+        function renderProductionReport() {
+
+            const totalProduction =
+                productionData.reduce(
+                    (
+                        sum,
+                        item
+                    ) =>
+                        sum +
+                        item.production,
+                    0
+                );
+
+
+            const totalTarget =
+                productionData.reduce(
+                    (
+                        sum,
+                        item
+                    ) =>
+                        sum +
+                        item.target,
+                    0
+                );
+
+
+            const averageEfficiency =
+                Math.round(
+                    productionData.reduce(
+                        (
+                            sum,
+                            item
+                        ) =>
+                            sum +
+                            item.efficiency,
+                        0
+                    ) /
+                    productionData.length
+                );
+
+
+            const running =
+                productionData.filter(
+                    item =>
+                        item.status ===
+                        "Running"
+                ).length;
+
+
+            document.getElementById(
+                "reportSummary"
+            ).innerHTML =
+
+                summaryCard(
+                    "Total Production",
+                    totalProduction.toLocaleString(
+                        "en-IN"
+                    )
+                ) +
+
+                summaryCard(
+                    "Daily Target",
+                    totalTarget.toLocaleString(
+                        "en-IN"
+                    )
+                ) +
+
+                summaryCard(
+                    "Average Efficiency",
+                    averageEfficiency + "%"
+                ) +
+
+                summaryCard(
+                    "Running Looms",
+                    running +
+                    " / " +
+                    productionData.length
+                );
+
+
+            let rows = "";
+
+
+            productionData.forEach(
+                item => {
+
+                    const achievement =
+                        Math.round(
+                            (
+                                item.production /
+                                item.target
+                            ) *
+                            100
+                        );
+
+
+                    const statusClass =
+                        item.status ===
+                        "Running"
+                            ? "status-running"
+                            : "status-stopped";
+
+
+                    rows += `
+
+                        <tr>
+
+                            <td>
+                                ${item.loom}
+                            </td>
+
+                            <td>
+                                ${item.employee}
+                            </td>
+
+                            <td>
+                                ${item.shift}
+                            </td>
+
+                            <td>
+                                ${item.production.toLocaleString("en-IN")}
+                            </td>
+
+                            <td>
+                                ${item.target.toLocaleString("en-IN")}
+                            </td>
+
+                            <td>
+                                ${achievement}%
+                            </td>
+
+                            <td>
+
+                                <div class="progress-container">
+
+                                    <div
+                                        class="progress-bar"
+                                        style="width:${Math.min(achievement,100)}%"
+                                    ></div>
+
+                                </div>
+
+                            </td>
+
+                            <td>
+                                ${item.efficiency}%
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="status-badge ${statusClass}"
+                                >
+                                    ${item.status}
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+
+            document.getElementById(
+                "reportContent"
+            ).innerHTML = `
+
+                <div class="report-section">
+
+                    <h3 class="report-section-title">
+                        Loom Production Details
+                    </h3>
+
+                    <div class="report-table-wrapper">
+
+                        <table class="report-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Loom</th>
+                                    <th>Employee</th>
+                                    <th>Shift</th>
+                                    <th>Production</th>
+                                    <th>Target</th>
+                                    <th>Achievement</th>
+                                    <th>Progress</th>
+                                    <th>Efficiency</th>
+                                    <th>Status</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                ${rows}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =========================================
+           ATTENDANCE REPORT
+        ========================================= */
+
+        function renderAttendanceReport() {
+
+            const present =
+                attendanceData.filter(
+                    item =>
+                        item.attendance ===
+                        "Present"
+                ).length;
+
+
+            const absent =
+                attendanceData.filter(
+                    item =>
+                        item.attendance ===
+                        "Absent"
+                ).length;
+
+
+            const leave =
+                attendanceData.filter(
+                    item =>
+                        item.attendance ===
+                        "Leave"
+                ).length;
+
+
+            const percentage =
+                Math.round(
+                    (
+                        present /
+                        attendanceData.length
+                    ) *
+                    100
+                );
+
+
+            document.getElementById(
+                "reportSummary"
+            ).innerHTML =
+
+                summaryCard(
+                    "Total Employees",
+                    attendanceData.length
+                ) +
+
+                summaryCard(
+                    "Present",
+                    present
+                ) +
+
+                summaryCard(
+                    "Absent",
+                    absent
+                ) +
+
+                summaryCard(
+                    "Attendance",
+                    percentage + "%"
+                );
+
+
+            let rows = "";
+
+
+            attendanceData.forEach(
+                item => {
+
+                    let statusClass =
+                        "status-running";
+
+
+                    if (
+                        item.attendance ===
+                        "Absent"
+                    ) {
+
+                        statusClass =
+                            "status-stopped";
+
+                    }
+
+
+                    if (
+                        item.attendance ===
+                        "Leave"
+                    ) {
+
+                        statusClass =
+                            "status-progress";
+
+                    }
+
+
+                    rows += `
+
+                        <tr>
+
+                            <td>
+                                ${item.id}
+                            </td>
+
+                            <td>
+                                ${item.name}
+                            </td>
+
+                            <td>
+                                ${item.loom}
+                            </td>
+
+                            <td>
+                                ${item.shift}
+                            </td>
+
+                            <td>
+                                ${item.checkIn}
+                            </td>
+
+                            <td>
+                                ${item.checkOut}
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="status-badge ${statusClass}"
+                                >
+                                    ${item.attendance}
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+
+            document.getElementById(
+                "reportContent"
+            ).innerHTML = `
+
+                <div class="report-section">
+
+                    <h3 class="report-section-title">
+                        Employee Attendance Details
+                    </h3>
+
+                    <div class="report-table-wrapper">
+
+                        <table class="report-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Employee ID</th>
+                                    <th>Name</th>
+                                    <th>Loom</th>
+                                    <th>Shift</th>
+                                    <th>Check In</th>
+                                    <th>Check Out</th>
+                                    <th>Status</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                ${rows}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =========================================
+           PAYROLL REPORT
+        ========================================= */
+
+        function renderPayrollReport() {
+
+            const totalBasic =
+                payrollData.reduce(
+                    (
+                        sum,
+                        item
+                    ) =>
+                        sum +
+                        item.basic,
+                    0
+                );
+
+
+            const totalAllowance =
+                payrollData.reduce(
+                    (
+                        sum,
+                        item
+                    ) =>
+                        sum +
+                        item.allowance,
+                    0
+                );
+
+
+            const totalDeduction =
+                payrollData.reduce(
+                    (
+                        sum,
+                        item
+                    ) =>
+                        sum +
+                        item.deduction,
+                    0
+                );
+
+
+            const totalNet =
+                payrollData.reduce(
+                    (
+                        sum,
+                        item
+                    ) =>
+                        sum +
+                        item.net,
+                    0
+                );
+
+
+            document.getElementById(
+                "reportSummary"
+            ).innerHTML =
+
+                summaryCard(
+                    "Basic Salary",
+                    currency(totalBasic)
+                ) +
+
+                summaryCard(
+                    "Allowances",
+                    currency(totalAllowance)
+                ) +
+
+                summaryCard(
+                    "Deductions",
+                    currency(totalDeduction)
+                ) +
+
+                summaryCard(
+                    "Net Payroll",
+                    currency(totalNet)
+                );
+
+
+            let rows = "";
+
+
+            payrollData.forEach(
+                item => {
+
+                    rows += `
+
+                        <tr>
+
+                            <td>
+                                ${item.id}
+                            </td>
+
+                            <td>
+                                ${item.name}
+                            </td>
+
+                            <td>
+                                ${item.days}
+                            </td>
+
+                            <td>
+                                ${currency(item.basic)}
+                            </td>
+
+                            <td>
+                                ${currency(item.allowance)}
+                            </td>
+
+                            <td>
+                                ${currency(item.deduction)}
+                            </td>
+
+                            <td>
+                                <strong>
+                                    ${currency(item.net)}
+                                </strong>
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+
+            document.getElementById(
+                "reportContent"
+            ).innerHTML = `
+
+                <div class="report-section">
+
+                    <h3 class="report-section-title">
+                        Employee Payroll Details
+                    </h3>
+
+                    <div class="report-table-wrapper">
+
+                        <table class="report-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Employee ID</th>
+                                    <th>Name</th>
+                                    <th>Days</th>
+                                    <th>Basic Salary</th>
+                                    <th>Allowance</th>
+                                    <th>Deduction</th>
+                                    <th>Net Salary</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                ${rows}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =========================================
+           MAINTENANCE REPORT
+        ========================================= */
+
+        function renderMaintenanceReport() {
+
+            const open =
+                maintenanceData.filter(
+                    item =>
+                        item.status ===
+                        "Open"
+                ).length;
+
+
+            const progress =
+                maintenanceData.filter(
+                    item =>
+                        item.status ===
+                        "In Progress"
+                ).length;
+
+
+            const resolved =
+                maintenanceData.filter(
+                    item =>
+                        item.status ===
+                        "Resolved"
+                ).length;
+
+
+            document.getElementById(
+                "reportSummary"
+            ).innerHTML =
+
+                summaryCard(
+                    "Total Issues",
+                    maintenanceData.length
+                ) +
+
+                summaryCard(
+                    "Open",
+                    open
+                ) +
+
+                summaryCard(
+                    "In Progress",
+                    progress
+                ) +
+
+                summaryCard(
+                    "Resolved",
+                    resolved
+                );
+
+
+            let rows = "";
+
+
+            maintenanceData.forEach(
+                item => {
+
+                    let statusClass =
+                        "status-open";
+
+
+                    if (
+                        item.status ===
+                        "In Progress"
+                    ) {
+
+                        statusClass =
+                            "status-progress";
+
+                    }
+
+
+                    if (
+                        item.status ===
+                        "Resolved"
+                    ) {
+
+                        statusClass =
+                            "status-resolved";
+
+                    }
+
+
+                    rows += `
+
+                        <tr>
+
+                            <td>
+                                ${item.id}
+                            </td>
+
+                            <td>
+                                ${item.loom}
+                            </td>
+
+                            <td>
+                                ${item.issue}
+                            </td>
+
+                            <td>
+                                ${item.priority}
+                            </td>
+
+                            <td>
+                                ${item.time}
+                            </td>
+
+                            <td>
+                                ${item.technician}
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="status-badge ${statusClass}"
+                                >
+                                    ${item.status}
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+
+            document.getElementById(
+                "reportContent"
+            ).innerHTML = `
+
+                <div class="report-section">
+
+                    <h3 class="report-section-title">
+                        Maintenance Issue Details
+                    </h3>
+
+                    <div class="report-table-wrapper">
+
+                        <table class="report-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Issue ID</th>
+                                    <th>Loom</th>
+                                    <th>Issue Type</th>
+                                    <th>Priority</th>
+                                    <th>Reported Time</th>
+                                    <th>Technician</th>
+                                    <th>Status</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                ${rows}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =========================================
+           EMPLOYEE PERFORMANCE
+        ========================================= */
+
+        function renderEmployeeReport() {
+
+            const employeePerformance = [
+
+                {
+                    id: "EMP001",
+                    name: "Ramesh Kumar",
+                    loom: "Loom 01",
+                    production: 720,
+                    efficiency: 90,
+                    attendance: 100
+                },
+
+                {
+                    id: "EMP002",
+                    name: "Kumar Raj",
+                    loom: "Loom 02",
+                    production: 680,
+                    efficiency: 85,
+                    attendance: 96
+                },
+
+                {
+                    id: "EMP003",
+                    name: "Suresh B",
+                    loom: "Loom 03",
+                    production: 705,
+                    efficiency: 88,
+                    attendance: 100
+                },
+
+                {
+                    id: "EMP004",
+                    name: "Arun P",
+                    loom: "Loom 04",
+                    production: 640,
+                    efficiency: 80,
+                    attendance: 92
+                },
+
+                {
+                    id: "EMP005",
+                    name: "Manoj S",
+                    loom: "Loom 05",
+                    production: 750,
+                    efficiency: 94,
+                    attendance: 100
+                },
+
+                {
+                    id: "EMP006",
+                    name: "Vijay K",
+                    loom: "Loom 06",
+                    production: 690,
+                    efficiency: 86,
+                    attendance: 88
+                }
+
+            ];
+
+
+            const averageEfficiency =
+                Math.round(
+                    employeePerformance.reduce(
+                        (
+                            sum,
+                            item
+                        ) =>
+                            sum +
+                            item.efficiency,
+                        0
+                    ) /
+                    employeePerformance.length
+                );
+
+
+            document.getElementById(
+                "reportSummary"
+            ).innerHTML =
+
+                summaryCard(
+                    "Employees",
+                    employeePerformance.length
+                ) +
+
+                summaryCard(
+                    "Average Efficiency",
+                    averageEfficiency + "%"
+                ) +
+
+                summaryCard(
+                    "Top Efficiency",
+                    "94%"
+                ) +
+
+                summaryCard(
+                    "Best Performer",
+                    "Manoj S"
+                );
+
+
+            let rows = "";
+
+
+            employeePerformance.forEach(
+                item => {
+
+                    rows += `
+
+                        <tr>
+
+                            <td>
+                                ${item.id}
+                            </td>
+
+                            <td>
+                                ${item.name}
+                            </td>
+
+                            <td>
+                                ${item.loom}
+                            </td>
+
+                            <td>
+                                ${item.production}
+                            </td>
+
+                            <td>
+                                ${item.efficiency}%
+                            </td>
+
+                            <td>
+                                ${item.attendance}%
+                            </td>
+
+                            <td>
+
+                                <div class="progress-container">
+
+                                    <div
+                                        class="progress-bar"
+                                        style="width:${item.efficiency}%"
+                                    ></div>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+
+            document.getElementById(
+                "reportContent"
+            ).innerHTML = `
+
+                <div class="report-section">
+
+                    <h3 class="report-section-title">
+                        Employee Performance Details
+                    </h3>
+
+                    <div class="report-table-wrapper">
+
+                        <table class="report-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Employee ID</th>
+                                    <th>Name</th>
+                                    <th>Loom</th>
+                                    <th>Production</th>
+                                    <th>Efficiency</th>
+                                    <th>Attendance</th>
+                                    <th>Performance</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                ${rows}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =========================================
+           LOOM EFFICIENCY REPORT
+        ========================================= */
+
+        function renderLoomEfficiencyReport() {
+
+            const averageEfficiency =
+                Math.round(
+                    productionData.reduce(
+                        (
+                            sum,
+                            item
+                        ) =>
+                            sum +
+                            item.efficiency,
+                        0
+                    ) /
+                    productionData.length
+                );
+
+
+            const highest =
+                Math.max(
+                    ...productionData.map(
+                        item =>
+                            item.efficiency
+                    )
+                );
+
+
+            const lowest =
+                Math.min(
+                    ...productionData.map(
+                        item =>
+                            item.efficiency
+                    )
+                );
+
+
+            document.getElementById(
+                "reportSummary"
+            ).innerHTML =
+
+                summaryCard(
+                    "Total Looms",
+                    productionData.length
+                ) +
+
+                summaryCard(
+                    "Average Efficiency",
+                    averageEfficiency + "%"
+                ) +
+
+                summaryCard(
+                    "Highest",
+                    highest + "%"
+                ) +
+
+                summaryCard(
+                    "Lowest",
+                    lowest + "%"
+                );
+
+
+            let rows = "";
+
+
+            productionData.forEach(
+                item => {
+
+                    rows += `
+
+                        <tr>
+
+                            <td>
+                                ${item.loom}
+                            </td>
+
+                            <td>
+                                ${item.employee}
+                            </td>
+
+                            <td>
+                                ${item.shift}
+                            </td>
+
+                            <td>
+                                ${item.efficiency}%
+                            </td>
+
+                            <td>
+
+                                <div class="progress-container">
+
+                                    <div
+                                        class="progress-bar"
+                                        style="width:${item.efficiency}%"
+                                    ></div>
+
+                                </div>
+
+                            </td>
+
+                            <td>
+                                ${item.production}
+                            </td>
+
+                            <td>
+                                ${item.target}
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+
+            document.getElementById(
+                "reportContent"
+            ).innerHTML = `
+
+                <div class="report-section">
+
+                    <h3 class="report-section-title">
+                        Loom Efficiency Details
+                    </h3>
+
+                    <div class="report-table-wrapper">
+
+                        <table class="report-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Loom</th>
+                                    <th>Employee</th>
+                                    <th>Shift</th>
+                                    <th>Efficiency</th>
+                                    <th>Performance</th>
+                                    <th>Production</th>
+                                    <th>Target</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                ${rows}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =========================================
+           RENDER SELECTED REPORT
+        ========================================= */
+
+        function renderReport() {
+
+            setReportHeader();
+
+
+            switch (
+                reportType.toLowerCase()
+            ) {
+
+                case "production":
+
+                    renderProductionReport();
+
+                    break;
+
+
+                case "attendance":
+
+                    renderAttendanceReport();
+
+                    break;
+
+
+                case "payroll":
+
+                    renderPayrollReport();
+
+                    break;
+
+
+                case "maintenance":
+
+                    renderMaintenanceReport();
+
+                    break;
+
+
+                case "employee":
+
+                case "employee performance":
+
+                    renderEmployeeReport();
+
+                    break;
+
+
+                case "loom":
+
+                case "loom efficiency":
+
+                    renderLoomEfficiencyReport();
+
+                    break;
+
+
+                default:
+
+                    renderProductionReport();
+
+                    break;
+
+            }
+
+        }
+
+
+        /* =========================================
+           BACK TO REPORTS
+        ========================================= */
+
+        function goBack() {
+
+            window.location.href =
+                "reports.html";
+
+        }
+
+
+        /* =========================================
+           PRINT REPORT
+        ========================================= */
+
+        function printReport() {
+
+            window.print();
+
+        }
+
+
+        /* =========================================
+           START
+        ========================================= */
+
+        updateDate();
+
+        renderReport();
+
+    </script>
+
+
+</body>
+
+</html>

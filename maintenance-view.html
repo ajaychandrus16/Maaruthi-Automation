@@ -1,0 +1,3049 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Maintenance Details - MAARUTHI AUTOMATION
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =========================================
+           MAINTENANCE DETAIL PAGE
+        ========================================= */
+
+        .maintenance-detail-container {
+            padding: 25px;
+        }
+
+
+        /* =========================================
+           ACTION BAR
+        ========================================= */
+
+        .detail-action-bar {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 18px 20px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap: 15px;
+        }
+
+
+        .detail-page-heading h2 {
+
+            margin: 0;
+
+            color: #4a250f;
+
+            font-size: 21px;
+        }
+
+
+        .detail-page-heading p {
+
+            margin: 5px 0 0;
+
+            color: #888;
+
+            font-size: 13px;
+        }
+
+
+        .detail-actions {
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .back-button {
+
+            border: none;
+
+            background: #f3eee8;
+
+            color: #4a2a1b;
+
+            padding: 10px 16px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .back-button:hover {
+
+            background: #e8ddd0;
+        }
+
+
+        .update-button {
+
+            border: none;
+
+            background: #df8e18;
+
+            color: white;
+
+            padding: 10px 16px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .update-button:hover {
+
+            background: #c87b0c;
+        }
+
+
+        /* =========================================
+           DETAIL GRID
+        ========================================= */
+
+        .detail-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.5fr 1fr;
+
+            gap: 20px;
+        }
+
+
+        /* =========================================
+           DETAIL CARD
+        ========================================= */
+
+        .detail-card {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+        }
+
+
+        .detail-card.full-width {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        .detail-card-header {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom: 20px;
+
+            padding-bottom: 13px;
+
+            border-bottom:
+                1px solid #eee;
+        }
+
+
+        .detail-card-header h3 {
+
+            margin: 0;
+
+            color: #4a250f;
+
+            font-size: 18px;
+        }
+
+
+        /* =========================================
+           STATUS BADGE
+        ========================================= */
+
+        .status-badge {
+
+            display: inline-block;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .status-open {
+
+            background: #ffe7d3;
+
+            color: #a95700;
+        }
+
+
+        .status-progress {
+
+            background: #fff0c9;
+
+            color: #916000;
+        }
+
+
+        .status-resolved {
+
+            background: #e4f5e7;
+
+            color: #287a38;
+        }
+
+
+        /* =========================================
+           INFORMATION GRID
+        ========================================= */
+
+        .information-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+        }
+
+
+        .information-item {
+
+            padding: 13px;
+
+            background: #faf7f3;
+
+            border-radius: 8px;
+        }
+
+
+        .information-label {
+
+            color: #8a7a6b;
+
+            font-size: 11px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .information-value {
+
+            color: #4a250f;
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           ISSUE SUMMARY
+        ========================================= */
+
+        .issue-summary {
+
+            background: #fff8ef;
+
+            border:
+                1px solid #f0dfca;
+
+            border-radius: 10px;
+
+            padding: 18px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .issue-summary-title {
+
+            color: #8a6a4d;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .issue-summary-text {
+
+            color: #4a250f;
+
+            font-size: 17px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           PRIORITY
+        ========================================= */
+
+        .priority-high {
+
+            color: #a52b2b;
+
+            font-weight: 700;
+        }
+
+
+        .priority-medium {
+
+            color: #996300;
+
+            font-weight: 700;
+        }
+
+
+        .priority-low {
+
+            color: #287a38;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           DESCRIPTION
+        ========================================= */
+
+        .description-box {
+
+            background: #faf7f3;
+
+            border-radius: 9px;
+
+            padding: 16px;
+
+            color: #666;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================
+           MAINTENANCE TIMELINE
+        ========================================= */
+
+        .timeline {
+
+            position: relative;
+
+            margin-top: 5px;
+        }
+
+
+        .timeline-item {
+
+            position: relative;
+
+            padding:
+                0 0 22px 28px;
+
+            border-left:
+                2px solid #eadfd3;
+
+            margin-left: 6px;
+        }
+
+
+        .timeline-item:last-child {
+
+            border-left:
+                2px solid transparent;
+
+            padding-bottom: 0;
+        }
+
+
+        .timeline-dot {
+
+            position: absolute;
+
+            left: -7px;
+
+            top: 2px;
+
+            width: 12px;
+
+            height: 12px;
+
+            border-radius: 50%;
+
+            background: #df8e18;
+        }
+
+
+        .timeline-title {
+
+            color: #4a250f;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .timeline-time {
+
+            margin-top: 4px;
+
+            color: #999;
+
+            font-size: 11px;
+        }
+
+
+        .timeline-description {
+
+            margin-top: 5px;
+
+            color: #666;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           UPDATE MODAL
+        ========================================= */
+
+        .update-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(40, 25, 15, 0.55);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 9999;
+        }
+
+
+        .update-overlay.show {
+
+            display: flex;
+        }
+
+
+        .update-modal {
+
+            width: 100%;
+
+            max-width: 760px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: white;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 15px 50px
+                rgba(0,0,0,0.25);
+        }
+
+
+        .update-modal-header {
+
+            padding: 20px 24px;
+
+            border-bottom:
+                1px solid #eee;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+        }
+
+
+        .update-modal-header h2 {
+
+            margin: 0;
+
+            color: #4a250f;
+
+            font-size: 20px;
+        }
+
+
+        .close-button {
+
+            width: 34px;
+
+            height: 34px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #f3eee8;
+
+            color: #4a2a1b;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            line-height: 1;
+        }
+
+
+        .close-button:hover {
+
+            background: #e8ddd0;
+        }
+
+
+        .update-form {
+
+            padding: 24px;
+        }
+
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .form-group.full {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        .form-group label {
+
+            color: #5b4637;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+        }
+
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            border:
+                1px solid #ddd;
+
+            border-radius: 8px;
+
+            padding: 11px 12px;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            color: #4a250f;
+
+            outline: none;
+
+            background: white;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color:
+                #df8e18;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(223,142,24,0.10);
+        }
+
+
+        .form-group input[readonly] {
+
+            background: #f7f4f0;
+
+            color: #777;
+
+            cursor: not-allowed;
+        }
+
+
+        .form-group textarea {
+
+            min-height: 105px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+        }
+
+
+        .form-help {
+
+            margin-top: 5px;
+
+            color: #999;
+
+            font-size: 11px;
+        }
+
+
+        .update-modal-footer {
+
+            padding: 18px 24px;
+
+            border-top:
+                1px solid #eee;
+
+            display: flex;
+
+            justify-content:
+                flex-end;
+
+            gap: 10px;
+        }
+
+
+        .cancel-button {
+
+            border: none;
+
+            background: #f3eee8;
+
+            color: #4a2a1b;
+
+            padding: 11px 20px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: 700;
+
+            font-size: 13px;
+        }
+
+
+        .cancel-button:hover {
+
+            background: #e8ddd0;
+        }
+
+
+        .save-button {
+
+            border: none;
+
+            background: #df8e18;
+
+            color: white;
+
+            padding: 11px 22px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: 700;
+
+            font-size: 13px;
+        }
+
+
+        .save-button:hover {
+
+            background: #c87b0c;
+        }
+
+
+        /* =========================================
+           SAVE MESSAGE
+        ========================================= */
+
+        .save-message {
+
+            position: fixed;
+
+            right: 25px;
+
+            bottom: 25px;
+
+            background: #287a38;
+
+            color: white;
+
+            padding: 13px 18px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.18);
+
+            display: none;
+
+            z-index: 10000;
+        }
+
+
+        .save-message.show {
+
+            display: block;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .detail-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .detail-action-bar {
+
+                flex-direction: column;
+
+                align-items:
+                    flex-start;
+            }
+
+
+            .detail-actions {
+
+                width: 100%;
+
+                flex-wrap: wrap;
+            }
+
+
+            .information-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-group.full {
+
+                grid-column:
+                    auto;
+            }
+
+
+            .maintenance-detail-container {
+
+                padding: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                M
+            </div>
+
+            <div>
+
+                <h2>
+                    MAARUTHI
+                </h2>
+
+                <span>
+                    AUTOMATION
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="looms.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▦
+                </span>
+
+                Looms
+
+            </a>
+
+
+            <a
+                href="employees.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                Employees
+
+            </a>
+
+
+            <a
+                href="attendance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◷
+                </span>
+
+                Attendance
+
+            </a>
+
+
+            <a
+                href="production.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▤
+                </span>
+
+                Production
+
+            </a>
+
+
+            <a
+                href="payroll.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ₹
+                </span>
+
+                Payroll
+
+            </a>
+
+
+            <a
+                href="maintenance.html"
+                class="nav-link active"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Maintenance
+
+            </a>
+
+
+            <a
+                href="reports.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                Reports
+
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Settings
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <strong>
+                Textile Automation
+            </strong>
+
+            <span>
+                for a Smarter Future
+            </span>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================= -->
+
+    <main class="main-content">
+
+
+        <header class="top-header">
+
+            <div>
+
+                <h1
+                    class="page-title"
+                    id="pageTitle"
+                >
+                    Maintenance Details
+                </h1>
+
+            </div>
+
+
+            <div class="header-right">
+
+                <span class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    System Live
+
+                </span>
+
+
+                <span
+                    class="date"
+                    id="currentDate"
+                ></span>
+
+            </div>
+
+        </header>
+
+
+        <div class="maintenance-detail-container">
+
+
+            <!-- =================================
+                 ACTION BAR
+            ================================= -->
+
+            <section class="detail-action-bar">
+
+
+                <div class="detail-page-heading">
+
+                    <h2 id="issueHeading">
+                        MNT-001
+                    </h2>
+
+                    <p>
+                        Maintenance Issue Details
+                    </p>
+
+                </div>
+
+
+                <div class="detail-actions">
+
+
+                    <button
+                        class="back-button"
+                        onclick="goBack()"
+                    >
+                        ← Back to Maintenance
+                    </button>
+
+
+                    <button
+                        class="update-button"
+                        onclick="openUpdateModal()"
+                    >
+                        Update Issue
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================
+                 DETAIL GRID
+            ================================= -->
+
+            <div class="detail-grid">
+
+
+                <!-- ISSUE INFORMATION -->
+
+                <section class="detail-card">
+
+
+                    <div class="detail-card-header">
+
+                        <h3>
+                            Issue Information
+                        </h3>
+
+
+                        <span
+                            class="status-badge"
+                            id="statusBadge"
+                        >
+                            Open
+                        </span>
+
+                    </div>
+
+
+                    <div class="issue-summary">
+
+                        <div class="issue-summary-title">
+                            Issue Type
+                        </div>
+
+                        <div
+                            class="issue-summary-text"
+                            id="issueType"
+                        >
+                            Motor Overheating
+                        </div>
+
+                    </div>
+
+
+                    <div class="information-grid">
+
+
+                        <div class="information-item">
+
+                            <div class="information-label">
+                                Issue ID
+                            </div>
+
+                            <div
+                                class="information-value"
+                                id="issueId"
+                            >
+                                MNT-001
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-item">
+
+                            <div class="information-label">
+                                Loom
+                            </div>
+
+                            <div
+                                class="information-value"
+                                id="loom"
+                            >
+                                Loom 01
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-item">
+
+                            <div class="information-label">
+                                Priority
+                            </div>
+
+                            <div
+                                class="information-value"
+                                id="priority"
+                            >
+                                High
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-item">
+
+                            <div class="information-label">
+                                Reported Time
+                            </div>
+
+                            <div
+                                class="information-value"
+                                id="reportedTime"
+                            >
+                                08:15 AM
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-item">
+
+                            <div class="information-label">
+                                Technician
+                            </div>
+
+                            <div
+                                class="information-value"
+                                id="technician"
+                            >
+                                Ramesh
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-item">
+
+                            <div class="information-label">
+                                Current Status
+                            </div>
+
+                            <div
+                                class="information-value"
+                                id="currentStatus"
+                            >
+                                Open
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+                <!-- ISSUE DESCRIPTION -->
+
+                <section class="detail-card">
+
+
+                    <div class="detail-card-header">
+
+                        <h3>
+                            Issue Description
+                        </h3>
+
+                    </div>
+
+
+                    <div
+                        class="description-box"
+                        id="description"
+                    >
+                        The loom motor temperature has increased
+                        above the normal operating range.
+                        Maintenance inspection is required to
+                        identify the cause and prevent further
+                        equipment damage.
+                    </div>
+
+
+                    <br>
+
+
+                    <div class="information-item">
+
+                        <div class="information-label">
+                            Recommended Action
+                        </div>
+
+                        <div
+                            class="information-value"
+                            id="recommendedAction"
+                        >
+                            Inspect motor cooling system and
+                            check lubrication.
+                        </div>
+
+                    </div>
+
+
+                    <br>
+
+
+                    <div class="information-item">
+
+                        <div class="information-label">
+                            Maintenance Remarks
+                        </div>
+
+                        <div
+                            class="information-value"
+                            id="maintenanceRemarks"
+                        >
+                            No maintenance remarks added yet.
+                        </div>
+
+                    </div>
+
+
+                </section>
+
+
+                <!-- TIMELINE -->
+
+                <section
+                    class="detail-card full-width"
+                >
+
+
+                    <div class="detail-card-header">
+
+                        <h3>
+                            Maintenance Activity
+                        </h3>
+
+                    </div>
+
+
+                    <div
+                        class="timeline"
+                        id="timeline"
+                    ></div>
+
+
+                </section>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================================
+         UPDATE ISSUE MODAL
+    ========================================= -->
+
+    <div
+        class="update-overlay"
+        id="updateOverlay"
+    >
+
+
+        <div class="update-modal">
+
+
+            <div class="update-modal-header">
+
+                <h2>
+                    Update Maintenance Issue
+                </h2>
+
+
+                <button
+                    class="close-button"
+                    onclick="closeUpdateModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form
+                class="update-form"
+                id="updateForm"
+            >
+
+
+                <div class="form-grid">
+
+
+                    <!-- ISSUE ID -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Issue ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="formIssueId"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <!-- LOOM -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Loom
+                        </label>
+
+                        <input
+                            type="text"
+                            id="formLoom"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <!-- ISSUE TYPE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Issue Type
+                        </label>
+
+                        <input
+                            type="text"
+                            id="formIssueType"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PRIORITY -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Priority
+                        </label>
+
+                        <select
+                            id="formPriority"
+                            required
+                        >
+
+                            <option value="High">
+                                High
+                            </option>
+
+                            <option value="Medium">
+                                Medium
+                            </option>
+
+                            <option value="Low">
+                                Low
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- TECHNICIAN -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Technician
+                        </label>
+
+                        <select
+                            id="formTechnician"
+                            required
+                        >
+
+                            <option value="Ramesh">
+                                Ramesh
+                            </option>
+
+                            <option value="Kumar">
+                                Kumar
+                            </option>
+
+                            <option value="Suresh">
+                                Suresh
+                            </option>
+
+                            <option value="Arun">
+                                Arun
+                            </option>
+
+                            <option value="Manoj">
+                                Manoj
+                            </option>
+
+                            <option value="Vijay">
+                                Vijay
+                            </option>
+
+                            <option value="Dinesh">
+                                Dinesh
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Status
+                        </label>
+
+                        <select
+                            id="formStatus"
+                            required
+                        >
+
+                            <option value="Open">
+                                Open
+                            </option>
+
+                            <option value="In Progress">
+                                In Progress
+                            </option>
+
+                            <option value="Resolved">
+                                Resolved
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- REPORTED TIME -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Reported Time
+                        </label>
+
+                        <input
+                            type="text"
+                            id="formReportedTime"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-group full">
+
+                        <label>
+                            Issue Description
+                        </label>
+
+                        <textarea
+                            id="formDescription"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- RECOMMENDED ACTION -->
+
+                    <div class="form-group full">
+
+                        <label>
+                            Recommended Action
+                        </label>
+
+                        <textarea
+                            id="formAction"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- REMARKS -->
+
+                    <div class="form-group full">
+
+                        <label>
+                            Maintenance Remarks
+                        </label>
+
+                        <textarea
+                            id="formRemarks"
+                            placeholder="Enter maintenance work remarks..."
+                        ></textarea>
+
+                        <div class="form-help">
+                            Add inspection, repair or maintenance completion remarks.
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </form>
+
+
+            <div class="update-modal-footer">
+
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    onclick="closeUpdateModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="button"
+                    class="save-button"
+                    onclick="saveIssue()"
+                >
+                    Save Changes
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- SAVE MESSAGE -->
+
+    <div
+        class="save-message"
+        id="saveMessage"
+    >
+        Maintenance issue updated successfully.
+    </div>
+
+
+    <script>
+
+        /* =========================================
+           CURRENT ISSUE ID
+        ========================================= */
+
+        const urlParams =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const issueId =
+            urlParams.get("issue") ||
+            "MNT-001";
+
+
+        /* =========================================
+           DEFAULT MAINTENANCE DATA
+        ========================================= */
+
+        const defaultMaintenanceData = {
+
+            "MNT-001": {
+
+                id: "MNT-001",
+
+                loom: "Loom 01",
+
+                issue: "Motor Overheating",
+
+                priority: "High",
+
+                time: "08:15 AM",
+
+                technician: "Ramesh",
+
+                status: "Open",
+
+                description:
+                    "The loom motor temperature has increased above the normal operating range. Maintenance inspection is required to identify the cause and prevent further equipment damage.",
+
+                action:
+                    "Inspect motor cooling system and check lubrication.",
+
+                remarks:
+                    "",
+
+                timeline: [
+
+                    {
+                        title: "Issue Reported",
+
+                        time: "08:15 AM",
+
+                        description:
+                            "Motor overheating detected on Loom 01."
+                    },
+
+                    {
+                        title: "Technician Assigned",
+
+                        time: "08:30 AM",
+
+                        description:
+                            "Ramesh assigned for inspection."
+                    },
+
+                    {
+                        title: "Inspection Pending",
+
+                        time: "Current Status",
+
+                        description:
+                            "Maintenance work is waiting for completion."
+                    }
+
+                ]
+
+            },
+
+
+            "MNT-002": {
+
+                id: "MNT-002",
+
+                loom: "Loom 03",
+
+                issue: "Warp Sensor Fault",
+
+                priority: "Medium",
+
+                time: "08:45 AM",
+
+                technician: "Kumar",
+
+                status: "In Progress",
+
+                description:
+                    "Warp sensor is giving an inconsistent signal during loom operation. Sensor wiring and alignment require inspection.",
+
+                action:
+                    "Inspect sensor wiring, alignment and replace sensor if required.",
+
+                remarks: "",
+
+                timeline: [
+
+                    {
+                        title: "Issue Reported",
+                        time: "08:45 AM",
+                        description:
+                            "Warp sensor fault detected on Loom 03."
+                    },
+
+                    {
+                        title: "Technician Assigned",
+                        time: "09:00 AM",
+                        description:
+                            "Kumar assigned for sensor inspection."
+                    }
+
+                ]
+
+            },
+
+
+            "MNT-003": {
+
+                id: "MNT-003",
+
+                loom: "Loom 05",
+
+                issue: "Oil Level Low",
+
+                priority: "Low",
+
+                time: "09:10 AM",
+
+                technician: "Suresh",
+
+                status: "Resolved",
+
+                description:
+                    "Lubrication oil level was below the recommended operating level and required replenishment.",
+
+                action:
+                    "Oil level checked and lubrication completed.",
+
+                remarks:
+                    "Oil level restored and machine checked.",
+
+                timeline: [
+
+                    {
+                        title: "Issue Reported",
+                        time: "09:10 AM",
+                        description:
+                            "Low oil level identified."
+                    },
+
+                    {
+                        title: "Maintenance Completed",
+                        time: "09:35 AM",
+                        description:
+                            "Oil replenished and loom returned to operation."
+                    }
+
+                ]
+
+            },
+
+
+            "MNT-004": {
+
+                id: "MNT-004",
+
+                loom: "Loom 07",
+
+                issue: "Belt Vibration",
+
+                priority: "High",
+
+                time: "09:35 AM",
+
+                technician: "Arun",
+
+                status: "Open",
+
+                description:
+                    "Abnormal belt vibration was observed during loom operation.",
+
+                action:
+                    "Inspect belt tension, alignment and pulley condition.",
+
+                remarks: "",
+
+                timeline: [
+
+                    {
+                        title: "Issue Reported",
+                        time: "09:35 AM",
+                        description:
+                            "Abnormal belt vibration detected."
+                    }
+
+                ]
+
+            },
+
+
+            "MNT-005": {
+
+                id: "MNT-005",
+
+                loom: "Loom 09",
+
+                issue: "Pick Sensor Error",
+
+                priority: "Medium",
+
+                time: "10:05 AM",
+
+                technician: "Ramesh",
+
+                status: "In Progress",
+
+                description:
+                    "Pick sensor is intermittently missing pick detection signals.",
+
+                action:
+                    "Check sensor position, wiring and signal connection.",
+
+                remarks: "",
+
+                timeline: [
+
+                    {
+                        title: "Issue Reported",
+                        time: "10:05 AM",
+                        description:
+                            "Pick sensor error detected."
+                    },
+
+                    {
+                        title: "Inspection Started",
+                        time: "10:20 AM",
+                        description:
+                            "Technician started sensor inspection."
+                    }
+
+                ]
+
+            },
+
+
+            "MNT-006": {
+
+                id: "MNT-006",
+
+                loom: "Loom 11",
+
+                issue: "Bearing Noise",
+
+                priority: "High",
+
+                time: "10:40 AM",
+
+                technician: "Kumar",
+
+                status: "Open",
+
+                description:
+                    "Abnormal bearing noise has been detected during machine operation.",
+
+                action:
+                    "Inspect bearing condition and lubrication.",
+
+                remarks: "",
+
+                timeline: [
+
+                    {
+                        title: "Issue Reported",
+                        time: "10:40 AM",
+                        description:
+                            "Abnormal bearing noise reported."
+                    }
+
+                ]
+
+            },
+
+
+            "MNT-007": {
+
+                id: "MNT-007",
+
+                loom: "Loom 02",
+
+                issue: "Temperature Warning",
+
+                priority: "Medium",
+
+                time: "11:15 AM",
+
+                technician: "Suresh",
+
+                status: "Resolved",
+
+                description:
+                    "Temperature warning was detected during loom operation.",
+
+                action:
+                    "Temperature sensor and cooling system inspected.",
+
+                remarks:
+                    "Temperature returned to normal operating range.",
+
+                timeline: [
+
+                    {
+                        title: "Temperature Warning",
+                        time: "11:15 AM",
+                        description:
+                            "Temperature warning detected."
+                    },
+
+                    {
+                        title: "Issue Resolved",
+                        time: "11:45 AM",
+                        description:
+                            "Cooling system checked and warning cleared."
+                    }
+
+                ]
+
+            },
+
+
+            "MNT-008": {
+
+                id: "MNT-008",
+
+                loom: "Loom 04",
+
+                issue: "Weft Sensor Fault",
+
+                priority: "High",
+
+                time: "11:50 AM",
+
+                technician: "Arun",
+
+                status: "In Progress",
+
+                description:
+                    "Weft sensor is producing intermittent detection errors.",
+
+                action:
+                    "Clean, align and test the weft sensor.",
+
+                remarks: "",
+
+                timeline: [
+
+                    {
+                        title: "Issue Reported",
+                        time: "11:50 AM",
+                        description:
+                            "Weft sensor fault detected."
+                    },
+
+                    {
+                        title: "Technician Assigned",
+                        time: "12:05 PM",
+                        description:
+                            "Arun assigned for sensor inspection."
+                    }
+
+                ]
+
+            },
+
+
+            "MNT-009": {
+
+                id: "MNT-009",
+
+                loom: "Loom 06",
+
+                issue: "Lubrication Required",
+
+                priority: "Low",
+
+                time: "12:20 PM",
+
+                technician: "Ramesh",
+
+                status: "Resolved",
+
+                description:
+                    "Routine inspection identified that lubrication was required for the loom moving components.",
+
+                action:
+                    "Lubrication completed and loom operation verified.",
+
+                remarks:
+                    "Lubrication completed successfully.",
+
+                timeline: [
+
+                    {
+                        title: "Maintenance Required",
+                        time: "12:20 PM",
+                        description:
+                            "Lubrication requirement identified."
+                    },
+
+                    {
+                        title: "Maintenance Completed",
+                        time: "12:45 PM",
+                        description:
+                            "Loom lubricated and returned to operation."
+                    }
+
+                ]
+
+            },
+
+
+            "MNT-010": {
+
+                id: "MNT-010",
+
+                loom: "Loom 08",
+
+                issue: "Drive Fault",
+
+                priority: "High",
+
+                time: "01:05 PM",
+
+                technician: "Kumar",
+
+                status: "Open",
+
+                description:
+                    "A drive fault was detected during loom operation.",
+
+                action:
+                    "Inspect drive unit, wiring and control connections.",
+
+                remarks: "",
+
+                timeline: [
+
+                    {
+                        title: "Drive Fault Reported",
+                        time: "01:05 PM",
+                        description:
+                            "Drive fault detected on Loom 08."
+                    }
+
+                ]
+
+            },
+
+
+            "MNT-011": {
+
+                id: "MNT-011",
+
+                loom: "Loom 10",
+
+                issue: "Control Panel Error",
+
+                priority: "Medium",
+
+                time: "01:40 PM",
+
+                technician: "Suresh",
+
+                status: "Resolved",
+
+                description:
+                    "Control panel error was detected during loom operation.",
+
+                action:
+                    "Control panel connections inspected and tested.",
+
+                remarks:
+                    "Control panel connections restored.",
+
+                timeline: [
+
+                    {
+                        title: "Panel Error",
+                        time: "01:40 PM",
+                        description:
+                            "Control panel error detected."
+                    },
+
+                    {
+                        title: "Issue Resolved",
+                        time: "02:10 PM",
+                        description:
+                            "Panel connections checked and error cleared."
+                    }
+
+                ]
+
+            },
+
+
+            "MNT-012": {
+
+                id: "MNT-012",
+
+                loom: "Loom 12",
+
+                issue: "Air Pressure Low",
+
+                priority: "Low",
+
+                time: "02:10 PM",
+
+                technician: "Arun",
+
+                status: "Resolved",
+
+                description:
+                    "Compressed air pressure was below the normal operating range.",
+
+                action:
+                    "Air supply checked and pressure restored.",
+
+                remarks:
+                    "Air pressure restored to normal level.",
+
+                timeline: [
+
+                    {
+                        title: "Pressure Alert",
+                        time: "02:10 PM",
+                        description:
+                            "Low air pressure detected."
+                    },
+
+                    {
+                        title: "Issue Resolved",
+                        time: "02:35 PM",
+                        description:
+                            "Air pressure restored and loom tested."
+                    }
+
+                ]
+
+            }
+
+        };
+
+
+        /* =========================================
+           LOAD / SAVE SESSION DATA
+        ========================================= */
+
+        function getMaintenanceStore() {
+
+            const saved =
+                sessionStorage.getItem(
+                    "maaruthiMaintenanceData"
+                );
+
+
+            if (saved) {
+
+                try {
+
+                    return JSON.parse(saved);
+
+                } catch (error) {
+
+                    console.warn(
+                        "Invalid maintenance session data."
+                    );
+
+                }
+
+            }
+
+
+            const initialData =
+                JSON.parse(
+                    JSON.stringify(
+                        defaultMaintenanceData
+                    )
+                );
+
+
+            sessionStorage.setItem(
+                "maaruthiMaintenanceData",
+                JSON.stringify(initialData)
+            );
+
+
+            return initialData;
+
+        }
+
+
+        function saveMaintenanceStore(data) {
+
+            sessionStorage.setItem(
+                "maaruthiMaintenanceData",
+                JSON.stringify(data)
+            );
+
+        }
+
+
+        let maintenanceStore =
+            getMaintenanceStore();
+
+
+        /* =========================================
+           DATE
+        ========================================= */
+
+        function updateDate() {
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+
+                new Date().toLocaleDateString(
+                    "en-IN",
+                    {
+                        day: "2-digit",
+
+                        month: "short",
+
+                        year: "numeric"
+                    }
+                );
+
+        }
+
+
+        /* =========================================
+           GET CURRENT ISSUE
+        ========================================= */
+
+        function getCurrentIssue() {
+
+            return maintenanceStore[issueId];
+
+        }
+
+
+        /* =========================================
+           STATUS STYLE
+        ========================================= */
+
+        function setStatus(status) {
+
+            const badge =
+                document.getElementById(
+                    "statusBadge"
+                );
+
+
+            badge.className =
+                "status-badge";
+
+
+            if (
+                status === "Open"
+            ) {
+
+                badge.classList.add(
+                    "status-open"
+                );
+
+            }
+
+            else if (
+                status === "In Progress"
+            ) {
+
+                badge.classList.add(
+                    "status-progress"
+                );
+
+            }
+
+            else {
+
+                badge.classList.add(
+                    "status-resolved"
+                );
+
+            }
+
+
+            badge.textContent =
+                status;
+
+
+            document.getElementById(
+                "currentStatus"
+            ).textContent =
+                status;
+
+        }
+
+
+        /* =========================================
+           PRIORITY STYLE
+        ========================================= */
+
+        function setPriority(priority) {
+
+            const element =
+                document.getElementById(
+                    "priority"
+                );
+
+
+            element.className =
+                "information-value";
+
+
+            if (
+                priority === "High"
+            ) {
+
+                element.classList.add(
+                    "priority-high"
+                );
+
+            }
+
+            else if (
+                priority === "Medium"
+            ) {
+
+                element.classList.add(
+                    "priority-medium"
+                );
+
+            }
+
+            else {
+
+                element.classList.add(
+                    "priority-low"
+                );
+
+            }
+
+
+            element.textContent =
+                priority;
+
+        }
+
+
+        /* =========================================
+           RENDER TIMELINE
+        ========================================= */
+
+        function renderTimeline(issue) {
+
+            const timeline =
+                document.getElementById(
+                    "timeline"
+                );
+
+
+            timeline.innerHTML = "";
+
+
+            issue.timeline.forEach(
+                item => {
+
+                    const element =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    element.className =
+                        "timeline-item";
+
+
+                    element.innerHTML = `
+
+                        <span class="timeline-dot"></span>
+
+                        <div class="timeline-title">
+                            ${item.title}
+                        </div>
+
+                        <div class="timeline-time">
+                            ${item.time}
+                        </div>
+
+                        <div class="timeline-description">
+                            ${item.description}
+                        </div>
+
+                    `;
+
+
+                    timeline.appendChild(
+                        element
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =========================================
+           LOAD ISSUE
+        ========================================= */
+
+        function loadIssue() {
+
+            maintenanceStore =
+                getMaintenanceStore();
+
+
+            const issue =
+                getCurrentIssue();
+
+
+            if (!issue) {
+
+                document.getElementById(
+                    "issueHeading"
+                ).textContent =
+                    "Issue Not Found";
+
+
+                document.getElementById(
+                    "issueType"
+                ).textContent =
+                    "Maintenance issue not found";
+
+
+                return;
+
+            }
+
+
+            document.getElementById(
+                "issueHeading"
+            ).textContent =
+                issue.id;
+
+
+            document.getElementById(
+                "issueId"
+            ).textContent =
+                issue.id;
+
+
+            document.getElementById(
+                "loom"
+            ).textContent =
+                issue.loom;
+
+
+            document.getElementById(
+                "issueType"
+            ).textContent =
+                issue.issue;
+
+
+            document.getElementById(
+                "reportedTime"
+            ).textContent =
+                issue.time;
+
+
+            document.getElementById(
+                "technician"
+            ).textContent =
+                issue.technician;
+
+
+            document.getElementById(
+                "description"
+            ).textContent =
+                issue.description;
+
+
+            document.getElementById(
+                "recommendedAction"
+            ).textContent =
+                issue.action;
+
+
+            document.getElementById(
+                "maintenanceRemarks"
+            ).textContent =
+
+                issue.remarks &&
+                issue.remarks.trim() !== ""
+
+                    ? issue.remarks
+
+                    : "No maintenance remarks added yet.";
+
+
+            setStatus(
+                issue.status
+            );
+
+
+            setPriority(
+                issue.priority
+            );
+
+
+            renderTimeline(
+                issue
+            );
+
+        }
+
+
+        /* =========================================
+           OPEN UPDATE MODAL
+        ========================================= */
+
+        function openUpdateModal() {
+
+            const issue =
+                getCurrentIssue();
+
+
+            if (!issue) {
+
+                alert(
+                    "Maintenance issue not found."
+                );
+
+                return;
+
+            }
+
+
+            document.getElementById(
+                "formIssueId"
+            ).value =
+                issue.id;
+
+
+            document.getElementById(
+                "formLoom"
+            ).value =
+                issue.loom;
+
+
+            document.getElementById(
+                "formIssueType"
+            ).value =
+                issue.issue;
+
+
+            document.getElementById(
+                "formPriority"
+            ).value =
+                issue.priority;
+
+
+            document.getElementById(
+                "formTechnician"
+            ).value =
+                issue.technician;
+
+
+            document.getElementById(
+                "formStatus"
+            ).value =
+                issue.status;
+
+
+            document.getElementById(
+                "formReportedTime"
+            ).value =
+                issue.time;
+
+
+            document.getElementById(
+                "formDescription"
+            ).value =
+                issue.description;
+
+
+            document.getElementById(
+                "formAction"
+            ).value =
+                issue.action;
+
+
+            document.getElementById(
+                "formRemarks"
+            ).value =
+                issue.remarks || "";
+
+
+            document.getElementById(
+                "updateOverlay"
+            ).classList.add(
+                "show"
+            );
+
+        }
+
+
+        /* =========================================
+           CLOSE UPDATE MODAL
+        ========================================= */
+
+        function closeUpdateModal() {
+
+            document.getElementById(
+                "updateOverlay"
+            ).classList.remove(
+                "show"
+            );
+
+        }
+
+
+        /* =========================================
+           SAVE ISSUE
+        ========================================= */
+
+        function saveIssue() {
+
+            const issue =
+                getCurrentIssue();
+
+
+            if (!issue) {
+
+                alert(
+                    "Maintenance issue not found."
+                );
+
+                return;
+
+            }
+
+
+            const oldStatus =
+                issue.status;
+
+
+            const newIssueType =
+                document.getElementById(
+                    "formIssueType"
+                ).value.trim();
+
+
+            const newPriority =
+                document.getElementById(
+                    "formPriority"
+                ).value;
+
+
+            const newTechnician =
+                document.getElementById(
+                    "formTechnician"
+                ).value;
+
+
+            const newStatus =
+                document.getElementById(
+                    "formStatus"
+                ).value;
+
+
+            const newDescription =
+                document.getElementById(
+                    "formDescription"
+                ).value.trim();
+
+
+            const newAction =
+                document.getElementById(
+                    "formAction"
+                ).value.trim();
+
+
+            const newRemarks =
+                document.getElementById(
+                    "formRemarks"
+                ).value.trim();
+
+
+            if (
+                !newIssueType ||
+                !newDescription ||
+                !newAction
+            ) {
+
+                alert(
+                    "Please complete all required fields."
+                );
+
+                return;
+
+            }
+
+
+            issue.issue =
+                newIssueType;
+
+
+            issue.priority =
+                newPriority;
+
+
+            issue.technician =
+                newTechnician;
+
+
+            issue.status =
+                newStatus;
+
+
+            issue.description =
+                newDescription;
+
+
+            issue.action =
+                newAction;
+
+
+            issue.remarks =
+                newRemarks;
+
+
+            /* =====================================
+               ADD TIMELINE ENTRY
+            ===================================== */
+
+            const now =
+                new Date();
+
+
+            const updateTime =
+                now.toLocaleTimeString(
+                    "en-IN",
+                    {
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    }
+                );
+
+
+            issue.timeline.push({
+
+                title:
+                    "Maintenance Issue Updated",
+
+                time:
+                    updateTime,
+
+                description:
+
+                    "Issue details updated by the maintenance administrator."
+
+            });
+
+
+            /* =====================================
+               STATUS CHANGE TIMELINE
+            ===================================== */
+
+            if (
+                oldStatus !== newStatus
+            ) {
+
+                issue.timeline.push({
+
+                    title:
+                        "Status Changed",
+
+                    time:
+                        updateTime,
+
+                    description:
+
+                        "Maintenance status changed from " +
+                        oldStatus +
+                        " to " +
+                        newStatus +
+                        "."
+
+                });
+
+            }
+
+
+            /* =====================================
+               REMARKS TIMELINE
+            ===================================== */
+
+            if (
+                newRemarks
+            ) {
+
+                issue.timeline.push({
+
+                    title:
+                        "Maintenance Remarks Added",
+
+                    time:
+                        updateTime,
+
+                    description:
+                        newRemarks
+
+                });
+
+            }
+
+
+            maintenanceStore[issueId] =
+                issue;
+
+
+            saveMaintenanceStore(
+                maintenanceStore
+            );
+
+
+            closeUpdateModal();
+
+
+            loadIssue();
+
+
+            showSaveMessage();
+
+        }
+
+
+        /* =========================================
+           SAVE SUCCESS MESSAGE
+        ========================================= */
+
+        function showSaveMessage() {
+
+            const message =
+                document.getElementById(
+                    "saveMessage"
+                );
+
+
+            message.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    message.classList.remove(
+                        "show"
+                    );
+
+                },
+                2500
+            );
+
+        }
+
+
+        /* =========================================
+           BACK
+        ========================================= */
+
+        function goBack() {
+
+            window.location.href =
+                "maintenance.html";
+
+        }
+
+
+        /* =========================================
+           CLOSE MODAL WHEN CLICKING OUTSIDE
+        ========================================= */
+
+        document
+            .getElementById(
+                "updateOverlay"
+            )
+            .addEventListener(
+                "click",
+                function(event) {
+
+                    if (
+                        event.target ===
+                        this
+                    ) {
+
+                        closeUpdateModal();
+
+                    }
+
+                }
+            );
+
+
+        /* =========================================
+           ESCAPE KEY
+        ========================================= */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeUpdateModal();
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           START
+        ========================================= */
+
+        updateDate();
+
+        loadIssue();
+
+    </script>
+
+
+</body>
+
+</html>

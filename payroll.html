@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Payroll - MAARUTHI AUTOMATION
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        .payroll-container {
+            padding: 25px;
+        }
+
+        /* =========================
+           SUMMARY
+        ========================= */
+
+        .payroll-summary {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .summary-card {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+        }
+
+
+        .summary-title {
+
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .summary-value {
+
+            color: #4a250f;
+
+            font-size: 27px;
+
+            font-weight: 700;
+        }
+
+
+        .summary-unit {
+
+            color: #888;
+
+            font-size: 13px;
+
+            margin-left: 4px;
+        }
+
+
+        /* =========================
+           PAYROLL PERIOD
+        ========================= */
+
+        .period-panel {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap: 20px;
+        }
+
+
+        .period-title {
+
+            color: #4a250f;
+
+            font-size: 18px;
+
+            font-weight: 700;
+        }
+
+
+        .period-subtitle {
+
+            color: #777;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+
+        .period-badge {
+
+            background:
+                #fff1df;
+
+            color:
+                #a95413;
+
+            padding:
+                9px 16px;
+
+            border-radius:
+                20px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+        }
+
+
+        /* =========================
+           TOOLBAR
+        ========================= */
+
+        .payroll-toolbar {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            margin-bottom: 20px;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            gap: 15px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+        }
+
+
+        .search-box {
+            flex: 1;
+        }
+
+
+        .search-box input {
+
+            width: 100%;
+
+            padding:
+                12px 15px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius:
+                8px;
+
+            font-size:
+                14px;
+
+            outline:
+                none;
+
+            box-sizing:
+                border-box;
+        }
+
+
+        .search-box input:focus {
+
+            border-color:
+                #c46b20;
+        }
+
+
+        .status-filter select {
+
+            padding:
+                12px 15px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius:
+                8px;
+
+            background:
+                white;
+
+            font-size:
+                14px;
+
+            outline:
+                none;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .payroll-table-panel {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+
+            overflow-x:
+                auto;
+        }
+
+
+        .payroll-table {
+
+            width:
+                100%;
+
+            border-collapse:
+                collapse;
+
+            min-width:
+                1150px;
+        }
+
+
+        .payroll-table th {
+
+            text-align:
+                left;
+
+            padding:
+                14px 12px;
+
+            background:
+                #fff7ef;
+
+            color:
+                #5a3017;
+
+            font-size:
+                13px;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .payroll-table td {
+
+            padding:
+                14px 12px;
+
+            border-bottom:
+                1px solid #eee;
+
+            color:
+                #555;
+
+            font-size:
+                13px;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .payroll-table tr:hover {
+
+            background:
+                #fffaf5;
+        }
+
+
+        /* =========================
+           EMPLOYEE
+        ========================= */
+
+        .employee-id {
+
+            font-weight:
+                700;
+
+            color:
+                #4a250f;
+        }
+
+
+        .employee-name {
+
+            font-weight:
+                600;
+
+            color:
+                #5a3017;
+        }
+
+
+        /* =========================
+           NET SALARY
+        ========================= */
+
+        .net-salary {
+
+            font-weight:
+                700;
+
+            color:
+                #a95413;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status-badge {
+
+            display:
+                inline-block;
+
+            padding:
+                6px 11px;
+
+            border-radius:
+                20px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+        }
+
+
+        .processed {
+
+            background:
+                #e7f6ea;
+
+            color:
+                #267a37;
+        }
+
+
+        .pending {
+
+            background:
+                #fff1dc;
+
+            color:
+                #a86213;
+        }
+
+
+        /* =========================
+           CURRENCY
+        ========================= */
+
+        .money {
+
+            font-weight:
+                600;
+
+            color:
+                #5a3017;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .payroll-summary {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .payroll-summary {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .payroll-toolbar {
+
+                flex-direction:
+                    column;
+            }
+
+
+            .period-panel {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                M
+            </div>
+
+
+            <div>
+
+                <h2>
+                    MAARUTHI
+                </h2>
+
+                <span>
+                    AUTOMATION
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+
+            <!-- Dashboard -->
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <!-- Looms -->
+
+            <a
+                href="looms.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▦
+                </span>
+
+                Looms
+
+            </a>
+
+
+            <!-- Employees -->
+
+            <a
+                href="employees.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                Employees
+
+            </a>
+
+
+            <!-- Attendance -->
+
+            <a
+                href="attendance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◷
+                </span>
+
+                Attendance
+
+            </a>
+
+
+            <!-- Production -->
+
+            <a
+                href="production.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▤
+                </span>
+
+                Production
+
+            </a>
+
+
+            <!-- Payroll -->
+
+            <a
+                href="payroll.html"
+                class="nav-link active"
+            >
+
+                <span class="nav-icon">
+                    ₹
+                </span>
+
+                Payroll
+
+            </a>
+
+
+            <!-- Maintenance -->
+
+            <a
+                href="maintenance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Maintenance
+
+            </a>
+
+
+            <!-- Reports -->
+
+            <a
+                href="reports.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                Reports
+
+            </a>
+
+
+            <!-- Settings -->
+
+            <a
+                href="settings.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Settings
+
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+
+            <div>
+
+                <h1 class="page-title">
+                    Payroll Management
+                </h1>
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <span class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    System Live
+
+                </span>
+
+
+                <span
+                    class="date"
+                    id="currentDate"
+                ></span>
+
+
+            </div>
+
+
+        </header>
+
+
+        <div class="payroll-container">
+
+
+            <!-- =========================
+                 SUMMARY
+            ========================= -->
+
+            <section
+                class="payroll-summary"
+            >
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Total Employees
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="totalEmployees"
+                    >
+                        24
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Gross Payroll
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="grossPayroll"
+                    >
+                        ₹0
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Average Salary
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="averageSalary"
+                    >
+                        ₹0
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Overtime Hours
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="totalOvertime"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 PERIOD
+            ========================= -->
+
+            <section
+                class="period-panel"
+            >
+
+
+                <div>
+
+                    <div class="period-title">
+
+                        Current Payroll Period
+
+                    </div>
+
+
+                    <div
+                        class="period-subtitle"
+                    >
+
+                        Monthly salary calculation
+                        and attendance summary
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="period-badge"
+                    id="payrollPeriod"
+                >
+                    September 2026
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 SEARCH / FILTER
+            ========================= -->
+
+            <section
+                class="payroll-toolbar"
+            >
+
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search employee ID or name..."
+                    >
+
+                </div>
+
+
+                <div class="status-filter">
+
+                    <select
+                        id="statusFilter"
+                    >
+
+                        <option value="All">
+                            All Payroll
+                        </option>
+
+                        <option value="Processed">
+                            Processed
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 PAYROLL TABLE
+            ========================= -->
+
+            <section
+                class="payroll-table-panel"
+            >
+
+
+                <table
+                    class="payroll-table"
+                >
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Employee ID
+                            </th>
+
+                            <th>
+                                Employee Name
+                            </th>
+
+                            <th>
+                                Basic Salary
+                            </th>
+
+                            <th>
+                                Present Days
+                            </th>
+
+                            <th>
+                                Overtime
+                            </th>
+
+                            <th>
+                                OT Pay
+                            </th>
+
+                            <th>
+                                Deductions
+                            </th>
+
+                            <th>
+                                Gross Salary
+                            </th>
+
+                            <th>
+                                Net Salary
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="payrollTableBody"
+                    ></tbody>
+
+
+                </table>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+    <script>
+
+
+        // =========================================
+        // DATE
+        // =========================================
+
+        function updateDate() {
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+
+                new Date().toLocaleDateString(
+                    "en-IN",
+                    {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric"
+                    }
+                );
+
+        }
+
+
+        // =========================================
+        // EMPLOYEE NAMES
+        // =========================================
+
+        const names = [
+
+            "Arun Kumar",
+            "Bala Murugan",
+            "Dinesh Kumar",
+            "Gokul Raj",
+            "Hari Prasad",
+            "Karthik",
+            "Manoj Kumar",
+            "Mohan Raj",
+            "Naveen",
+            "Prakash",
+            "Ramesh",
+            "Sathish",
+            "Siva Kumar",
+            "Surya",
+            "Vignesh",
+            "Vijay",
+            "Ajith Kumar",
+            "Ashok",
+            "Dharani",
+            "Ganesh",
+            "Jeeva",
+            "Lokesh",
+            "Murali",
+            "Nithin"
+
+        ];
+
+
+        // =========================================
+        // PAYROLL DATA
+        // =========================================
+
+        const payrollData = [];
+
+
+        for (
+            let i = 1;
+            i <= 24;
+            i++
+        ) {
+
+
+            const basicSalary =
+
+                15000 +
+                Math.floor(
+                    Math.random() * 7000
+                );
+
+
+            const presentDays =
+
+                22 +
+                Math.floor(
+                    Math.random() * 5
+                );
+
+
+            const overtime =
+
+                Math.floor(
+                    Math.random() * 15
+                );
+
+
+            const overtimeRate = 120;
+
+
+            const overtimePay =
+
+                overtime *
+                overtimeRate;
+
+
+            const deductions =
+
+                500 +
+                Math.floor(
+                    Math.random() * 700
+                );
+
+
+            const grossSalary =
+
+                basicSalary +
+                overtimePay;
+
+
+            const netSalary =
+
+                grossSalary -
+                deductions;
+
+
+            const status =
+
+                Math.random() > 0.15
+                    ? "Processed"
+                    : "Pending";
+
+
+            payrollData.push({
+
+                id:
+                    "EMP-" +
+                    String(i)
+                        .padStart(3, "0"),
+
+
+                name:
+                    names[i - 1],
+
+
+                basicSalary:
+                    basicSalary,
+
+
+                presentDays:
+                    presentDays,
+
+
+                overtime:
+                    overtime,
+
+
+                overtimePay:
+                    overtimePay,
+
+
+                deductions:
+                    deductions,
+
+
+                grossSalary:
+                    grossSalary,
+
+
+                netSalary:
+                    netSalary,
+
+
+                status:
+                    status
+
+            });
+
+        }
+
+
+        // =========================================
+        // CURRENCY FORMAT
+        // =========================================
+
+        function formatCurrency(value) {
+
+            return "₹" +
+
+                value.toLocaleString(
+                    "en-IN"
+                );
+
+        }
+
+
+        // =========================================
+        // RENDER TABLE
+        // =========================================
+
+        function renderPayroll() {
+
+
+            const tbody =
+                document.getElementById(
+                    "payrollTableBody"
+                );
+
+
+            const search =
+                document.getElementById(
+                    "searchInput"
+                )
+                .value
+                .toLowerCase();
+
+
+            const filter =
+                document.getElementById(
+                    "statusFilter"
+                )
+                .value;
+
+
+            tbody.innerHTML = "";
+
+
+            payrollData.forEach(
+                employee => {
+
+
+                    const matchesSearch =
+
+                        employee.id
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        employee.name
+                            .toLowerCase()
+                            .includes(search);
+
+
+                    const matchesFilter =
+
+                        filter === "All"
+
+                        ||
+
+                        employee.status ===
+                        filter;
+
+
+                    if (
+                        !matchesSearch ||
+                        !matchesFilter
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    const badgeClass =
+
+                        employee.status ===
+                        "Processed"
+
+                            ? "processed"
+
+                            : "pending";
+
+
+                    row.innerHTML = `
+
+
+                        <td
+                            class="employee-id"
+                        >
+
+                            ${employee.id}
+
+                        </td>
+
+
+                        <td
+                            class="employee-name"
+                        >
+
+                            ${employee.name}
+
+                        </td>
+
+
+                        <td
+                            class="money"
+                        >
+
+                            ${formatCurrency(
+                                employee.basicSalary
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            ${employee.presentDays}
+
+                        </td>
+
+
+                        <td>
+
+                            ${employee.overtime}
+                            hrs
+
+                        </td>
+
+
+                        <td
+                            class="money"
+                        >
+
+                            ${formatCurrency(
+                                employee.overtimePay
+                            )}
+
+                        </td>
+
+
+                        <td
+                            class="money"
+                        >
+
+                            ${formatCurrency(
+                                employee.deductions
+                            )}
+
+                        </td>
+
+
+                        <td
+                            class="money"
+                        >
+
+                            ${formatCurrency(
+                                employee.grossSalary
+                            )}
+
+                        </td>
+
+
+                        <td
+                            class="net-salary"
+                        >
+
+                            ${formatCurrency(
+                                employee.netSalary
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="status-badge ${badgeClass}"
+                            >
+
+                                ${employee.status}
+
+                            </span>
+
+                        </td>
+
+
+                    `;
+
+
+                    tbody.appendChild(row);
+
+                }
+            );
+
+
+            updateSummary();
+
+        }
+
+
+        // =========================================
+        // SUMMARY
+        // =========================================
+
+        function updateSummary() {
+
+
+            const totalEmployees =
+                payrollData.length;
+
+
+            const grossPayroll =
+
+                payrollData.reduce(
+
+                    (
+                        total,
+                        employee
+                    ) =>
+
+                        total +
+                        employee.grossSalary,
+
+                    0
+
+                );
+
+
+            const averageSalary =
+
+                totalEmployees > 0
+
+                    ? Math.round(
+                        grossPayroll /
+                        totalEmployees
+                    )
+
+                    : 0;
+
+
+            const totalOvertime =
+
+                payrollData.reduce(
+
+                    (
+                        total,
+                        employee
+                    ) =>
+
+                        total +
+                        employee.overtime,
+
+                    0
+
+                );
+
+
+            document.getElementById(
+                "totalEmployees"
+            ).textContent =
+                totalEmployees;
+
+
+            document.getElementById(
+                "grossPayroll"
+            ).textContent =
+                formatCurrency(
+                    grossPayroll
+                );
+
+
+            document.getElementById(
+                "averageSalary"
+            ).textContent =
+                formatCurrency(
+                    averageSalary
+                );
+
+
+            document.getElementById(
+                "totalOvertime"
+            ).textContent =
+                totalOvertime +
+                " hrs";
+
+        }
+
+
+        // =========================================
+        // LIVE PAYROLL UPDATE
+        // =========================================
+
+        function simulatePayroll() {
+
+
+            payrollData.forEach(
+                employee => {
+
+
+                    if (
+                        Math.random() <
+                        0.08
+                    ) {
+
+
+                        employee.overtime += 1;
+
+
+                        employee.overtimePay =
+
+                            employee.overtime *
+                            120;
+
+
+                        employee.grossSalary =
+
+                            employee.basicSalary +
+                            employee.overtimePay;
+
+
+                        employee.netSalary =
+
+                            employee.grossSalary -
+                            employee.deductions;
+
+                    }
+
+                }
+            );
+
+
+            renderPayroll();
+
+        }
+
+
+        // =========================================
+        // SEARCH
+        // =========================================
+
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .addEventListener(
+                "input",
+                renderPayroll
+            );
+
+
+        // =========================================
+        // FILTER
+        // =========================================
+
+        document
+            .getElementById(
+                "statusFilter"
+            )
+            .addEventListener(
+                "change",
+                renderPayroll
+            );
+
+
+        // =========================================
+        // START
+        // =========================================
+
+        updateDate();
+
+        renderPayroll();
+
+
+        setInterval(
+            simulatePayroll,
+            5000
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

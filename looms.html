@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Maaruthi Automation - Loom Management</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* =====================================================
+           LOOM MANAGEMENT PAGE
+           ===================================================== */
+
+        .loom-management {
+            padding: 28px;
+        }
+
+        .page-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .page-heading h2 {
+            color: #9a4f18;
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+
+        .page-heading p {
+            color: #806f65;
+            font-size: 14px;
+        }
+
+        .live-page-status {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #16833a;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .live-page-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #19a34a;
+            display: inline-block;
+        }
+
+        /* =====================================================
+           TOOLBAR
+           ===================================================== */
+
+        .loom-toolbar {
+            background: white;
+            border: 1px solid #e4dbd4;
+            border-radius: 9px;
+            padding: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .loom-search {
+            position: relative;
+            flex: 1;
+            max-width: 420px;
+        }
+
+        .loom-search input {
+            width: 100%;
+            height: 42px;
+            border: 1px solid #dcd1c9;
+            border-radius: 7px;
+            padding: 0 15px 0 40px;
+            outline: none;
+            font-size: 14px;
+            color: #402517;
+        }
+
+        .loom-search input:focus {
+            border-color: #df8a19;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 12px;
+            color: #806f65;
+        }
+
+        .loom-filter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .loom-filter label {
+            font-size: 13px;
+            color: #806f65;
+        }
+
+        .loom-filter select {
+            height: 42px;
+            min-width: 150px;
+            border: 1px solid #dcd1c9;
+            border-radius: 7px;
+            padding: 0 12px;
+            background: white;
+            color: #402517;
+            outline: none;
+        }
+
+        /* =====================================================
+           SUMMARY CARDS
+           ===================================================== */
+
+        .loom-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .loom-summary-card {
+            background: white;
+            border: 1px solid #e4dbd4;
+            border-radius: 9px;
+            padding: 18px;
+        }
+
+        .loom-summary-card span {
+            display: block;
+            color: #806f65;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .loom-summary-card strong {
+            display: block;
+            color: #402517;
+            font-size: 25px;
+        }
+
+        .summary-running {
+            border-left: 4px solid #15933c;
+        }
+
+        .summary-stopped {
+            border-left: 4px solid #d32828;
+        }
+
+        .summary-efficiency {
+            border-left: 4px solid #df8a19;
+        }
+
+        .summary-production {
+            border-left: 4px solid #8d5bc0;
+        }
+
+        /* =====================================================
+           LOOM TABLE
+           ===================================================== */
+
+        .loom-management-panel {
+            background: white;
+            border: 1px solid #e4dbd4;
+            border-radius: 9px;
+            overflow: hidden;
+        }
+
+        .loom-management-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee6df;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .loom-management-header h3 {
+            color: #402517;
+            font-size: 19px;
+        }
+
+        .loom-management-header p {
+            color: #806f65;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .loom-management-table-container {
+            overflow-x: auto;
+        }
+
+        .loom-management-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1050px;
+        }
+
+        .loom-management-table th {
+            background: #f4efe9;
+            color: #4d3427;
+            padding: 14px;
+            text-align: left;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .loom-management-table td {
+            padding: 14px;
+            border-bottom: 1px solid #eee7e1;
+            color: #59463b;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .loom-management-table tbody tr:hover {
+            background: #fffaf5;
+        }
+
+        .loom-number {
+            font-weight: bold;
+            color: #9a4f18;
+        }
+
+        .machine-name {
+            font-weight: 600;
+            color: #402517;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .status-badge::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+
+        .status-badge.running {
+            background: #ddf3e4;
+            color: #11843a;
+        }
+
+        .status-badge.running::before {
+            background: #11843a;
+        }
+
+        .status-badge.stopped {
+            background: #fde0e0;
+            color: #d32828;
+        }
+
+        .status-badge.stopped::before {
+            background: #d32828;
+        }
+
+        .employee-name {
+            color: #59463b;
+        }
+
+        .shift-name {
+            color: #765d4e;
+        }
+
+        .action-button {
+            border: 1px solid #d9c7b9;
+            background: white;
+            color: #9a4f18;
+            border-radius: 5px;
+            padding: 6px 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .action-button:hover {
+            background: #fff3e5;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 35px;
+            color: #806f65;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .loom-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .loom-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .loom-search {
+                max-width: none;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .loom-management {
+                padding: 15px;
+            }
+
+            .page-heading {
+                align-items: flex-start;
+                gap: 10px;
+                flex-direction: column;
+            }
+
+            .loom-summary {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                M
+            </div>
+
+            <div>
+
+                <h2>MAARUTHI</h2>
+
+                <span>AUTOMATION</span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+            <a href="index.html" class="nav-link">
+
+                <span class="nav-icon">⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="looms.html" class="nav-link active">
+
+                <span class="nav-icon">▦</span>
+
+                Looms
+
+            </a>
+
+
+            <a href="employees.html" class="nav-link">
+
+                <span class="nav-icon">◉</span>
+
+                Employees
+
+            </a>
+
+
+            <a href="attendance.html" class="nav-link">
+
+                <span class="nav-icon">◷</span>
+
+                Attendance
+
+            </a>
+
+
+            <a href="production.html" class="nav-link">
+
+                <span class="nav-icon">▤</span>
+
+                Production
+
+            </a>
+
+
+            <a href="payroll.html" class="nav-link">
+
+                <span class="nav-icon">₹</span>
+
+                Payroll
+
+            </a>
+
+
+            <a href="maintenance.html" class="nav-link">
+
+                <span class="nav-icon">⚙</span>
+
+                Maintenance
+
+            </a>
+
+
+            <a href="reports.html" class="nav-link">
+
+                <span class="nav-icon">▥</span>
+
+                Reports
+
+            </a>
+
+
+            <a href="settings.html" class="nav-link">
+
+                <span class="nav-icon">⚙</span>
+
+                Settings
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <strong>
+                Textile Automation
+            </strong>
+
+            <span>
+                for a Smarter Future
+            </span>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+            <div class="page-title">
+
+                <div class="menu-icon">
+                    ☰
+                </div>
+
+                <div>
+
+                    <h1>
+                        Loom Management
+                    </h1>
+
+                    <p>
+                        Monitor and manage textile looms
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-right">
+
+                <div class="date">
+
+                    📅
+
+                    <span id="currentDate">
+                        04 Sep 2026
+                    </span>
+
+                </div>
+
+
+                <div class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    LIVE
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             LOOM MANAGEMENT
+             ================================================= -->
+
+        <section class="loom-management">
+
+
+            <!-- PAGE TITLE -->
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h2>
+                        Loom Management
+                    </h2>
+
+                    <p>
+                        Real-time monitoring of all Group A looms
+                    </p>
+
+                </div>
+
+
+                <div class="live-page-status">
+
+                    <span class="live-page-dot"></span>
+
+                    Live Data
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SUMMARY -->
+
+            <div class="loom-summary">
+
+
+                <div class="loom-summary-card summary-running">
+
+                    <span>
+                        Running Looms
+                    </span>
+
+                    <strong id="summaryRunning">
+                        10
+                    </strong>
+
+                </div>
+
+
+                <div class="loom-summary-card summary-stopped">
+
+                    <span>
+                        Stopped Looms
+                    </span>
+
+                    <strong id="summaryStopped">
+                        2
+                    </strong>
+
+                </div>
+
+
+                <div class="loom-summary-card summary-efficiency">
+
+                    <span>
+                        Average Efficiency
+                    </span>
+
+                    <strong id="summaryEfficiency">
+                        92.5%
+                    </strong>
+
+                </div>
+
+
+                <div class="loom-summary-card summary-production">
+
+                    <span>
+                        Total Production
+                    </span>
+
+                    <strong id="summaryProduction">
+                        4,342 m
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TOOLBAR -->
+
+            <div class="loom-toolbar">
+
+
+                <div class="loom-search">
+
+                    <span class="search-icon">
+                        🔍
+                    </span>
+
+                    <input
+                        type="text"
+                        id="loomSearch"
+                        placeholder="Search loom number or machine name..."
+                    >
+
+                </div>
+
+
+                <div class="loom-filter">
+
+                    <label for="statusFilter">
+                        Status:
+                    </label>
+
+                    <select id="statusFilter">
+
+                        <option value="All">
+                            All Looms
+                        </option>
+
+                        <option value="Running">
+                            Running
+                        </option>
+
+                        <option value="Stopped">
+                            Stopped
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TABLE -->
+
+            <div class="loom-management-panel">
+
+
+                <div class="loom-management-header">
+
+                    <div>
+
+                        <h3>
+                            All Looms
+                        </h3>
+
+                        <p>
+                            12 machines in Group A
+                        </p>
+
+                    </div>
+
+
+                    <span class="panel-live">
+                        ● LIVE
+                    </span>
+
+                </div>
+
+
+
+                <div class="loom-management-table-container">
+
+                    <table class="loom-management-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Loom No.
+                                </th>
+
+                                <th>
+                                    Machine Name
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    RPM
+                                </th>
+
+                                <th>
+                                    Pick/min
+                                </th>
+
+                                <th>
+                                    Efficiency
+                                </th>
+
+                                <th>
+                                    Production
+                                </th>
+
+                                <th>
+                                    Employee
+                                </th>
+
+                                <th>
+                                    Shift
+                                </th>
+
+                                <th>
+                                    Last Update
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="loomManagementTable">
+
+                        </tbody>
+
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+        /*
+         ======================================================
+         LOOM MANAGEMENT PAGE
+         ======================================================
+        */
+
+
+        const looms = [
+
+            {
+                number: 1,
+                machine: "Loom Machine 01",
+                status: "Running",
+                rpm: 520,
+                pick: 480,
+                efficiency: 95.2,
+                production: 412,
+                employee: "R. Karthik",
+                shift: "Shift 1"
+            },
+
+            {
+                number: 2,
+                machine: "Loom Machine 02",
+                status: "Running",
+                rpm: 515,
+                pick: 475,
+                efficiency: 93.8,
+                production: 398,
+                employee: "R. Karthik",
+                shift: "Shift 1"
+            },
+
+            {
+                number: 3,
+                machine: "Loom Machine 03",
+                status: "Running",
+                rpm: 502,
+                pick: 460,
+                efficiency: 92.1,
+                production: 365,
+                employee: "R. Karthik",
+                shift: "Shift 1"
+            },
+
+            {
+                number: 4,
+                machine: "Loom Machine 04",
+                status: "Stopped",
+                rpm: 0,
+                pick: 0,
+                efficiency: 0,
+                production: 210,
+                employee: "S. Pravin",
+                shift: "Shift 1"
+            },
+
+            {
+                number: 5,
+                machine: "Loom Machine 05",
+                status: "Running",
+                rpm: 518,
+                pick: 470,
+                efficiency: 94.6,
+                production: 402,
+                employee: "S. Pravin",
+                shift: "Shift 1"
+            },
+
+            {
+                number: 6,
+                machine: "Loom Machine 06",
+                status: "Running",
+                rpm: 521,
+                pick: 482,
+                efficiency: 96.1,
+                production: 418,
+                employee: "S. Pravin",
+                shift: "Shift 1"
+            },
+
+            {
+                number: 7,
+                machine: "Loom Machine 07",
+                status: "Running",
+                rpm: 499,
+                pick: 455,
+                efficiency: 90.8,
+                production: 360,
+                employee: "M. Dinesh",
+                shift: "Shift 1"
+            },
+
+            {
+                number: 8,
+                machine: "Loom Machine 08",
+                status: "Running",
+                rpm: 507,
+                pick: 468,
+                efficiency: 92.9,
+                production: 384,
+                employee: "M. Dinesh",
+                shift: "Shift 1"
+            },
+
+            {
+                number: 9,
+                machine: "Loom Machine 09",
+                status: "Stopped",
+                rpm: 0,
+                pick: 0,
+                efficiency: 0,
+                production: 195,
+                employee: "M. Dinesh",
+                shift: "Shift 1"
+            },
+
+            {
+                number: 10,
+                machine: "Loom Machine 10",
+                status: "Running",
+                rpm: 516,
+                pick: 472,
+                efficiency: 93.5,
+                production: 401,
+                employee: "K. Ajay",
+                shift: "Shift 1"
+            },
+
+            {
+                number: 11,
+                machine: "Loom Machine 11",
+                status: "Running",
+                rpm: 503,
+                pick: 462,
+                efficiency: 91.7,
+                production: 372,
+                employee: "K. Ajay",
+                shift: "Shift 1"
+            },
+
+            {
+                number: 12,
+                machine: "Loom Machine 12",
+                status: "Running",
+                rpm: 519,
+                pick: 478,
+                efficiency: 95.0,
+                production: 425,
+                employee: "K. Ajay",
+                shift: "Shift 1"
+            }
+
+        ];
+
+
+        /*
+         ======================================================
+         TIME
+         ======================================================
+        */
+
+        function getTime() {
+
+            return new Date().toLocaleTimeString(
+                "en-IN",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit"
+                }
+            );
+
+        }
+
+
+        /*
+         ======================================================
+         RENDER TABLE
+         ======================================================
+        */
+
+        function renderLooms() {
+
+            const table =
+                document.getElementById(
+                    "loomManagementTable"
+                );
+
+
+            const search =
+                document.getElementById(
+                    "loomSearch"
+                ).value.toLowerCase();
+
+
+            const status =
+                document.getElementById(
+                    "statusFilter"
+                ).value;
+
+
+            table.innerHTML = "";
+
+
+            const filteredLooms =
+                looms.filter(function (loom) {
+
+                    const matchesSearch =
+                        loom.number.toString().includes(search) ||
+                        loom.machine.toLowerCase().includes(search);
+
+
+                    const matchesStatus =
+                        status === "All" ||
+                        loom.status === status;
+
+
+                    return (
+                        matchesSearch &&
+                        matchesStatus
+                    );
+
+                });
+
+
+            if (filteredLooms.length === 0) {
+
+                table.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="11"
+                            class="no-results"
+                        >
+                            No looms found
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+
+            }
+
+
+            filteredLooms.forEach(function (loom) {
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td class="loom-number">
+                        L${String(loom.number).padStart(2, "0")}
+                    </td>
+
+                    <td class="machine-name">
+                        ${loom.machine}
+                    </td>
+
+                    <td>
+
+                        <span
+                            class="status-badge ${loom.status.toLowerCase()}"
+                        >
+                            ${loom.status}
+                        </span>
+
+                    </td>
+
+                    <td>
+                        ${loom.rpm}
+                    </td>
+
+                    <td>
+                        ${loom.pick}
+                    </td>
+
+                    <td>
+                        ${loom.efficiency.toFixed(1)}%
+                    </td>
+
+                    <td>
+                        ${Math.round(loom.production)} m
+                    </td>
+
+                    <td class="employee-name">
+                        ${loom.employee}
+                    </td>
+
+                    <td class="shift-name">
+                        ${loom.shift}
+                    </td>
+
+                    <td>
+                        ${getTime()}
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="action-button"
+                            onclick="viewLoom(${loom.number})"
+                        >
+                            View
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                table.appendChild(row);
+
+            });
+
+        }
+
+
+        /*
+         ======================================================
+         UPDATE SUMMARY
+         ======================================================
+        */
+
+        function updateSummary() {
+
+            const running =
+                looms.filter(
+                    loom => loom.status === "Running"
+                ).length;
+
+
+            const stopped =
+                looms.filter(
+                    loom => loom.status === "Stopped"
+                ).length;
+
+
+            const runningLooms =
+                looms.filter(
+                    loom => loom.status === "Running"
+                );
+
+
+            let efficiency = 0;
+
+
+            if (runningLooms.length > 0) {
+
+                efficiency =
+                    runningLooms.reduce(
+                        (sum, loom) =>
+                            sum + loom.efficiency,
+                        0
+                    ) /
+                    runningLooms.length;
+
+            }
+
+
+            const production =
+                looms.reduce(
+                    (sum, loom) =>
+                        sum + loom.production,
+                    0
+                );
+
+
+            document.getElementById(
+                "summaryRunning"
+            ).textContent = running;
+
+
+            document.getElementById(
+                "summaryStopped"
+            ).textContent = stopped;
+
+
+            document.getElementById(
+                "summaryEfficiency"
+            ).textContent =
+                efficiency.toFixed(1) + "%";
+
+
+            document.getElementById(
+                "summaryProduction"
+            ).textContent =
+                Math.round(production)
+                    .toLocaleString("en-IN") +
+                " m";
+
+        }
+
+
+        /*
+         ======================================================
+         SIMULATION
+         ======================================================
+        */
+
+        function simulateLooms() {
+
+            looms.forEach(function (loom) {
+
+                /*
+                 Randomly change status occasionally.
+                */
+
+                if (Math.random() < 0.02) {
+
+                    if (
+                        loom.status === "Running"
+                    ) {
+
+                        loom.status =
+                            "Stopped";
+
+                    } else {
+
+                        loom.status =
+                            "Running";
+
+                    }
+
+                }
+
+
+                if (
+                    loom.status === "Running"
+                ) {
+
+                    loom.rpm =
+                        Math.floor(
+                            Math.random() *
+                            (525 - 495 + 1)
+                        ) + 495;
+
+
+                    loom.pick =
+                        Math.floor(
+                            Math.random() *
+                            (485 - 450 + 1)
+                        ) + 450;
+
+
+                    loom.efficiency =
+                        Number(
+                            (
+                                90 +
+                                Math.random() * 7
+                            ).toFixed(1)
+                        );
+
+
+                    loom.production +=
+                        Math.random() * 3;
+
+                }
+
+
+                else {
+
+                    loom.rpm = 0;
+
+                    loom.pick = 0;
+
+                    loom.efficiency = 0;
+
+                }
+
+            });
+
+
+            renderLooms();
+
+            updateSummary();
+
+        }
+
+
+        /*
+         ======================================================
+         VIEW LOOM
+         ======================================================
+        */
+
+        function viewLoom(number) {
+
+            window.location.href =
+                "loom-detail.html?loom=" + number;
+
+        }
+
+
+        /*
+         ======================================================
+         SEARCH
+         ======================================================
+        */
+
+        document.getElementById(
+            "loomSearch"
+        ).addEventListener(
+            "input",
+            renderLooms
+        );
+
+
+        /*
+         ======================================================
+         FILTER
+         ======================================================
+        */
+
+        document.getElementById(
+            "statusFilter"
+        ).addEventListener(
+            "change",
+            renderLooms
+        );
+
+
+        /*
+         ======================================================
+         INITIAL LOAD
+         ======================================================
+        */
+
+        renderLooms();
+
+        updateSummary();
+
+
+        /*
+         ======================================================
+         LIVE UPDATE EVERY 3 SECONDS
+         ======================================================
+        */
+
+        setInterval(
+            simulateLooms,
+            3000
+        );
+
+
+        /*
+         ======================================================
+         DATE UPDATE
+         ======================================================
+        */
+
+        setInterval(function () {
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+                new Date().toLocaleDateString(
+                    "en-IN",
+                    {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric"
+                    }
+                );
+
+        }, 60000);
+
+    </script>
+
+
+</body>
+
+</html>

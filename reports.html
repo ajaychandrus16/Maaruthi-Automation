@@ -1,0 +1,3461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Reports - MAARUTHI AUTOMATION
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <!-- SheetJS - Excel Export Library -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+
+
+    <style>
+
+        /* =========================================
+           REPORTS PAGE
+        ========================================= */
+
+        .reports-container {
+
+            padding:
+                25px;
+
+        }
+
+
+        /* =========================================
+           REPORT SUMMARY
+        ========================================= */
+
+        .report-summary {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                18px;
+
+            margin-bottom:
+                22px;
+
+        }
+
+
+        .report-card {
+
+            background:
+                white;
+
+            border-radius:
+                12px;
+
+            padding:
+                20px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+
+        }
+
+
+        .report-card-title {
+
+            color:
+                #777;
+
+            font-size:
+                14px;
+
+            margin-bottom:
+                9px;
+
+        }
+
+
+        .report-card-value {
+
+            color:
+                #4a250f;
+
+            font-size:
+                28px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .report-card-description {
+
+            color:
+                #888;
+
+            font-size:
+                12px;
+
+            margin-top:
+                5px;
+
+        }
+
+
+        /* =========================================
+           PERIOD BAR
+        ========================================= */
+
+        .report-period {
+
+            background:
+                white;
+
+            border-radius:
+                12px;
+
+            padding:
+                20px;
+
+            margin-bottom:
+                22px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+        }
+
+
+        .period-info h2 {
+
+            margin:
+                0;
+
+            color:
+                #4a250f;
+
+            font-size:
+                20px;
+
+        }
+
+
+        .period-info p {
+
+            margin-top:
+                6px;
+
+            color:
+                #888;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .period-controls {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            flex-wrap:
+                wrap;
+
+        }
+
+
+        .period-controls select {
+
+            padding:
+                11px 14px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius:
+                8px;
+
+            background:
+                white;
+
+            font-size:
+                14px;
+
+            outline:
+                none;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .generate-button {
+
+            padding:
+                11px 18px;
+
+            border:
+                none;
+
+            border-radius:
+                8px;
+
+            background:
+                #df8e18;
+
+            color:
+                white;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .generate-button:hover {
+
+            background:
+                #c87b0c;
+
+        }
+
+
+        /* =========================================
+           EXCEL EXPORT CARD
+        ========================================= */
+
+        .excel-export-card {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fffaf5,
+                    #fff3e4
+                );
+
+            border:
+                1px solid #f0dcc5;
+
+            border-radius:
+                12px;
+
+            padding:
+                22px;
+
+            margin-bottom:
+                22px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.06);
+
+        }
+
+
+        .excel-export-header {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+        }
+
+
+        .excel-title-area {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+
+        }
+
+
+        .excel-icon {
+
+            width:
+                50px;
+
+            height:
+                50px;
+
+            border-radius:
+                10px;
+
+            background:
+                #df8e18;
+
+            color:
+                white;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                23px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .excel-title-area h2 {
+
+            margin:
+                0;
+
+            color:
+                #4a250f;
+
+            font-size:
+                20px;
+
+        }
+
+
+        .excel-title-area p {
+
+            margin:
+                5px 0 0;
+
+            color:
+                #888;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .download-excel-button {
+
+            padding:
+                12px 20px;
+
+            border:
+                none;
+
+            border-radius:
+                8px;
+
+            background:
+                #2e7d32;
+
+            color:
+                white;
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+            white-space:
+                nowrap;
+
+        }
+
+
+        .download-excel-button:hover {
+
+            background:
+                #246428;
+
+        }
+
+
+        .excel-details {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                12px;
+
+            margin-top:
+                18px;
+
+        }
+
+
+        .excel-detail {
+
+            background:
+                white;
+
+            border-radius:
+                8px;
+
+            padding:
+                12px;
+
+            border:
+                1px solid #eee;
+
+        }
+
+
+        .excel-detail strong {
+
+            display:
+                block;
+
+            color:
+                #4a250f;
+
+            font-size:
+                13px;
+
+            margin-bottom:
+                4px;
+
+        }
+
+
+        .excel-detail span {
+
+            color:
+                #888;
+
+            font-size:
+                11px;
+
+        }
+
+
+        /* =========================================
+           REPORT LIST
+        ========================================= */
+
+        .reports-panel {
+
+            background:
+                white;
+
+            border-radius:
+                12px;
+
+            padding:
+                20px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+
+        }
+
+
+        .reports-panel-header {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom:
+                18px;
+
+        }
+
+
+        .reports-panel-header h2 {
+
+            margin:
+                0;
+
+            color:
+                #4a250f;
+
+            font-size:
+                20px;
+
+        }
+
+
+        .reports-search {
+
+            padding:
+                10px 14px;
+
+            width:
+                280px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius:
+                8px;
+
+            outline:
+                none;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .reports-search:focus {
+
+            border-color:
+                #df8e18;
+
+        }
+
+
+        /* =========================================
+           REPORT TABLE
+        ========================================= */
+
+        .reports-table {
+
+            width:
+                100%;
+
+            border-collapse:
+                collapse;
+
+            min-width:
+                800px;
+
+        }
+
+
+        .reports-table th {
+
+            background:
+                #fff7ef;
+
+            color:
+                #5a3017;
+
+            text-align:
+                left;
+
+            padding:
+                14px 12px;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .reports-table td {
+
+            padding:
+                15px 12px;
+
+            border-bottom:
+                1px solid #eee;
+
+            font-size:
+                13px;
+
+            color:
+                #555;
+
+        }
+
+
+        .reports-table tr:hover {
+
+            background:
+                #fffaf5;
+
+        }
+
+
+        /* =========================================
+           REPORT ICON
+        ========================================= */
+
+        .report-icon {
+
+            width:
+                38px;
+
+            height:
+                38px;
+
+            border-radius:
+                9px;
+
+            background:
+                #fff0df;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            color:
+                #b66300;
+
+            font-size:
+                18px;
+
+            font-weight:
+                700;
+
+            flex-shrink:
+                0;
+
+        }
+
+
+        .report-name {
+
+            font-weight:
+                700;
+
+            color:
+                #4a250f;
+
+        }
+
+
+        .report-description {
+
+            margin-top:
+                4px;
+
+            font-size:
+                11px;
+
+            color:
+                #999;
+
+        }
+
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .available-badge {
+
+            display:
+                inline-block;
+
+            padding:
+                6px 11px;
+
+            border-radius:
+                20px;
+
+            background:
+                #e4f5e7;
+
+            color:
+                #287a38;
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        /* =========================================
+           VIEW BUTTON
+        ========================================= */
+
+        .view-report-button {
+
+            border:
+                none;
+
+            background:
+                #4a2a1b;
+
+            color:
+                white;
+
+            padding:
+                8px 14px;
+
+            border-radius:
+                6px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                12px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .view-report-button:hover {
+
+            background:
+                #653d29;
+
+        }
+
+
+        /* =========================================
+           NO RESULTS
+        ========================================= */
+
+        .no-results {
+
+            text-align:
+                center;
+
+            padding:
+                35px;
+
+            color:
+                #888;
+
+            font-size:
+                14px;
+
+        }
+
+
+        /* =========================================
+           EXPORT STATUS
+        ========================================= */
+
+        .export-status {
+
+            display:
+                none;
+
+            margin-top:
+                12px;
+
+            padding:
+                10px 13px;
+
+            border-radius:
+                7px;
+
+            background:
+                #e8f5e9;
+
+            color:
+                #287a38;
+
+            font-size:
+                12px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .report-summary {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .report-period {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .excel-details {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .report-summary {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .reports-panel-header {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+
+                gap:
+                    12px;
+
+            }
+
+
+            .reports-search {
+
+                width:
+                    100%;
+
+                box-sizing:
+                    border-box;
+
+            }
+
+
+            .period-controls {
+
+                width:
+                    100%;
+
+            }
+
+
+            .period-controls select {
+
+                flex:
+                    1;
+
+            }
+
+
+            .excel-export-header {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .download-excel-button {
+
+                width:
+                    100%;
+
+            }
+
+
+            .excel-details {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                M
+            </div>
+
+            <div>
+
+                <h2>
+                    MAARUTHI
+                </h2>
+
+                <span>
+                    AUTOMATION
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="looms.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▦
+                </span>
+
+                Looms
+
+            </a>
+
+
+            <a
+                href="employees.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                Employees
+
+            </a>
+
+
+            <a
+                href="attendance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◷
+                </span>
+
+                Attendance
+
+            </a>
+
+
+            <a
+                href="production.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▤
+                </span>
+
+                Production
+
+            </a>
+
+
+            <a
+                href="payroll.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ₹
+                </span>
+
+                Payroll
+
+            </a>
+
+
+            <a
+                href="maintenance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Maintenance
+
+            </a>
+
+
+            <a
+                href="reports.html"
+                class="nav-link active"
+            >
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                Reports
+
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Settings
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <strong>
+                Textile Automation
+            </strong>
+
+            <span>
+                for a Smarter Future
+            </span>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================= -->
+
+    <main class="main-content">
+
+
+        <!-- =====================================
+             TOP HEADER
+        ===================================== -->
+
+        <header class="top-header">
+
+
+            <div>
+
+                <h1 class="page-title">
+                    Reports
+                </h1>
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <span class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    System Live
+
+                </span>
+
+
+                <span
+                    class="date"
+                    id="currentDate"
+                ></span>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <div class="reports-container">
+
+
+            <!-- =================================
+                 SUMMARY CARDS
+            ================================= -->
+
+            <section class="report-summary">
+
+
+                <div class="report-card">
+
+                    <div class="report-card-title">
+                        Production Today
+                    </div>
+
+
+                    <div
+                        class="report-card-value"
+                        id="productionValue"
+                    >
+                        8,420
+                    </div>
+
+
+                    <div class="report-card-description">
+                        Total picks produced
+                    </div>
+
+                </div>
+
+
+
+                <div class="report-card">
+
+                    <div class="report-card-title">
+                        Attendance
+                    </div>
+
+
+                    <div class="report-card-value">
+                        91.7%
+                    </div>
+
+
+                    <div class="report-card-description">
+                        Employee attendance
+                    </div>
+
+                </div>
+
+
+
+                <div class="report-card">
+
+                    <div class="report-card-title">
+                        Payroll
+                    </div>
+
+
+                    <div class="report-card-value">
+                        ₹4.56L
+                    </div>
+
+
+                    <div class="report-card-description">
+                        Current payroll period
+                    </div>
+
+                </div>
+
+
+
+                <div class="report-card">
+
+                    <div class="report-card-title">
+                        Maintenance
+                    </div>
+
+
+                    <div class="report-card-value">
+                        12
+                    </div>
+
+
+                    <div class="report-card-description">
+                        Registered issues
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================
+                 REPORT PERIOD
+            ================================= -->
+
+            <section class="report-period">
+
+
+                <div class="period-info">
+
+                    <h2>
+                        Report Period
+                    </h2>
+
+                    <p>
+                        Select the required period and
+                        report type.
+                    </p>
+
+                </div>
+
+
+                <div class="period-controls">
+
+
+                    <!-- PERIOD -->
+
+                    <select id="reportPeriod">
+
+                        <option value="Daily">
+                            Daily
+                        </option>
+
+                        <option value="Weekly">
+                            Weekly
+                        </option>
+
+                        <option
+                            value="Monthly"
+                            selected
+                        >
+                            Monthly
+                        </option>
+
+                        <option value="Yearly">
+                            Yearly
+                        </option>
+
+                    </select>
+
+
+                    <!-- MONTH / YEAR -->
+
+                    <select id="reportMonth">
+
+                        <option value="September 2026">
+                            September 2026
+                        </option>
+
+                        <option value="August 2026">
+                            August 2026
+                        </option>
+
+                        <option value="July 2026">
+                            July 2026
+                        </option>
+
+                        <option value="June 2026">
+                            June 2026
+                        </option>
+
+                    </select>
+
+
+                    <!-- REPORT TYPE -->
+
+                    <select id="reportType">
+
+                        <option value="All Reports">
+                            All Reports
+                        </option>
+
+                        <option value="Production">
+                            Production
+                        </option>
+
+                        <option value="Attendance">
+                            Attendance
+                        </option>
+
+                        <option value="Payroll">
+                            Payroll
+                        </option>
+
+                        <option value="Maintenance">
+                            Maintenance
+                        </option>
+
+                        <option value="Employee">
+                            Employee Performance
+                        </option>
+
+                        <option value="Loom Efficiency">
+                            Loom Efficiency
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        class="generate-button"
+                        onclick="generateReport()"
+                    >
+
+                        Generate
+
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================
+                 EXCEL EXPORT
+            ================================= -->
+
+            <section class="excel-export-card">
+
+
+                <div class="excel-export-header">
+
+
+                    <div class="excel-title-area">
+
+
+                        <div class="excel-icon">
+                            XLSX
+                        </div>
+
+
+                        <div>
+
+                            <h2>
+                                Detailed Excel Report
+                            </h2>
+
+                            <p>
+                                Download production, salary,
+                                attendance and management data
+                                in Excel format.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <button
+                        class="download-excel-button"
+                        onclick="downloadExcelReport()"
+                    >
+
+                        ↓ Download Excel Report
+
+                    </button>
+
+
+                </div>
+
+
+
+                <div class="excel-details">
+
+
+                    <div class="excel-detail">
+
+                        <strong>
+                            Production
+                        </strong>
+
+                        <span>
+                            Loom-wise production,
+                            RPM and efficiency
+                        </span>
+
+                    </div>
+
+
+                    <div class="excel-detail">
+
+                        <strong>
+                            Employee Salary
+                        </strong>
+
+                        <span>
+                            Salary, overtime,
+                            deductions and net pay
+                        </span>
+
+                    </div>
+
+
+                    <div class="excel-detail">
+
+                        <strong>
+                            Attendance
+                        </strong>
+
+                        <span>
+                            Employee attendance,
+                            shifts and working days
+                        </span>
+
+                    </div>
+
+
+                    <div class="excel-detail">
+
+                        <strong>
+                            Maintenance
+                        </strong>
+
+                        <span>
+                            Loom faults,
+                            priority and status
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div
+                    class="export-status"
+                    id="exportStatus"
+                ></div>
+
+
+            </section>
+
+
+
+            <!-- =================================
+                 AVAILABLE REPORTS
+            ================================= -->
+
+            <section class="reports-panel">
+
+
+                <div class="reports-panel-header">
+
+
+                    <h2>
+                        Available Reports
+                    </h2>
+
+
+                    <input
+                        type="text"
+                        class="reports-search"
+                        id="reportSearch"
+                        placeholder="Search reports..."
+                    >
+
+
+                </div>
+
+
+
+                <div
+                    style="
+                        overflow-x:auto;
+                    "
+                >
+
+
+                    <table class="reports-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Report
+                                </th>
+
+                                <th>
+                                    Period
+                                </th>
+
+                                <th>
+                                    Records
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="reportsTableBody"
+                        ></tbody>
+
+
+                    </table>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <script>
+
+
+        /* =========================================
+           DATE
+        ========================================= */
+
+        function updateDate() {
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+
+                new Date().toLocaleDateString(
+                    "en-IN",
+                    {
+
+                        day:
+                            "2-digit",
+
+                        month:
+                            "short",
+
+                        year:
+                            "numeric"
+
+                    }
+                );
+
+        }
+
+
+
+        /* =========================================
+           REPORT DATA
+        ========================================= */
+
+        const reportData = [
+
+            {
+                name:
+                    "Production Report",
+
+                description:
+                    "Loom-wise production and efficiency",
+
+                type:
+                    "Production",
+
+                period:
+                    "September 2026",
+
+                records:
+                    "12 Looms",
+
+                icon:
+                    "▤"
+            },
+
+
+            {
+                name:
+                    "Attendance Report",
+
+                description:
+                    "Employee attendance and shift details",
+
+                type:
+                    "Attendance",
+
+                period:
+                    "September 2026",
+
+                records:
+                    "24 Employees",
+
+                icon:
+                    "◷"
+            },
+
+
+            {
+                name:
+                    "Payroll Report",
+
+                description:
+                    "Salary, overtime and deductions",
+
+                type:
+                    "Payroll",
+
+                period:
+                    "September 2026",
+
+                records:
+                    "24 Employees",
+
+                icon:
+                    "₹"
+            },
+
+
+            {
+                name:
+                    "Maintenance Report",
+
+                description:
+                    "Loom faults and maintenance activities",
+
+                type:
+                    "Maintenance",
+
+                period:
+                    "September 2026",
+
+                records:
+                    "12 Issues",
+
+                icon:
+                    "⚙"
+            },
+
+
+            {
+                name:
+                    "Employee Performance",
+
+                description:
+                    "Production and efficiency by employee",
+
+                type:
+                    "Employee",
+
+                period:
+                    "September 2026",
+
+                records:
+                    "24 Employees",
+
+                icon:
+                    "◉"
+            },
+
+
+            {
+                name:
+                    "Loom Efficiency Report",
+
+                description:
+                    "Runtime, downtime and efficiency",
+
+                type:
+                    "Loom Efficiency",
+
+                period:
+                    "September 2026",
+
+                records:
+                    "12 Looms",
+
+                icon:
+                    "▦"
+            }
+
+        ];
+
+
+
+        /* =========================================
+           RENDER REPORTS
+        ========================================= */
+
+        function renderReports() {
+
+
+            const tbody =
+                document.getElementById(
+                    "reportsTableBody"
+                );
+
+
+            const search =
+                document.getElementById(
+                    "reportSearch"
+                )
+                .value
+                .trim()
+                .toLowerCase();
+
+
+            const selectedType =
+                document.getElementById(
+                    "reportType"
+                ).value;
+
+
+            tbody.innerHTML = "";
+
+
+            let visibleReports = 0;
+
+
+            reportData.forEach(
+                report => {
+
+
+                    const matchesSearch =
+
+                        report.name
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        report.description
+                            .toLowerCase()
+                            .includes(search);
+
+
+                    const matchesType =
+
+                        selectedType ===
+                        "All Reports"
+
+                        ||
+
+                        report.type ===
+                        selectedType;
+
+
+                    if (
+                        !matchesSearch ||
+                        !matchesType
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    visibleReports++;
+
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    row.innerHTML = `
+
+                        <td>
+
+                            <div
+                                style="
+                                    display:flex;
+                                    align-items:center;
+                                    gap:12px;
+                                "
+                            >
+
+                                <div
+                                    class="report-icon"
+                                >
+                                    ${report.icon}
+                                </div>
+
+                                <div>
+
+                                    <div
+                                        class="report-name"
+                                    >
+                                        ${report.name}
+                                    </div>
+
+                                    <div
+                                        class="report-description"
+                                    >
+                                        ${report.description}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            ${report.period}
+                        </td>
+
+
+                        <td>
+                            ${report.records}
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="available-badge"
+                            >
+                                Available
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="view-report-button"
+                                onclick="
+                                    viewReport(
+                                        '${report.name}'
+                                    )
+                                "
+                            >
+                                View
+                            </button>
+
+                        </td>
+
+                    `;
+
+
+                    tbody.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+
+            if (
+                visibleReports ===
+                0
+            ) {
+
+                tbody.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="5"
+                            class="no-results"
+                        >
+                            No reports found.
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           VIEW REPORT
+        ========================================= */
+
+        function viewReport(name) {
+
+
+            const report =
+                reportData.find(
+                    item =>
+                        item.name ===
+                        name
+                );
+
+
+            if (!report) {
+
+                alert(
+                    "Report not found."
+                );
+
+                return;
+
+            }
+
+
+            const month =
+                report.period;
+
+
+            window.location.href =
+
+                "report-view.html" +
+
+                "?type=" +
+
+                encodeURIComponent(
+                    report.type
+                ) +
+
+                "&month=" +
+
+                encodeURIComponent(
+                    month
+                );
+
+        }
+
+
+
+        /* =========================================
+           GENERATE REPORT
+        ========================================= */
+
+        function generateReport() {
+
+
+            const month =
+                document.getElementById(
+                    "reportMonth"
+                ).value;
+
+
+            const type =
+                document.getElementById(
+                    "reportType"
+                ).value;
+
+
+            if (
+                type ===
+                "All Reports"
+            ) {
+
+                alert(
+                    "Please select a specific report type to generate."
+                );
+
+                return;
+
+            }
+
+
+            window.location.href =
+
+                "report-view.html" +
+
+                "?type=" +
+
+                encodeURIComponent(
+                    type
+                ) +
+
+                "&month=" +
+
+                encodeURIComponent(
+                    month
+                );
+
+        }
+
+
+
+        /* =========================================
+           EXCEL DATA GENERATOR
+        ========================================= */
+
+        function generateEmployeeData() {
+
+
+            const employees = [];
+
+
+            const firstNames = [
+
+                "Arun",
+                "Bala",
+                "Karthik",
+                "Suresh",
+                "Ramesh",
+                "Vijay",
+                "Manoj",
+                "Prakash",
+                "Dinesh",
+                "Rajesh",
+                "Mohan",
+                "Senthil",
+                "Ganesh",
+                "Hari",
+                "Sanjay",
+                "Kumar",
+                "Ashok",
+                "Ravi",
+                "Naveen",
+                "Ajith",
+                "Surya",
+                "Gokul",
+                "Vignesh",
+                "Pradeep"
+
+            ];
+
+
+            for (
+                let i = 1;
+                i <= 24;
+                i++
+            ) {
+
+
+                const loomNumber =
+                    ((i - 1) % 12) + 1;
+
+
+                const production =
+                    650 +
+                    Math.floor(
+                        Math.random() * 550
+                    );
+
+
+                const efficiency =
+                    72 +
+                    Math.floor(
+                        Math.random() * 23
+                    );
+
+
+                const basic =
+                    18000 +
+                    ((i % 6) * 1000);
+
+
+                const overtime =
+                    800 +
+                    ((i % 5) * 250);
+
+
+                const allowance =
+                    1200;
+
+
+                const deduction =
+                    300 +
+                    ((i % 4) * 100);
+
+
+                const netSalary =
+                    basic +
+                    overtime +
+                    allowance -
+                    deduction;
+
+
+                employees.push({
+
+                    "Employee ID":
+                        "EMP-" +
+                        String(i)
+                            .padStart(3, "0"),
+
+                    "Employee Name":
+                        firstNames[i - 1],
+
+                    "Loom":
+                        "Loom " +
+                        String(loomNumber)
+                            .padStart(2, "0"),
+
+                    "Shift":
+                        i % 2 === 0
+                            ? "Shift B"
+                            : "Shift A",
+
+                    "Working Days":
+                        26,
+
+                    "Present Days":
+                        22 +
+                        (i % 5),
+
+                    "Absent Days":
+                        i % 4,
+
+                    "Leave Days":
+                        i % 3,
+
+                    "Production (Picks)":
+                        production,
+
+                    "Efficiency (%)":
+                        efficiency,
+
+                    "Basic Salary (₹)":
+                        basic,
+
+                    "Overtime (₹)":
+                        overtime,
+
+                    "Allowance (₹)":
+                        allowance,
+
+                    "Deductions (₹)":
+                        deduction,
+
+                    "Net Salary (₹)":
+                        netSalary
+
+                });
+
+            }
+
+
+            return employees;
+
+        }
+
+
+
+        /* =========================================
+           PRODUCTION DATA
+        ========================================= */
+
+        function generateProductionData() {
+
+
+            const data = [];
+
+
+            const employees =
+                generateEmployeeData();
+
+
+            for (
+                let i = 1;
+                i <= 12;
+                i++
+            ) {
+
+
+                const employee =
+                    employees[i - 1];
+
+
+                const production =
+                    6000 +
+                    Math.floor(
+                        Math.random() * 3500
+                    );
+
+
+                const target =
+                    8500;
+
+
+                const efficiency =
+                    72 +
+                    Math.floor(
+                        Math.random() * 23
+                    );
+
+
+                const runtime =
+                    7 +
+                    Math.random() * 2;
+
+
+                const downtime =
+                    9 -
+                    runtime;
+
+
+                const rpm =
+                    380 +
+                    Math.floor(
+                        Math.random() * 120
+                    );
+
+
+                const pick =
+                    420 +
+                    Math.floor(
+                        Math.random() * 100
+                    );
+
+
+                data.push({
+
+                    "Loom No":
+                        "Loom " +
+                        String(i)
+                            .padStart(2, "0"),
+
+                    "Machine":
+                        "Airjet Loom",
+
+                    "Employee":
+                        employee[
+                            "Employee Name"
+                        ],
+
+                    "Employee ID":
+                        employee[
+                            "Employee ID"
+                        ],
+
+                    "Shift":
+                        employee[
+                            "Shift"
+                        ],
+
+                    "Status":
+                        i % 5 === 0
+                            ? "Stopped"
+                            : "Running",
+
+                    "RPM":
+                        rpm,
+
+                    "Pick Rate":
+                        pick,
+
+                    "Production (Picks)":
+                        production,
+
+                    "Daily Target":
+                        target,
+
+                    "Target Achievement (%)":
+                        Math.round(
+                            production /
+                            target *
+                            100
+                        ),
+
+                    "Efficiency (%)":
+                        efficiency,
+
+                    "Runtime (Hours)":
+                        Number(
+                            runtime.toFixed(2)
+                        ),
+
+                    "Downtime (Hours)":
+                        Number(
+                            downtime.toFixed(2)
+                        ),
+
+                    "Availability (%)":
+                        Math.round(
+                            runtime /
+                            9 *
+                            100
+                        )
+
+                });
+
+            }
+
+
+            return data;
+
+        }
+
+
+
+        /* =========================================
+           ATTENDANCE DATA
+        ========================================= */
+
+        function generateAttendanceData() {
+
+
+            const employees =
+                generateEmployeeData();
+
+
+            return employees.map(
+                employee => ({
+
+                    "Employee ID":
+                        employee[
+                            "Employee ID"
+                        ],
+
+                    "Employee Name":
+                        employee[
+                            "Employee Name"
+                        ],
+
+                    "Loom":
+                        employee[
+                            "Loom"
+                        ],
+
+                    "Shift":
+                        employee[
+                            "Shift"
+                        ],
+
+                    "Working Days":
+                        employee[
+                            "Working Days"
+                        ],
+
+                    "Present Days":
+                        employee[
+                            "Present Days"
+                        ],
+
+                    "Absent Days":
+                        employee[
+                            "Absent Days"
+                        ],
+
+                    "Leave Days":
+                        employee[
+                            "Leave Days"
+                        ],
+
+                    "Attendance (%)":
+                        Math.round(
+                            employee[
+                                "Present Days"
+                            ] /
+                            employee[
+                                "Working Days"
+                            ] *
+                            100
+                        ),
+
+                    "Status":
+                        employee[
+                            "Present Days"
+                        ] >= 24
+                            ? "Present"
+                            : "Regular"
+
+                })
+            );
+
+        }
+
+
+
+        /* =========================================
+           SALARY DATA
+        ========================================= */
+
+        function generateSalaryData() {
+
+
+            const employees =
+                generateEmployeeData();
+
+
+            return employees.map(
+                employee => ({
+
+                    "Employee ID":
+                        employee[
+                            "Employee ID"
+                        ],
+
+                    "Employee Name":
+                        employee[
+                            "Employee Name"
+                        ],
+
+                    "Loom":
+                        employee[
+                            "Loom"
+                        ],
+
+                    "Shift":
+                        employee[
+                            "Shift"
+                        ],
+
+                    "Working Days":
+                        employee[
+                            "Working Days"
+                        ],
+
+                    "Present Days":
+                        employee[
+                            "Present Days"
+                        ],
+
+                    "Basic Salary (₹)":
+                        employee[
+                            "Basic Salary (₹)"
+                        ],
+
+                    "Overtime (₹)":
+                        employee[
+                            "Overtime (₹)"
+                        ],
+
+                    "Allowance (₹)":
+                        employee[
+                            "Allowance (₹)"
+                        ],
+
+                    "Deductions (₹)":
+                        employee[
+                            "Deductions (₹)"
+                        ],
+
+                    "Net Salary (₹)":
+                        employee[
+                            "Net Salary (₹)"
+                        ]
+
+                })
+            );
+
+        }
+
+
+
+        /* =========================================
+           EMPLOYEE PERFORMANCE
+        ========================================= */
+
+        function generatePerformanceData() {
+
+
+            const employees =
+                generateEmployeeData();
+
+
+            return employees.map(
+                employee => ({
+
+                    "Employee ID":
+                        employee[
+                            "Employee ID"
+                        ],
+
+                    "Employee Name":
+                        employee[
+                            "Employee Name"
+                        ],
+
+                    "Loom":
+                        employee[
+                            "Loom"
+                        ],
+
+                    "Shift":
+                        employee[
+                            "Shift"
+                        ],
+
+                    "Production (Picks)":
+                        employee[
+                            "Production (Picks)"
+                        ],
+
+                    "Efficiency (%)":
+                        employee[
+                            "Efficiency (%)"
+                        ],
+
+                    "Present Days":
+                        employee[
+                            "Present Days"
+                        ],
+
+                    "Performance":
+                        employee[
+                            "Efficiency (%)"
+                        ] >= 85
+                            ? "Excellent"
+                            : employee[
+                                "Efficiency (%)"
+                            ] >= 75
+                                ? "Good"
+                                : "Needs Improvement"
+
+                })
+            );
+
+        }
+
+
+
+        /* =========================================
+           LOOM DATA
+        ========================================= */
+
+        function generateLoomData() {
+
+
+            const production =
+                generateProductionData();
+
+
+            return production.map(
+                loom => ({
+
+                    "Loom No":
+                        loom[
+                            "Loom No"
+                        ],
+
+                    "Machine":
+                        loom[
+                            "Machine"
+                        ],
+
+                    "Employee":
+                        loom[
+                            "Employee"
+                        ],
+
+                    "Shift":
+                        loom[
+                            "Shift"
+                        ],
+
+                    "Status":
+                        loom[
+                            "Status"
+                        ],
+
+                    "RPM":
+                        loom[
+                            "RPM"
+                        ],
+
+                    "Pick Rate":
+                        loom[
+                            "Pick Rate"
+                        ],
+
+                    "Runtime (Hours)":
+                        loom[
+                            "Runtime (Hours)"
+                        ],
+
+                    "Downtime (Hours)":
+                        loom[
+                            "Downtime (Hours)"
+                        ],
+
+                    "Availability (%)":
+                        loom[
+                            "Availability (%)"
+                        ],
+
+                    "Efficiency (%)":
+                        loom[
+                            "Efficiency (%)"
+                        ],
+
+                    "Production (Picks)":
+                        loom[
+                            "Production (Picks)"
+                        ]
+
+                })
+            );
+
+        }
+
+
+
+        /* =========================================
+           MAINTENANCE DATA
+        ========================================= */
+
+        function generateMaintenanceData() {
+
+
+            const issues = [
+
+                [
+                    "MNT-001",
+                    "Loom 01",
+                    "Motor Vibration",
+                    "High",
+                    "Ramesh",
+                    "Resolved"
+                ],
+
+                [
+                    "MNT-002",
+                    "Loom 02",
+                    "Warp Breakage",
+                    "Medium",
+                    "Suresh",
+                    "In Progress"
+                ],
+
+                [
+                    "MNT-003",
+                    "Loom 03",
+                    "Sensor Fault",
+                    "High",
+                    "Karthik",
+                    "Open"
+                ],
+
+                [
+                    "MNT-004",
+                    "Loom 04",
+                    "Oil Leakage",
+                    "Medium",
+                    "Manoj",
+                    "Resolved"
+                ],
+
+                [
+                    "MNT-005",
+                    "Loom 05",
+                    "Pick Fault",
+                    "High",
+                    "Ramesh",
+                    "Resolved"
+                ],
+
+                [
+                    "MNT-006",
+                    "Loom 06",
+                    "Temperature Alert",
+                    "Low",
+                    "Vijay",
+                    "Open"
+                ],
+
+                [
+                    "MNT-007",
+                    "Loom 07",
+                    "Belt Wear",
+                    "Medium",
+                    "Prakash",
+                    "In Progress"
+                ],
+
+                [
+                    "MNT-008",
+                    "Loom 08",
+                    "Motor Fault",
+                    "High",
+                    "Ramesh",
+                    "Resolved"
+                ],
+
+                [
+                    "MNT-009",
+                    "Loom 09",
+                    "Air Pressure",
+                    "Low",
+                    "Suresh",
+                    "Resolved"
+                ],
+
+                [
+                    "MNT-010",
+                    "Loom 10",
+                    "Sensor Calibration",
+                    "Medium",
+                    "Karthik",
+                    "Open"
+                ],
+
+                [
+                    "MNT-011",
+                    "Loom 11",
+                    "Bearing Noise",
+                    "High",
+                    "Manoj",
+                    "In Progress"
+                ],
+
+                [
+                    "MNT-012",
+                    "Loom 12",
+                    "Control Panel",
+                    "Medium",
+                    "Vijay",
+                    "Resolved"
+                ]
+
+            ];
+
+
+            return issues.map(
+                item => ({
+
+                    "Issue ID":
+                        item[0],
+
+                    "Loom":
+                        item[1],
+
+                    "Issue Type":
+                        item[2],
+
+                    "Priority":
+                        item[3],
+
+                    "Technician":
+                        item[4],
+
+                    "Status":
+                        item[5],
+
+                    "Reported Date":
+                        new Date().toLocaleDateString(
+                            "en-IN"
+                        ),
+
+                    "Description":
+                        "Maintenance issue recorded for " +
+                        item[1],
+
+                    "Recommended Action":
+                        "Inspect, repair and verify loom operation."
+
+                })
+            );
+
+        }
+
+
+
+        /* =========================================
+           SUMMARY DATA
+        ========================================= */
+
+        function generateSummary(
+            period
+        ) {
+
+
+            const production =
+                generateProductionData();
+
+
+            const salary =
+                generateSalaryData();
+
+
+            const attendance =
+                generateAttendanceData();
+
+
+            const maintenance =
+                generateMaintenanceData();
+
+
+            const totalProduction =
+                production.reduce(
+                    (
+                        total,
+                        item
+                    ) =>
+                        total +
+                        Number(
+                            item[
+                                "Production (Picks)"
+                            ]
+                        ),
+                    0
+                );
+
+
+            const totalSalary =
+                salary.reduce(
+                    (
+                        total,
+                        item
+                    ) =>
+                        total +
+                        Number(
+                            item[
+                                "Net Salary (₹)"
+                            ]
+                        ),
+                    0
+                );
+
+
+            const averageAttendance =
+                attendance.reduce(
+                    (
+                        total,
+                        item
+                    ) =>
+                        total +
+                        Number(
+                            item[
+                                "Attendance (%)"
+                            ]
+                        ),
+                    0
+                )
+                /
+                attendance.length;
+
+
+            const averageEfficiency =
+                production.reduce(
+                    (
+                        total,
+                        item
+                    ) =>
+                        total +
+                        Number(
+                            item[
+                                "Efficiency (%)"
+                            ]
+                        ),
+                    0
+                )
+                /
+                production.length;
+
+
+            return [
+
+                {
+                    "Report":
+                        "MAARUTHI AUTOMATION Management Report",
+
+                    "Period":
+                        period,
+
+                    "Generated On":
+                        new Date().toLocaleString(
+                            "en-IN"
+                        ),
+
+                    "Total Looms":
+                        production.length,
+
+                    "Total Employees":
+                        salary.length,
+
+                    "Total Production (Picks)":
+                        totalProduction,
+
+                    "Average Efficiency (%)":
+                        Number(
+                            averageEfficiency.toFixed(
+                                2
+                            )
+                        ),
+
+                    "Average Attendance (%)":
+                        Number(
+                            averageAttendance.toFixed(
+                                2
+                            )
+                        ),
+
+                    "Total Net Salary (₹)":
+                        totalSalary,
+
+                    "Maintenance Issues":
+                        maintenance.length
+
+                }
+
+            ];
+
+        }
+
+
+
+        /* =========================================
+           EXCEL DOWNLOAD
+        ========================================= */
+
+        function downloadExcelReport() {
+
+
+            if (
+                typeof XLSX ===
+                "undefined"
+            ) {
+
+                alert(
+                    "Excel export library could not be loaded. Please check your internet connection and try again."
+                );
+
+                return;
+
+            }
+
+
+            const period =
+                document.getElementById(
+                    "reportPeriod"
+                ).value;
+
+
+            const selectedDate =
+                document.getElementById(
+                    "reportMonth"
+                ).value;
+
+
+            const selectedType =
+                document.getElementById(
+                    "reportType"
+                ).value;
+
+
+            const periodText =
+                period +
+                " - " +
+                selectedDate;
+
+
+            /*
+             * Create workbook
+             */
+
+            const workbook =
+                XLSX.utils.book_new();
+
+
+
+            /* =====================================
+               SUMMARY SHEET
+            ===================================== */
+
+            const summaryData =
+                generateSummary(
+                    periodText
+                );
+
+
+            const summarySheet =
+                XLSX.utils.json_to_sheet(
+                    summaryData
+                );
+
+
+            XLSX.utils.book_append_sheet(
+                workbook,
+                summarySheet,
+                "Summary"
+            );
+
+
+
+            /* =====================================
+               PRODUCTION SHEET
+            ===================================== */
+
+            const productionData =
+                generateProductionData();
+
+
+            const productionSheet =
+                XLSX.utils.json_to_sheet(
+                    productionData
+                );
+
+
+            XLSX.utils.book_append_sheet(
+                workbook,
+                productionSheet,
+                "Production"
+            );
+
+
+
+            /* =====================================
+               SALARY SHEET
+            ===================================== */
+
+            const salaryData =
+                generateSalaryData();
+
+
+            const salarySheet =
+                XLSX.utils.json_to_sheet(
+                    salaryData
+                );
+
+
+            XLSX.utils.book_append_sheet(
+                workbook,
+                salarySheet,
+                "Employee Salary"
+            );
+
+
+
+            /* =====================================
+               ATTENDANCE SHEET
+            ===================================== */
+
+            const attendanceData =
+                generateAttendanceData();
+
+
+            const attendanceSheet =
+                XLSX.utils.json_to_sheet(
+                    attendanceData
+                );
+
+
+            XLSX.utils.book_append_sheet(
+                workbook,
+                attendanceSheet,
+                "Attendance"
+            );
+
+
+
+            /* =====================================
+               EMPLOYEE PERFORMANCE
+            ===================================== */
+
+            const performanceData =
+                generatePerformanceData();
+
+
+            const performanceSheet =
+                XLSX.utils.json_to_sheet(
+                    performanceData
+                );
+
+
+            XLSX.utils.book_append_sheet(
+                workbook,
+                performanceSheet,
+                "Employee Performance"
+            );
+
+
+
+            /* =====================================
+               LOOM DETAILS
+            ===================================== */
+
+            const loomData =
+                generateLoomData();
+
+
+            const loomSheet =
+                XLSX.utils.json_to_sheet(
+                    loomData
+                );
+
+
+            XLSX.utils.book_append_sheet(
+                workbook,
+                loomSheet,
+                "Loom Details"
+            );
+
+
+
+            /* =====================================
+               MAINTENANCE
+            ===================================== */
+
+            const maintenanceData =
+                generateMaintenanceData();
+
+
+            const maintenanceSheet =
+                XLSX.utils.json_to_sheet(
+                    maintenanceData
+                );
+
+
+            XLSX.utils.book_append_sheet(
+                workbook,
+                maintenanceSheet,
+                "Maintenance"
+            );
+
+
+
+            /* =====================================
+               AUTO WIDTH
+            ===================================== */
+
+            workbook.SheetNames.forEach(
+                sheetName => {
+
+
+                    const sheet =
+                        workbook.Sheets[
+                            sheetName
+                        ];
+
+
+                    const range =
+                        XLSX.utils.decode_range(
+                            sheet["!ref"]
+                        );
+
+
+                    const widths = [];
+
+
+                    for (
+                        let col =
+                            range.s.c;
+
+                        col <=
+                        range.e.c;
+
+                        col++
+                    ) {
+
+
+                        let maxLength =
+                            12;
+
+
+                        for (
+                            let row =
+                                range.s.r;
+
+                            row <=
+                            range.e.r;
+
+                            row++
+                        ) {
+
+
+                            const cell =
+                                sheet[
+                                    XLSX.utils.encode_cell({
+                                        r:
+                                            row,
+
+                                        c:
+                                            col
+                                    })
+                                ];
+
+
+                            if (
+                                cell &&
+                                cell.v !==
+                                undefined
+                            ) {
+
+
+                                const length =
+                                    String(
+                                        cell.v
+                                    ).length;
+
+
+                                if (
+                                    length >
+                                    maxLength
+                                ) {
+
+                                    maxLength =
+                                        length;
+
+                                }
+
+                            }
+
+                        }
+
+
+                        widths.push({
+
+                            wch:
+                                Math.min(
+                                    maxLength +
+                                    2,
+                                    35
+                                )
+
+                        });
+
+                    }
+
+
+                    sheet["!cols"] =
+                        widths;
+
+                }
+            );
+
+
+
+            /* =====================================
+               FREEZE HEADER ROW
+            ===================================== */
+
+            workbook.SheetNames.forEach(
+                sheetName => {
+
+                    workbook.Sheets[
+                        sheetName
+                    ]["!freeze"] = {
+
+                        xSplit:
+                            0,
+
+                        ySplit:
+                            1
+
+                    };
+
+                }
+            );
+
+
+
+            /* =====================================
+               FILE NAME
+            ===================================== */
+
+            const safePeriod =
+                period
+                    .replace(
+                        /\s+/g,
+                        "_"
+                    );
+
+
+            const safeDate =
+                selectedDate
+                    .replace(
+                        /[^a-zA-Z0-9]+/g,
+                        "_"
+                    );
+
+
+            const safeType =
+                selectedType
+                    .replace(
+                        /\s+/g,
+                        "_"
+                    );
+
+
+            const fileName =
+
+                "MAARUTHI_AUTOMATION_" +
+
+                safePeriod +
+
+                "_" +
+
+                safeDate +
+
+                "_" +
+
+                safeType +
+
+                "_Report.xlsx";
+
+
+
+            /* =====================================
+               DOWNLOAD
+            ===================================== */
+
+            XLSX.writeFile(
+                workbook,
+                fileName
+            );
+
+
+
+            /* =====================================
+               STATUS MESSAGE
+            ===================================== */
+
+            const status =
+                document.getElementById(
+                    "exportStatus"
+                );
+
+
+            status.style.display =
+                "block";
+
+
+            status.textContent =
+
+                "✓ Excel report downloaded successfully: " +
+                fileName;
+
+
+            setTimeout(
+                () => {
+
+                    status.style.display =
+                        "none";
+
+                },
+                6000
+            );
+
+        }
+
+
+
+        /* =========================================
+           SEARCH
+        ========================================= */
+
+        document
+            .getElementById(
+                "reportSearch"
+            )
+            .addEventListener(
+                "input",
+                renderReports
+            );
+
+
+
+        /* =========================================
+           REPORT TYPE FILTER
+        ========================================= */
+
+        document
+            .getElementById(
+                "reportType"
+            )
+            .addEventListener(
+                "change",
+                renderReports
+            );
+
+
+
+        /* =========================================
+           START
+        ========================================= */
+
+        updateDate();
+
+        renderReports();
+
+
+    </script>
+
+
+</body>
+
+</html>

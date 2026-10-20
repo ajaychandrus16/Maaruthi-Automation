@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Production - MAARUTHI AUTOMATION
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        .production-container {
+            padding: 25px;
+        }
+
+        /* =========================
+           SUMMARY
+        ========================= */
+
+        .production-summary {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .summary-card {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+        }
+
+
+        .summary-title {
+
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .summary-value {
+
+            color: #4a250f;
+
+            font-size: 27px;
+
+            font-weight: 700;
+        }
+
+
+        .summary-unit {
+
+            color: #888;
+
+            font-size: 13px;
+
+            margin-left: 4px;
+        }
+
+
+        /* =========================
+           PROGRESS
+        ========================= */
+
+        .target-panel {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 22px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+        }
+
+
+        .target-header {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom: 14px;
+        }
+
+
+        .target-header h3 {
+
+            margin: 0;
+
+            color: #4a250f;
+
+            font-size: 18px;
+        }
+
+
+        .target-percentage {
+
+            color: #b45c18;
+
+            font-weight: 700;
+
+            font-size: 18px;
+        }
+
+
+        .progress-bar {
+
+            width: 100%;
+
+            height: 13px;
+
+            background: #eeeeee;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .progress-fill {
+
+            height: 100%;
+
+            width: 0%;
+
+            background: #c46b20;
+
+            border-radius: 20px;
+
+            transition:
+                width 0.5s ease;
+        }
+
+
+        .target-info {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            margin-top: 10px;
+
+            color: #777;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           TOOLBAR
+        ========================= */
+
+        .production-toolbar {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            margin-bottom: 20px;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            gap: 15px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+        }
+
+
+        .search-box {
+            flex: 1;
+        }
+
+
+        .search-box input {
+
+            width: 100%;
+
+            padding: 12px 15px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            box-sizing: border-box;
+        }
+
+
+        .search-box input:focus {
+
+            border-color:
+                #c46b20;
+        }
+
+
+        .status-filter select {
+
+            padding:
+                12px 15px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius:
+                8px;
+
+            background: white;
+
+            font-size:
+                14px;
+
+            outline: none;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .production-table-panel {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+
+            overflow-x: auto;
+        }
+
+
+        .production-table {
+
+            width: 100%;
+
+            border-collapse:
+                collapse;
+
+            min-width: 1000px;
+        }
+
+
+        .production-table th {
+
+            text-align: left;
+
+            padding:
+                14px 12px;
+
+            background:
+                #fff7ef;
+
+            color:
+                #5a3017;
+
+            font-size:
+                13px;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .production-table td {
+
+            padding:
+                14px 12px;
+
+            border-bottom:
+                1px solid #eee;
+
+            color:
+                #555;
+
+            font-size:
+                13px;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .production-table tr:hover {
+
+            background:
+                #fffaf5;
+        }
+
+
+        /* =========================
+           LOOM
+        ========================= */
+
+        .loom-number {
+
+            font-weight:
+                700;
+
+            color:
+                #4a250f;
+        }
+
+
+        .employee-name {
+
+            font-weight:
+                600;
+
+            color:
+                #5a3017;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status-badge {
+
+            display:
+                inline-block;
+
+            padding:
+                6px 11px;
+
+            border-radius:
+                20px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+        }
+
+
+        .running {
+
+            background:
+                #e7f6ea;
+
+            color:
+                #267a37;
+        }
+
+
+        .stopped {
+
+            background:
+                #fdeaea;
+
+            color:
+                #b52b2b;
+        }
+
+
+        /* =========================
+           EFFICIENCY
+        ========================= */
+
+        .efficiency-value {
+
+            font-weight:
+                700;
+
+            color:
+                #a95413;
+        }
+
+
+        /* =========================
+           LIVE
+        ========================= */
+
+        .live-text {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                6px;
+
+            color:
+                #27833b;
+
+            font-size:
+                12px;
+
+            font-weight:
+                600;
+        }
+
+
+        .live-circle {
+
+            width:
+                8px;
+
+            height:
+                8px;
+
+            background:
+                #32a852;
+
+            border-radius:
+                50%;
+
+            animation:
+                pulse 1.5s infinite;
+        }
+
+
+        @keyframes pulse {
+
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.35;
+            }
+
+            100% {
+                opacity: 1;
+            }
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .production-summary {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .production-summary {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .production-toolbar {
+
+                flex-direction:
+                    column;
+            }
+
+
+            .target-header {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+                gap: 8px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                M
+            </div>
+
+
+            <div>
+
+                <h2>
+                    MAARUTHI
+                </h2>
+
+                <span>
+                    AUTOMATION
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+
+            <!-- Dashboard -->
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <!-- Looms -->
+
+            <a
+                href="looms.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▦
+                </span>
+
+                Looms
+
+            </a>
+
+
+            <!-- Employees -->
+
+            <a
+                href="employees.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                Employees
+
+            </a>
+
+
+            <!-- Attendance -->
+
+            <a
+                href="attendance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◷
+                </span>
+
+                Attendance
+
+            </a>
+
+
+            <!-- Production -->
+
+            <a
+                href="production.html"
+                class="nav-link active"
+            >
+
+                <span class="nav-icon">
+                    ▤
+                </span>
+
+                Production
+
+            </a>
+
+
+            <!-- Payroll -->
+
+            <a
+                href="payroll.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ₹
+                </span>
+
+                Payroll
+
+            </a>
+
+
+            <!-- Maintenance -->
+
+            <a
+                href="maintenance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Maintenance
+
+            </a>
+
+
+            <!-- Reports -->
+
+            <a
+                href="reports.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                Reports
+
+            </a>
+
+
+            <!-- Settings -->
+
+            <a
+                href="settings.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Settings
+
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+
+            <div>
+
+                <h1 class="page-title">
+                    Production Management
+                </h1>
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <span class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    System Live
+
+                </span>
+
+
+                <span
+                    class="date"
+                    id="currentDate"
+                ></span>
+
+
+            </div>
+
+
+        </header>
+
+
+        <div class="production-container">
+
+
+            <!-- =========================
+                 SUMMARY
+            ========================= -->
+
+            <section
+                class="production-summary"
+            >
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Total Production
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="totalProduction"
+                    >
+                        0
+                        <span
+                            class="summary-unit"
+                        >
+                            m
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Daily Target
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="dailyTarget"
+                    >
+                        6000
+                        <span
+                            class="summary-unit"
+                        >
+                            m
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Target Achieved
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="targetAchieved"
+                    >
+                        0%
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Average Efficiency
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="averageEfficiency"
+                    >
+                        0%
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 TARGET PROGRESS
+            ========================= -->
+
+            <section class="target-panel">
+
+
+                <div class="target-header">
+
+                    <h3>
+                        Today's Production Target
+                    </h3>
+
+
+                    <span
+                        class="target-percentage"
+                        id="targetPercentage"
+                    >
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        id="progressFill"
+                    ></div>
+
+                </div>
+
+
+                <div class="target-info">
+
+                    <span id="producedText">
+                        Produced: 0 m
+                    </span>
+
+
+                    <span>
+                        Target: 6000 m
+                    </span>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 SEARCH / FILTER
+            ========================= -->
+
+            <section
+                class="production-toolbar"
+            >
+
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search loom or employee..."
+                    >
+
+                </div>
+
+
+                <div class="status-filter">
+
+                    <select
+                        id="statusFilter"
+                    >
+
+                        <option value="All">
+                            All Status
+                        </option>
+
+                        <option value="Running">
+                            Running
+                        </option>
+
+                        <option value="Stopped">
+                            Stopped
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 PRODUCTION TABLE
+            ========================= -->
+
+            <section
+                class="production-table-panel"
+            >
+
+
+                <table
+                    class="production-table"
+                >
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Loom
+                            </th>
+
+                            <th>
+                                Employee
+                            </th>
+
+                            <th>
+                                Shift
+                            </th>
+
+                            <th>
+                                Production
+                            </th>
+
+                            <th>
+                                Target
+                            </th>
+
+                            <th>
+                                Achievement
+                            </th>
+
+                            <th>
+                                Efficiency
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Update
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="productionTableBody"
+                    ></tbody>
+
+
+                </table>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+    <script>
+
+
+        // =========================================
+        // DATE
+        // =========================================
+
+        function updateDate() {
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+
+                new Date().toLocaleDateString(
+                    "en-IN",
+                    {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric"
+                    }
+                );
+
+        }
+
+
+        // =========================================
+        // PRODUCTION DATA
+        // =========================================
+
+        const productionData = [];
+
+
+        const employees = [
+
+            "Arun Kumar",
+            "Bala Murugan",
+            "Dinesh Kumar",
+            "Gokul Raj",
+            "Hari Prasad",
+            "Karthik",
+            "Manoj Kumar",
+            "Mohan Raj",
+            "Naveen",
+            "Prakash",
+            "Ramesh",
+            "Sathish"
+
+        ];
+
+
+        // =========================================
+        // CREATE 12 LOOMS
+        // =========================================
+
+        for (
+            let i = 1;
+            i <= 12;
+            i++
+        ) {
+
+
+            const status =
+                Math.random() > 0.15
+                    ? "Running"
+                    : "Stopped";
+
+
+            const production =
+                status === "Running"
+
+                    ? 350 +
+                      Math.floor(
+                          Math.random() * 180
+                      )
+
+                    : 0;
+
+
+            const target = 500;
+
+
+            const efficiency =
+                status === "Running"
+
+                    ? 82 +
+                      Math.floor(
+                          Math.random() * 13
+                      )
+
+                    : 0;
+
+
+            productionData.push({
+
+                loom:
+                    "LOOM-" +
+                    String(i)
+                        .padStart(2, "0"),
+
+
+                employee:
+                    employees[i - 1],
+
+
+                shift:
+                    i % 2 === 0
+                        ? "Shift B"
+                        : "Shift A",
+
+
+                production:
+                    production,
+
+
+                target:
+                    target,
+
+
+                efficiency:
+                    efficiency,
+
+
+                status:
+                    status
+
+            });
+
+        }
+
+
+        // =========================================
+        // RENDER TABLE
+        // =========================================
+
+        function renderProduction() {
+
+
+            const tbody =
+                document.getElementById(
+                    "productionTableBody"
+                );
+
+
+            const search =
+                document.getElementById(
+                    "searchInput"
+                )
+                .value
+                .toLowerCase();
+
+
+            const filter =
+                document.getElementById(
+                    "statusFilter"
+                )
+                .value;
+
+
+            tbody.innerHTML = "";
+
+
+            productionData.forEach(
+                item => {
+
+
+                    const matchesSearch =
+
+                        item.loom
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        item.employee
+                            .toLowerCase()
+                            .includes(search);
+
+
+                    const matchesFilter =
+
+                        filter === "All"
+
+                        ||
+
+                        item.status ===
+                        filter;
+
+
+                    if (
+                        !matchesSearch ||
+                        !matchesFilter
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const achievement =
+
+                        item.target > 0
+
+                            ? Math.round(
+                                (
+                                    item.production /
+                                    item.target
+                                ) * 100
+                              )
+
+                            : 0;
+
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    row.innerHTML = `
+
+
+                        <td class="loom-number">
+
+                            ${item.loom}
+
+                        </td>
+
+
+                        <td class="employee-name">
+
+                            ${item.employee}
+
+                        </td>
+
+
+                        <td>
+
+                            ${item.shift}
+
+                        </td>
+
+
+                        <td>
+
+                            ${item.production}
+                            m
+
+                        </td>
+
+
+                        <td>
+
+                            ${item.target}
+                            m
+
+                        </td>
+
+
+                        <td>
+
+                            ${achievement}%
+
+                        </td>
+
+
+                        <td
+                            class="efficiency-value"
+                        >
+
+                            ${item.efficiency}%
+
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="status-badge ${
+                                    item.status ===
+                                    "Running"
+                                        ? "running"
+                                        : "stopped"
+                                }"
+                            >
+
+                                ${item.status}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="live-text"
+                            >
+
+                                <span
+                                    class="live-circle"
+                                ></span>
+
+                                Live
+
+                            </span>
+
+                        </td>
+
+
+                    `;
+
+
+                    tbody.appendChild(row);
+
+                }
+            );
+
+
+            updateSummary();
+
+        }
+
+
+        // =========================================
+        // UPDATE SUMMARY
+        // =========================================
+
+        function updateSummary() {
+
+
+            const totalProduction =
+
+                productionData.reduce(
+
+                    (
+                        total,
+                        item
+                    ) =>
+
+                        total +
+                        item.production,
+
+                    0
+
+                );
+
+
+            const totalTarget =
+
+                productionData.reduce(
+
+                    (
+                        total,
+                        item
+                    ) =>
+
+                        total +
+                        item.target,
+
+                    0
+
+                );
+
+
+            const runningData =
+
+                productionData.filter(
+
+                    item =>
+                        item.status ===
+                        "Running"
+
+                );
+
+
+            const averageEfficiency =
+
+                runningData.length > 0
+
+                    ? Math.round(
+
+                        runningData.reduce(
+
+                            (
+                                total,
+                                item
+                            ) =>
+
+                                total +
+                                item.efficiency,
+
+                            0
+
+                        )
+                        /
+                        runningData.length
+
+                    )
+
+                    : 0;
+
+
+            const achievement =
+
+                totalTarget > 0
+
+                    ? Math.round(
+
+                        (
+                            totalProduction /
+                            totalTarget
+                        ) * 100
+
+                    )
+
+                    : 0;
+
+
+            document.getElementById(
+                "totalProduction"
+            ).innerHTML =
+
+                totalProduction +
+
+                '<span class="summary-unit">m</span>';
+
+
+            document.getElementById(
+                "targetAchieved"
+            ).textContent =
+
+                achievement + "%";
+
+
+            document.getElementById(
+                "targetPercentage"
+            ).textContent =
+
+                achievement + "%";
+
+
+            document.getElementById(
+                "averageEfficiency"
+            ).textContent =
+
+                averageEfficiency + "%";
+
+
+            document.getElementById(
+                "producedText"
+            ).textContent =
+
+                "Produced: " +
+                totalProduction +
+                " m";
+
+
+            const progress =
+                Math.min(
+                    achievement,
+                    100
+                );
+
+
+            document.getElementById(
+                "progressFill"
+            ).style.width =
+                progress + "%";
+
+        }
+
+
+        // =========================================
+        // LIVE SIMULATION
+        // =========================================
+
+        function simulateProduction() {
+
+
+            productionData.forEach(
+                item => {
+
+
+                    if (
+                        Math.random() < 0.05
+                    ) {
+
+                        item.status =
+
+                            item.status ===
+                            "Running"
+
+                                ? "Stopped"
+
+                                : "Running";
+
+                    }
+
+
+                    if (
+                        item.status ===
+                        "Running"
+                    ) {
+
+
+                        item.production +=
+
+                            2 +
+                            Math.floor(
+                                Math.random() * 7
+                            );
+
+
+                        item.efficiency =
+
+                            82 +
+                            Math.floor(
+                                Math.random() * 13
+                            );
+
+                    }
+
+                    else {
+
+                        item.efficiency =
+                            0;
+
+                    }
+
+                }
+            );
+
+
+            renderProduction();
+
+        }
+
+
+        // =========================================
+        // SEARCH
+        // =========================================
+
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .addEventListener(
+                "input",
+                renderProduction
+            );
+
+
+        // =========================================
+        // FILTER
+        // =========================================
+
+        document
+            .getElementById(
+                "statusFilter"
+            )
+            .addEventListener(
+                "change",
+                renderProduction
+            );
+
+
+        // =========================================
+        // START
+        // =========================================
+
+        updateDate();
+
+        renderProduction();
+
+
+        setInterval(
+            simulateProduction,
+            3000
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

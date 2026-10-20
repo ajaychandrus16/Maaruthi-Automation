@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Attendance - MAARUTHI AUTOMATION
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        .attendance-container {
+            padding: 25px;
+        }
+
+        /* =========================
+           SUMMARY
+        ========================= */
+
+        .attendance-summary {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .summary-card {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+        }
+
+
+        .summary-title {
+
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .summary-value {
+
+            color: #4a250f;
+
+            font-size: 27px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           TOOLBAR
+        ========================= */
+
+        .attendance-toolbar {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            margin-bottom: 20px;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            gap: 15px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+        }
+
+
+        .search-box {
+            flex: 1;
+        }
+
+
+        .search-box input {
+
+            width: 100%;
+
+            padding: 12px 15px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            box-sizing: border-box;
+        }
+
+
+        .search-box input:focus {
+
+            border-color:
+                #c46b20;
+        }
+
+
+        .status-filter select {
+
+            padding:
+                12px 15px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius: 8px;
+
+            background: white;
+
+            font-size: 14px;
+
+            outline: none;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .attendance-table-panel {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+
+            overflow-x: auto;
+        }
+
+
+        .attendance-table {
+
+            width: 100%;
+
+            border-collapse:
+                collapse;
+
+            min-width: 1050px;
+        }
+
+
+        .attendance-table th {
+
+            text-align: left;
+
+            padding:
+                14px 12px;
+
+            background:
+                #fff7ef;
+
+            color:
+                #5a3017;
+
+            font-size: 13px;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .attendance-table td {
+
+            padding:
+                14px 12px;
+
+            border-bottom:
+                1px solid #eee;
+
+            color:
+                #555;
+
+            font-size: 13px;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .attendance-table tr:hover {
+
+            background:
+                #fffaf5;
+        }
+
+
+        /* =========================
+           EMPLOYEE
+        ========================= */
+
+        .employee-id {
+
+            font-weight:
+                700;
+
+            color:
+                #4a250f;
+        }
+
+
+        .employee-name {
+
+            font-weight:
+                600;
+
+            color:
+                #5a3017;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status-badge {
+
+            display:
+                inline-block;
+
+            padding:
+                6px 11px;
+
+            border-radius:
+                20px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+        }
+
+
+        .present {
+
+            background:
+                #e7f6ea;
+
+            color:
+                #267a37;
+        }
+
+
+        .absent {
+
+            background:
+                #fdeaea;
+
+            color:
+                #b52b2b;
+        }
+
+
+        .leave {
+
+            background:
+                #fff1dc;
+
+            color:
+                #a86213;
+        }
+
+
+        /* =========================
+           LIVE
+        ========================= */
+
+        .live-text {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                6px;
+
+            color:
+                #27833b;
+
+            font-size:
+                12px;
+
+            font-weight:
+                600;
+        }
+
+
+        .live-circle {
+
+            width:
+                8px;
+
+            height:
+                8px;
+
+            background:
+                #32a852;
+
+            border-radius:
+                50%;
+
+            animation:
+                pulse 1.5s infinite;
+        }
+
+
+        @keyframes pulse {
+
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.35;
+            }
+
+            100% {
+                opacity: 1;
+            }
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+
+            .attendance-summary {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .attendance-summary {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .attendance-summary {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .attendance-toolbar {
+
+                flex-direction:
+                    column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                M
+            </div>
+
+
+            <div>
+
+                <h2>
+                    MAARUTHI
+                </h2>
+
+                <span>
+                    AUTOMATION
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+
+            <!-- Dashboard -->
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <!-- Looms -->
+
+            <a
+                href="looms.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▦
+                </span>
+
+                Looms
+
+            </a>
+
+
+            <!-- Employees -->
+
+            <a
+                href="employees.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                Employees
+
+            </a>
+
+
+            <!-- Attendance -->
+
+            <a
+                href="attendance.html"
+                class="nav-link active"
+            >
+
+                <span class="nav-icon">
+                    ◷
+                </span>
+
+                Attendance
+
+            </a>
+
+
+            <!-- Production -->
+
+            <a
+                href="production.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▤
+                </span>
+
+                Production
+
+            </a>
+
+
+            <!-- Payroll -->
+
+            <a
+                href="payroll.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ₹
+                </span>
+
+                Payroll
+
+            </a>
+
+
+            <!-- Maintenance -->
+
+            <a
+                href="maintenance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Maintenance
+
+            </a>
+
+
+            <!-- Reports -->
+
+            <a
+                href="reports.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                Reports
+
+            </a>
+
+
+            <!-- Settings -->
+
+            <a
+                href="settings.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Settings
+
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+
+            <div>
+
+                <h1 class="page-title">
+                    Attendance Management
+                </h1>
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <span class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    System Live
+
+                </span>
+
+
+                <span
+                    class="date"
+                    id="currentDate"
+                ></span>
+
+
+            </div>
+
+
+        </header>
+
+
+        <div class="attendance-container">
+
+
+            <!-- =========================
+                 SUMMARY
+            ========================= -->
+
+            <section
+                class="attendance-summary"
+            >
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Total Employees
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="totalEmployees"
+                    >
+                        24
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Present
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="presentEmployees"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Absent
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="absentEmployees"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        On Leave
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="leaveEmployees"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+                        Attendance %
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="attendancePercentage"
+                    >
+                        0%
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 TOOLBAR
+            ========================= -->
+
+            <section
+                class="attendance-toolbar"
+            >
+
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search employee ID or name..."
+                    >
+
+                </div>
+
+
+                <div class="status-filter">
+
+                    <select
+                        id="statusFilter"
+                    >
+
+                        <option value="All">
+                            All Attendance
+                        </option>
+
+                        <option value="Present">
+                            Present
+                        </option>
+
+                        <option value="Absent">
+                            Absent
+                        </option>
+
+                        <option value="Leave">
+                            On Leave
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 TABLE
+            ========================= -->
+
+            <section
+                class="attendance-table-panel"
+            >
+
+
+                <table
+                    class="attendance-table"
+                >
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Employee ID
+                            </th>
+
+                            <th>
+                                Employee Name
+                            </th>
+
+                            <th>
+                                Loom
+                            </th>
+
+                            <th>
+                                Shift
+                            </th>
+
+                            <th>
+                                Check In
+                            </th>
+
+                            <th>
+                                Check Out
+                            </th>
+
+                            <th>
+                                Attendance
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="attendanceTableBody"
+                    ></tbody>
+
+
+                </table>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+    <script>
+
+
+        // =========================================
+        // DATE
+        // =========================================
+
+        function updateDate() {
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+
+                new Date().toLocaleDateString(
+                    "en-IN",
+                    {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric"
+                    }
+                );
+
+        }
+
+
+        // =========================================
+        // EMPLOYEE NAMES
+        // =========================================
+
+        const names = [
+
+            "Arun Kumar",
+            "Bala Murugan",
+            "Dinesh Kumar",
+            "Gokul Raj",
+            "Hari Prasad",
+            "Karthik",
+            "Manoj Kumar",
+            "Mohan Raj",
+            "Naveen",
+            "Prakash",
+            "Ramesh",
+            "Sathish",
+            "Siva Kumar",
+            "Surya",
+            "Vignesh",
+            "Vijay",
+            "Ajith Kumar",
+            "Ashok",
+            "Dharani",
+            "Ganesh",
+            "Jeeva",
+            "Lokesh",
+            "Murali",
+            "Nithin"
+
+        ];
+
+
+        // =========================================
+        // ATTENDANCE DATA
+        // =========================================
+
+        const attendanceData = [];
+
+
+        for (
+            let i = 1;
+            i <= 24;
+            i++
+        ) {
+
+
+            let attendance;
+
+
+            const random =
+                Math.random();
+
+
+            if (random < 0.82) {
+
+                attendance =
+                    "Present";
+
+            }
+
+            else if (random < 0.92) {
+
+                attendance =
+                    "Leave";
+
+            }
+
+            else {
+
+                attendance =
+                    "Absent";
+
+            }
+
+
+            let checkIn =
+                "--";
+
+
+            let checkOut =
+                "--";
+
+
+            if (
+                attendance ===
+                "Present"
+            ) {
+
+                const hour =
+                    7 +
+                    Math.floor(
+                        Math.random() * 2
+                    );
+
+
+                const minute =
+                    Math.floor(
+                        Math.random() * 60
+                    );
+
+
+                checkIn =
+
+                    String(hour)
+                        .padStart(2, "0")
+
+                    +
+
+                    ":" +
+
+                    String(minute)
+                        .padStart(2, "0");
+
+
+                checkOut =
+                    "--";
+
+            }
+
+
+            attendanceData.push({
+
+                id:
+                    "EMP-" +
+                    String(i)
+                        .padStart(3, "0"),
+
+
+                name:
+                    names[i - 1],
+
+
+                loom:
+                    "LOOM-" +
+                    String(
+                        ((i - 1) % 12) + 1
+                    ).padStart(2, "0"),
+
+
+                shift:
+                    i % 2 === 0
+                        ? "Shift B"
+                        : "Shift A",
+
+
+                checkIn:
+                    checkIn,
+
+
+                checkOut:
+                    checkOut,
+
+
+                attendance:
+                    attendance
+
+            });
+
+        }
+
+
+        // =========================================
+        // RENDER TABLE
+        // =========================================
+
+        function renderAttendance() {
+
+
+            const tbody =
+                document.getElementById(
+                    "attendanceTableBody"
+                );
+
+
+            const search =
+                document.getElementById(
+                    "searchInput"
+                )
+                .value
+                .toLowerCase();
+
+
+            const filter =
+                document.getElementById(
+                    "statusFilter"
+                )
+                .value;
+
+
+            tbody.innerHTML = "";
+
+
+            attendanceData.forEach(
+                employee => {
+
+
+                    const matchesSearch =
+
+                        employee.id
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        employee.name
+                            .toLowerCase()
+                            .includes(search);
+
+
+                    const matchesFilter =
+
+                        filter === "All"
+
+                        ||
+
+                        employee.attendance ===
+                        filter;
+
+
+                    if (
+                        !matchesSearch ||
+                        !matchesFilter
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    let badgeClass;
+
+
+                    if (
+                        employee.attendance ===
+                        "Present"
+                    ) {
+
+                        badgeClass =
+                            "present";
+
+                    }
+
+                    else if (
+                        employee.attendance ===
+                        "Leave"
+                    ) {
+
+                        badgeClass =
+                            "leave";
+
+                    }
+
+                    else {
+
+                        badgeClass =
+                            "absent";
+
+                    }
+
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    row.innerHTML = `
+
+                        <td class="employee-id">
+
+                            ${employee.id}
+
+                        </td>
+
+
+                        <td class="employee-name">
+
+                            ${employee.name}
+
+                        </td>
+
+
+                        <td>
+
+                            ${employee.loom}
+
+                        </td>
+
+
+                        <td>
+
+                            ${employee.shift}
+
+                        </td>
+
+
+                        <td>
+
+                            ${employee.checkIn}
+
+                        </td>
+
+
+                        <td>
+
+                            ${employee.checkOut}
+
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="status-badge ${badgeClass}"
+                            >
+
+                                ${employee.attendance}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="live-text"
+                            >
+
+                                <span
+                                    class="live-circle"
+                                ></span>
+
+                                Live
+
+                            </span>
+
+                        </td>
+
+                    `;
+
+
+                    tbody.appendChild(row);
+
+                }
+            );
+
+
+            updateSummary();
+
+        }
+
+
+        // =========================================
+        // SUMMARY
+        // =========================================
+
+        function updateSummary() {
+
+
+            const total =
+                attendanceData.length;
+
+
+            const present =
+                attendanceData.filter(
+                    employee =>
+                        employee.attendance ===
+                        "Present"
+                ).length;
+
+
+            const absent =
+                attendanceData.filter(
+                    employee =>
+                        employee.attendance ===
+                        "Absent"
+                ).length;
+
+
+            const leave =
+                attendanceData.filter(
+                    employee =>
+                        employee.attendance ===
+                        "Leave"
+                ).length;
+
+
+            const percentage =
+                total > 0
+                    ? Math.round(
+                        (present / total) *
+                        100
+                    )
+                    : 0;
+
+
+            document.getElementById(
+                "totalEmployees"
+            ).textContent =
+                total;
+
+
+            document.getElementById(
+                "presentEmployees"
+            ).textContent =
+                present;
+
+
+            document.getElementById(
+                "absentEmployees"
+            ).textContent =
+                absent;
+
+
+            document.getElementById(
+                "leaveEmployees"
+            ).textContent =
+                leave;
+
+
+            document.getElementById(
+                "attendancePercentage"
+            ).textContent =
+                percentage + "%";
+
+        }
+
+
+        // =========================================
+        // LIVE CHECK-IN SIMULATION
+        // =========================================
+
+        function simulateAttendance() {
+
+
+            const presentEmployees =
+                attendanceData.filter(
+                    employee =>
+                        employee.attendance ===
+                        "Present"
+                );
+
+
+            if (
+                presentEmployees.length >
+                0
+            ) {
+
+
+                const employee =
+                    presentEmployees[
+                        Math.floor(
+                            Math.random() *
+                            presentEmployees.length
+                        )
+                    ];
+
+
+                if (
+                    Math.random() < 0.15 &&
+                    employee.checkOut === "--"
+                ) {
+
+                    employee.checkOut =
+                        new Date()
+                            .toLocaleTimeString(
+                                "en-IN",
+                                {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                    hour12: false
+                                }
+                            );
+
+                }
+
+            }
+
+
+            renderAttendance();
+
+        }
+
+
+        // =========================================
+        // SEARCH
+        // =========================================
+
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .addEventListener(
+                "input",
+                renderAttendance
+            );
+
+
+        // =========================================
+        // FILTER
+        // =========================================
+
+        document
+            .getElementById(
+                "statusFilter"
+            )
+            .addEventListener(
+                "change",
+                renderAttendance
+            );
+
+
+        // =========================================
+        // START
+        // =========================================
+
+        updateDate();
+
+        renderAttendance();
+
+
+        setInterval(
+            simulateAttendance,
+            5000
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

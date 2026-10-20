@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Loom Detail - MAARUTHI AUTOMATION
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        .detail-container {
+            padding: 25px;
+        }
+
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #6b3515;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
+
+
+        .loom-header-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0, 0, 0, 0.08);
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom: 22px;
+        }
+
+
+        .loom-title-area h2 {
+            margin:
+                0 0 8px;
+
+            color:
+                #4a250f;
+
+            font-size:
+                26px;
+        }
+
+
+        .loom-title-area p {
+            margin:
+                0;
+
+            color:
+                #777;
+        }
+
+
+        .status-badge {
+            padding:
+                9px 18px;
+
+            border-radius:
+                20px;
+
+            font-weight:
+                700;
+
+            font-size:
+                14px;
+        }
+
+
+        .status-running {
+            background:
+                #e7f6ea;
+
+            color:
+                #237a35;
+        }
+
+
+        .status-stopped {
+            background:
+                #fdeaea;
+
+            color:
+                #b52b2b;
+        }
+
+
+        .detail-kpi-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                18px;
+
+            margin-bottom:
+                22px;
+        }
+
+
+        .detail-kpi {
+
+            background:
+                white;
+
+            border-radius:
+                12px;
+
+            padding:
+                22px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .detail-kpi-label {
+
+            color:
+                #777;
+
+            font-size:
+                14px;
+
+            margin-bottom:
+                10px;
+        }
+
+
+        .detail-kpi-value {
+
+            color:
+                #4a250f;
+
+            font-size:
+                28px;
+
+            font-weight:
+                700;
+        }
+
+
+        .detail-kpi-unit {
+
+            color:
+                #888;
+
+            font-size:
+                13px;
+
+            margin-left:
+                4px;
+        }
+
+
+        .detail-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                22px;
+        }
+
+
+        .detail-panel {
+
+            background:
+                white;
+
+            border-radius:
+                12px;
+
+            padding:
+                24px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .detail-panel h3 {
+
+            margin:
+                0 0 20px;
+
+            color:
+                #4a250f;
+
+            font-size:
+                19px;
+        }
+
+
+        .info-row {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            padding:
+                13px 0;
+
+            border-bottom:
+                1px solid #eeeeee;
+        }
+
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .info-label {
+            color:
+                #777;
+        }
+
+
+        .info-value {
+
+            font-weight:
+                600;
+
+            color:
+                #4a250f;
+        }
+
+
+        .live-indicator {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            color:
+                #27833b;
+
+            font-size:
+                13px;
+
+            font-weight:
+                600;
+        }
+
+
+        .live-circle {
+
+            width:
+                9px;
+
+            height:
+                9px;
+
+            background:
+                #32a852;
+
+            border-radius:
+                50%;
+
+            animation:
+                pulse 1.5s infinite;
+        }
+
+
+        @keyframes pulse {
+
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.35;
+            }
+
+            100% {
+                opacity: 1;
+            }
+
+        }
+
+
+        .production-box {
+
+            margin-top:
+                20px;
+
+            padding:
+                18px;
+
+            border-radius:
+                10px;
+
+            background:
+                #fff8f1;
+
+            border-left:
+                5px solid #d9822b;
+        }
+
+
+        .production-box strong {
+
+            display:
+                block;
+
+            color:
+                #4a250f;
+
+            font-size:
+                15px;
+
+            margin-bottom:
+                7px;
+        }
+
+
+        .production-box span {
+
+            font-size:
+                25px;
+
+            font-weight:
+                700;
+
+            color:
+                #b45c18;
+        }
+
+
+        @media (max-width: 1000px) {
+
+            .detail-kpi-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .detail-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .detail-kpi-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .loom-header-card {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+                gap:
+                    15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+
+            <div class="brand-icon">
+                M
+            </div>
+
+
+            <div>
+
+                <h2>
+                    MAARUTHI
+                </h2>
+
+                <span>
+                    AUTOMATION
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <nav class="navigation">
+
+
+            <!-- Dashboard -->
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <!-- Looms -->
+
+            <a
+                href="looms.html"
+                class="nav-link active"
+            >
+
+                <span class="nav-icon">
+                    ▦
+                </span>
+
+                Looms
+
+            </a>
+
+
+            <!-- Employees -->
+
+            <a
+                href="employees.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                Employees
+
+            </a>
+
+
+            <!-- Attendance -->
+
+            <a
+                href="attendance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◷
+                </span>
+
+                Attendance
+
+            </a>
+
+
+            <!-- Production -->
+
+            <a
+                href="production.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▤
+                </span>
+
+                Production
+
+            </a>
+
+
+            <!-- Payroll -->
+
+            <a
+                href="payroll.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ₹
+                </span>
+
+                Payroll
+
+            </a>
+
+
+            <!-- Maintenance -->
+
+            <a
+                href="maintenance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Maintenance
+
+            </a>
+
+
+            <!-- Reports -->
+
+            <a
+                href="reports.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                Reports
+
+            </a>
+
+
+            <!-- Settings -->
+
+            <a
+                href="settings.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Settings
+
+            </a>
+
+
+        </nav>
+
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+
+            <div>
+
+                <h1 class="page-title">
+                    Loom Detail
+                </h1>
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <span class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    System Live
+
+                </span>
+
+
+                <span
+                    class="date"
+                    id="currentDate"
+                ></span>
+
+
+            </div>
+
+
+        </header>
+
+
+        <div class="detail-container">
+
+
+            <!-- BACK -->
+
+            <a
+                href="looms.html"
+                class="back-button"
+            >
+
+                ← Back to Looms
+
+            </a>
+
+
+            <!-- =========================
+                 LOOM HEADER
+            ========================= -->
+
+            <section
+                class="loom-header-card"
+            >
+
+
+                <div
+                    class="loom-title-area"
+                >
+
+                    <h2 id="loomName">
+                        Loom 01
+                    </h2>
+
+
+                    <p id="machineName">
+                        High Speed Textile Loom
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <span
+                        id="statusBadge"
+                        class="status-badge status-running"
+                    >
+
+                        RUNNING
+
+                    </span>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 KPI CARDS
+            ========================= -->
+
+            <section
+                class="detail-kpi-grid"
+            >
+
+
+                <div class="detail-kpi">
+
+
+                    <div
+                        class="detail-kpi-label"
+                    >
+
+                        Current RPM
+
+                    </div>
+
+
+                    <div
+                        class="detail-kpi-value"
+                    >
+
+                        <span id="rpm">
+                            520
+                        </span>
+
+
+                        <span
+                            class="detail-kpi-unit"
+                        >
+
+                            RPM
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="detail-kpi">
+
+
+                    <div
+                        class="detail-kpi-label"
+                    >
+
+                        Pick / Minute
+
+                    </div>
+
+
+                    <div
+                        class="detail-kpi-value"
+                    >
+
+                        <span id="pick">
+                            410
+                        </span>
+
+
+                        <span
+                            class="detail-kpi-unit"
+                        >
+
+                            PPM
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="detail-kpi">
+
+
+                    <div
+                        class="detail-kpi-label"
+                    >
+
+                        Efficiency
+
+                    </div>
+
+
+                    <div
+                        class="detail-kpi-value"
+                    >
+
+                        <span id="efficiency">
+                            91
+                        </span>
+
+
+                        <span
+                            class="detail-kpi-unit"
+                        >
+
+                            %
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="detail-kpi">
+
+
+                    <div
+                        class="detail-kpi-label"
+                    >
+
+                        Production
+
+                    </div>
+
+
+                    <div
+                        class="detail-kpi-value"
+                    >
+
+                        <span id="production">
+                            1250
+                        </span>
+
+
+                        <span
+                            class="detail-kpi-unit"
+                        >
+
+                            m
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 DETAILS
+            ========================= -->
+
+            <section class="detail-grid">
+
+
+                <!-- Current Operation -->
+
+                <div class="detail-panel">
+
+
+                    <h3>
+                        Current Operation
+                    </h3>
+
+
+                    <div class="info-row">
+
+
+                        <span class="info-label">
+                            Loom Number
+                        </span>
+
+
+                        <span
+                            class="info-value"
+                            id="loomNumber"
+                        >
+
+                            LOOM-01
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span class="info-label">
+                            Machine
+                        </span>
+
+
+                        <span class="info-value">
+
+                            High Speed Loom
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span class="info-label">
+                            Employee
+                        </span>
+
+
+                        <span
+                            class="info-value"
+                            id="employee"
+                        >
+
+                            Employee 01
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span class="info-label">
+                            Current Shift
+                        </span>
+
+
+                        <span
+                            class="info-value"
+                            id="shift"
+                        >
+
+                            Shift A
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span class="info-label">
+                            Last Update
+                        </span>
+
+
+                        <span
+                            class="info-value"
+                            id="lastUpdate"
+                        >
+
+                            Just now
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="production-box">
+
+
+                        <strong>
+                            Live Production
+                        </strong>
+
+
+                        <span>
+
+                            <span
+                                id="productionBottom"
+                            >
+                                1250
+                            </span>
+
+                            metres
+
+                        </span>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- Runtime & Downtime -->
+
+                <div class="detail-panel">
+
+
+                    <h3>
+                        Runtime & Downtime
+                    </h3>
+
+
+                    <div class="info-row">
+
+
+                        <span class="info-label">
+                            Runtime Today
+                        </span>
+
+
+                        <span
+                            class="info-value"
+                            id="runtime"
+                        >
+
+                            07h 35m
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span class="info-label">
+                            Downtime Today
+                        </span>
+
+
+                        <span
+                            class="info-value"
+                            id="downtime"
+                        >
+
+                            00h 45m
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span class="info-label">
+                            Availability
+                        </span>
+
+
+                        <span
+                            class="info-value"
+                            id="availability"
+                        >
+
+                            91%
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span class="info-label">
+                            Current Status
+                        </span>
+
+
+                        <span
+                            class="info-value"
+                            id="currentStatus"
+                        >
+
+                            Running
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span class="info-label">
+                            Data Connection
+                        </span>
+
+
+                        <span class="live-indicator">
+
+
+                            <span
+                                class="live-circle"
+                            ></span>
+
+
+                            Connected
+
+
+                        </span>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+    <script>
+
+
+        // =========================================
+        // DATE
+        // =========================================
+
+        function updateDate() {
+
+            const dateElement =
+                document.getElementById(
+                    "currentDate"
+                );
+
+
+            const now =
+                new Date();
+
+
+            dateElement.textContent =
+                now.toLocaleDateString(
+                    "en-IN",
+                    {
+                        day:
+                            "2-digit",
+
+                        month:
+                            "short",
+
+                        year:
+                            "numeric"
+                    }
+                );
+
+        }
+
+
+        // =========================================
+        // LOOM DATA
+        // =========================================
+
+        const loomData = {
+
+            number:
+                "LOOM-01",
+
+            name:
+                "Loom 01",
+
+            machine:
+                "High Speed Textile Loom",
+
+            employee:
+                "Employee 01",
+
+            shift:
+                "Shift A",
+
+            status:
+                "Running",
+
+            rpm:
+                520,
+
+            pick:
+                410,
+
+            efficiency:
+                91,
+
+            production:
+                1250,
+
+            runtimeMinutes:
+                455,
+
+            downtimeMinutes:
+                45
+
+        };
+
+
+        // =========================================
+        // URL LOOM SELECTION
+        // =========================================
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const selectedLoom =
+            params.get("loom");
+
+
+        if (selectedLoom) {
+
+
+            const loomNumber =
+                parseInt(
+                    selectedLoom
+                );
+
+
+            if (
+                !isNaN(
+                    loomNumber
+                )
+            ) {
+
+
+                loomData.number =
+                    "LOOM-" +
+                    String(
+                        loomNumber
+                    ).padStart(
+                        2,
+                        "0"
+                    );
+
+
+                loomData.name =
+                    "Loom " +
+                    String(
+                        loomNumber
+                    ).padStart(
+                        2,
+                        "0"
+                    );
+
+
+                loomData.employee =
+                    "Employee " +
+                    String(
+                        loomNumber
+                    ).padStart(
+                        2,
+                        "0"
+                    );
+
+
+                loomData.rpm =
+                    480 +
+                    Math.floor(
+                        Math.random() *
+                        100
+                    );
+
+
+                loomData.pick =
+                    380 +
+                    Math.floor(
+                        Math.random() *
+                        60
+                    );
+
+
+                loomData.efficiency =
+                    85 +
+                    Math.floor(
+                        Math.random() *
+                        12
+                    );
+
+
+                loomData.production =
+                    1000 +
+                    Math.floor(
+                        Math.random() *
+                        500
+                    );
+
+            }
+
+        }
+
+
+        // =========================================
+        // DISPLAY DATA
+        // =========================================
+
+        function renderLoom() {
+
+
+            document.getElementById(
+                "loomName"
+            ).textContent =
+                loomData.name;
+
+
+            document.getElementById(
+                "machineName"
+            ).textContent =
+                loomData.machine;
+
+
+            document.getElementById(
+                "loomNumber"
+            ).textContent =
+                loomData.number;
+
+
+            document.getElementById(
+                "employee"
+            ).textContent =
+                loomData.employee;
+
+
+            document.getElementById(
+                "shift"
+            ).textContent =
+                loomData.shift;
+
+
+            document.getElementById(
+                "rpm"
+            ).textContent =
+                loomData.rpm;
+
+
+            document.getElementById(
+                "pick"
+            ).textContent =
+                loomData.pick;
+
+
+            document.getElementById(
+                "efficiency"
+            ).textContent =
+                loomData.efficiency;
+
+
+            document.getElementById(
+                "production"
+            ).textContent =
+                loomData.production;
+
+
+            document.getElementById(
+                "productionBottom"
+            ).textContent =
+                loomData.production;
+
+
+            document.getElementById(
+                "runtime"
+            ).textContent =
+                formatMinutes(
+                    loomData.runtimeMinutes
+                );
+
+
+            document.getElementById(
+                "downtime"
+            ).textContent =
+                formatMinutes(
+                    loomData.downtimeMinutes
+                );
+
+
+            const totalMinutes =
+                loomData.runtimeMinutes +
+                loomData.downtimeMinutes;
+
+
+            const availability =
+                Math.round(
+                    (
+                        loomData.runtimeMinutes /
+                        totalMinutes
+                    ) * 100
+                );
+
+
+            document.getElementById(
+                "availability"
+            ).textContent =
+                availability + "%";
+
+
+            document.getElementById(
+                "currentStatus"
+            ).textContent =
+                loomData.status;
+
+
+            document.getElementById(
+                "lastUpdate"
+            ).textContent =
+                "Just now";
+
+
+            const badge =
+                document.getElementById(
+                    "statusBadge"
+                );
+
+
+            badge.textContent =
+                loomData.status.toUpperCase();
+
+
+            badge.className =
+                "status-badge " +
+                (
+                    loomData.status ===
+                    "Running"
+                        ? "status-running"
+                        : "status-stopped"
+                );
+
+        }
+
+
+        // =========================================
+        // TIME FORMAT
+        // =========================================
+
+        function formatMinutes(
+            minutes
+        ) {
+
+
+            const hours =
+                Math.floor(
+                    minutes / 60
+                );
+
+
+            const mins =
+                minutes % 60;
+
+
+            return (
+
+                String(hours)
+                    .padStart(
+                        2,
+                        "0"
+                    )
+
+                +
+
+                "h "
+
+                +
+
+                String(mins)
+                    .padStart(
+                        2,
+                        "0"
+                    )
+
+                +
+
+                "m"
+
+            );
+
+        }
+
+
+        // =========================================
+        // LIVE SIMULATION
+        // =========================================
+
+        function simulateLoom() {
+
+
+            if (
+                Math.random() <
+                0.08
+            ) {
+
+                loomData.status =
+                    loomData.status ===
+                    "Running"
+                        ? "Stopped"
+                        : "Running";
+
+            }
+
+
+            if (
+                loomData.status ===
+                "Running"
+            ) {
+
+
+                loomData.rpm =
+                    480 +
+                    Math.floor(
+                        Math.random() *
+                        100
+                    );
+
+
+                loomData.pick =
+                    380 +
+                    Math.floor(
+                        Math.random() *
+                        60
+                    );
+
+
+                loomData.efficiency =
+                    86 +
+                    Math.floor(
+                        Math.random() *
+                        10
+                    );
+
+
+                loomData.production +=
+                    Math.floor(
+                        Math.random() *
+                        8
+                    );
+
+
+                loomData.runtimeMinutes +=
+                    1;
+
+            }
+
+            else {
+
+
+                loomData.rpm =
+                    0;
+
+
+                loomData.pick =
+                    0;
+
+
+                loomData.efficiency =
+                    0;
+
+
+                loomData.downtimeMinutes +=
+                    1;
+
+            }
+
+
+            renderLoom();
+
+        }
+
+
+        // =========================================
+        // START
+        // =========================================
+
+        updateDate();
+
+        renderLoom();
+
+
+        setInterval(
+            simulateLoom,
+            3000
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

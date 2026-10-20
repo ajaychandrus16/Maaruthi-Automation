@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Employee Detail - MAARUTHI AUTOMATION
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        .detail-container {
+            padding: 25px;
+        }
+
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #6b3515;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
+
+
+        .employee-header-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 22px;
+        }
+
+
+        .employee-title-area {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+
+        .employee-avatar {
+            width: 65px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            background: #fff1df;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #a95413;
+
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+
+        .employee-title-area h2 {
+            margin: 0 0 7px;
+
+            color: #4a250f;
+
+            font-size: 26px;
+        }
+
+
+        .employee-title-area p {
+            margin: 0;
+
+            color: #777;
+        }
+
+
+        .status-badge {
+            padding: 9px 18px;
+
+            border-radius: 20px;
+
+            font-weight: 700;
+
+            font-size: 13px;
+        }
+
+
+        .status-present {
+            background: #e7f6ea;
+            color: #237a35;
+        }
+
+
+        .status-leave {
+            background: #fff1dc;
+            color: #a86213;
+        }
+
+
+        .status-absent {
+            background: #fdeaea;
+            color: #b52b2b;
+        }
+
+
+        .detail-kpi-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .detail-kpi {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+        }
+
+
+        .detail-kpi-label {
+
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .detail-kpi-value {
+
+            color: #4a250f;
+
+            font-size: 28px;
+
+            font-weight: 700;
+        }
+
+
+        .detail-kpi-unit {
+
+            color: #888;
+
+            font-size: 13px;
+
+            margin-left: 4px;
+        }
+
+
+        .detail-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 22px;
+        }
+
+
+        .detail-panel {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.08);
+        }
+
+
+        .detail-panel h3 {
+
+            margin: 0 0 20px;
+
+            color: #4a250f;
+
+            font-size: 19px;
+        }
+
+
+        .info-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 13px 0;
+
+            border-bottom:
+                1px solid #eeeeee;
+        }
+
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .info-label {
+            color: #777;
+        }
+
+
+        .info-value {
+
+            font-weight: 600;
+
+            color: #4a250f;
+        }
+
+
+        .live-indicator {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #27833b;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .live-circle {
+
+            width: 9px;
+            height: 9px;
+
+            background: #32a852;
+
+            border-radius: 50%;
+
+            animation:
+                pulse 1.5s infinite;
+        }
+
+
+        @keyframes pulse {
+
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.35;
+            }
+
+            100% {
+                opacity: 1;
+            }
+
+        }
+
+
+        .production-box {
+
+            margin-top: 20px;
+
+            padding: 18px;
+
+            border-radius: 10px;
+
+            background: #fff8f1;
+
+            border-left:
+                5px solid #d9822b;
+        }
+
+
+        .production-box strong {
+
+            display: block;
+
+            color: #4a250f;
+
+            font-size: 15px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .production-box span {
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+            color: #b45c18;
+        }
+
+
+        @media (max-width: 1000px) {
+
+            .detail-kpi-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .detail-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .detail-kpi-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .employee-header-card {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+
+            .employee-title-area {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                M
+            </div>
+
+
+            <div>
+
+                <h2>
+                    MAARUTHI
+                </h2>
+
+                <span>
+                    AUTOMATION
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+
+            <!-- Dashboard -->
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <!-- Looms -->
+
+            <a
+                href="looms.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▦
+                </span>
+
+                Looms
+
+            </a>
+
+
+            <!-- Employees -->
+
+            <a
+                href="employees.html"
+                class="nav-link active"
+            >
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                Employees
+
+            </a>
+
+
+            <!-- Attendance -->
+
+            <a
+                href="attendance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◷
+                </span>
+
+                Attendance
+
+            </a>
+
+
+            <!-- Production -->
+
+            <a
+                href="production.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▤
+                </span>
+
+                Production
+
+            </a>
+
+
+            <!-- Payroll -->
+
+            <a
+                href="payroll.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ₹
+                </span>
+
+                Payroll
+
+            </a>
+
+
+            <!-- Maintenance -->
+
+            <a
+                href="maintenance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Maintenance
+
+            </a>
+
+
+            <!-- Reports -->
+
+            <a
+                href="reports.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                Reports
+
+            </a>
+
+
+            <!-- Settings -->
+
+            <a
+                href="settings.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Settings
+
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <main class="main-content">
+
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <header class="top-header">
+
+
+            <div>
+
+                <h1 class="page-title">
+                    Employee Detail
+                </h1>
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <span class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    System Live
+
+                </span>
+
+
+                <span
+                    class="date"
+                    id="currentDate"
+                ></span>
+
+
+            </div>
+
+
+        </header>
+
+
+        <div class="detail-container">
+
+
+            <!-- =========================
+                 BACK BUTTON
+            ========================= -->
+
+            <a
+                href="employees.html"
+                class="back-button"
+            >
+
+                ← Back to Employees
+
+            </a>
+
+
+            <!-- =========================
+                 EMPLOYEE HEADER
+            ========================= -->
+
+            <section
+                class="employee-header-card"
+            >
+
+
+                <div
+                    class="employee-title-area"
+                >
+
+
+                    <div
+                        class="employee-avatar"
+                        id="avatar"
+                    >
+                        AK
+                    </div>
+
+
+                    <div>
+
+                        <h2 id="employeeName">
+                            Arun Kumar
+                        </h2>
+
+
+                        <p id="employeeId">
+                            EMP-001
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div>
+
+                    <span
+                        id="attendanceBadge"
+                        class="status-badge status-present"
+                    >
+                        PRESENT
+                    </span>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 KPI
+            ========================= -->
+
+            <section
+                class="detail-kpi-grid"
+            >
+
+
+                <div class="detail-kpi">
+
+                    <div
+                        class="detail-kpi-label"
+                    >
+                        Today's Production
+                    </div>
+
+
+                    <div
+                        class="detail-kpi-value"
+                    >
+
+                        <span id="production">
+                            245
+                        </span>
+
+                        <span
+                            class="detail-kpi-unit"
+                        >
+                            m
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-kpi">
+
+                    <div
+                        class="detail-kpi-label"
+                    >
+                        Efficiency
+                    </div>
+
+
+                    <div
+                        class="detail-kpi-value"
+                    >
+
+                        <span id="efficiency">
+                            91
+                        </span>
+
+                        <span
+                            class="detail-kpi-unit"
+                        >
+                            %
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-kpi">
+
+                    <div
+                        class="detail-kpi-label"
+                    >
+                        Runtime
+                    </div>
+
+
+                    <div
+                        class="detail-kpi-value"
+                        id="runtime"
+                    >
+                        07h 20m
+                    </div>
+
+                </div>
+
+
+                <div class="detail-kpi">
+
+                    <div
+                        class="detail-kpi-label"
+                    >
+                        Downtime
+                    </div>
+
+
+                    <div
+                        class="detail-kpi-value"
+                        id="downtime"
+                    >
+                        00h 40m
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 DETAILS
+            ========================= -->
+
+            <section class="detail-grid">
+
+
+                <!-- Work Information -->
+
+                <div class="detail-panel">
+
+
+                    <h3>
+                        Work Information
+                    </h3>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Employee ID
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="employeeIdInfo"
+                        >
+                            EMP-001
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Employee Name
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="employeeNameInfo"
+                        >
+                            Arun Kumar
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Assigned Loom
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="loom"
+                        >
+                            LOOM-01
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Current Shift
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="shift"
+                        >
+                            Shift A
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Attendance
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="attendance"
+                        >
+                            Present
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Current Status
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="currentStatus"
+                        >
+                            Working
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- Live Information -->
+
+                <div class="detail-panel">
+
+
+                    <h3>
+                        Live Workforce Information
+                    </h3>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Loom RPM
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="rpm"
+                        >
+                            520 RPM
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Pick / Minute
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="pick"
+                        >
+                            410 PPM
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Today's Production
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="productionInfo"
+                        >
+                            245 m
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Efficiency
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="efficiencyInfo"
+                        >
+                            91%
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Data Connection
+                        </span>
+
+                        <span class="live-indicator">
+
+                            <span
+                                class="live-circle"
+                            ></span>
+
+                            Connected
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="production-box">
+
+                        <strong>
+                            Live Employee Production
+                        </strong>
+
+
+                        <span>
+
+                            <span
+                                id="productionBottom"
+                            >
+                                245
+                            </span>
+
+                            metres
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+    <script>
+
+
+        // =========================================
+        // DATE
+        // =========================================
+
+        function updateDate() {
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+
+                new Date().toLocaleDateString(
+                    "en-IN",
+                    {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric"
+                    }
+                );
+
+        }
+
+
+        // =========================================
+        // EMPLOYEE DATA
+        // =========================================
+
+        const employee = {
+
+            id: "EMP-001",
+
+            name: "Arun Kumar",
+
+            loom: "LOOM-01",
+
+            shift: "Shift A",
+
+            attendance: "Present",
+
+            production: 245,
+
+            efficiency: 91,
+
+            rpm: 520,
+
+            pick: 410,
+
+            runtimeMinutes: 440,
+
+            downtimeMinutes: 40
+
+        };
+
+
+        // =========================================
+        // READ EMPLOYEE ID
+        // =========================================
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const selectedEmployee =
+            params.get("employee");
+
+
+        if (selectedEmployee) {
+
+            const number =
+                parseInt(
+                    selectedEmployee
+                        .replace("EMP-", "")
+                );
+
+
+            if (!isNaN(number)) {
+
+                employee.id =
+                    "EMP-" +
+                    String(number)
+                        .padStart(3, "0");
+
+
+                employee.loom =
+                    "LOOM-" +
+                    String(
+                        ((number - 1) % 12) + 1
+                    ).padStart(2, "0");
+
+
+                const names = [
+
+                    "Arun Kumar",
+                    "Bala Murugan",
+                    "Dinesh Kumar",
+                    "Gokul Raj",
+                    "Hari Prasad",
+                    "Karthik",
+                    "Manoj Kumar",
+                    "Mohan Raj",
+                    "Naveen",
+                    "Prakash",
+                    "Ramesh",
+                    "Sathish",
+                    "Siva Kumar",
+                    "Surya",
+                    "Vignesh",
+                    "Vijay",
+                    "Ajith Kumar",
+                    "Ashok",
+                    "Dharani",
+                    "Ganesh",
+                    "Jeeva",
+                    "Lokesh",
+                    "Murali",
+                    "Nithin"
+
+                ];
+
+
+                employee.name =
+                    names[number - 1] ||
+                    "Employee " + number;
+
+
+                employee.shift =
+                    number % 2 === 0
+                        ? "Shift B"
+                        : "Shift A";
+
+
+                employee.production =
+                    180 +
+                    Math.floor(
+                        Math.random() * 120
+                    );
+
+
+                employee.efficiency =
+                    80 +
+                    Math.floor(
+                        Math.random() * 15
+                    );
+
+
+                employee.rpm =
+                    480 +
+                    Math.floor(
+                        Math.random() * 100
+                    );
+
+
+                employee.pick =
+                    380 +
+                    Math.floor(
+                        Math.random() * 60
+                    );
+
+            }
+
+        }
+
+
+        // =========================================
+        // INITIAL DISPLAY
+        // =========================================
+
+        function renderEmployee() {
+
+
+            document.getElementById(
+                "employeeName"
+            ).textContent =
+                employee.name;
+
+
+            document.getElementById(
+                "employeeId"
+            ).textContent =
+                employee.id;
+
+
+            document.getElementById(
+                "employeeIdInfo"
+            ).textContent =
+                employee.id;
+
+
+            document.getElementById(
+                "employeeNameInfo"
+            ).textContent =
+                employee.name;
+
+
+            document.getElementById(
+                "loom"
+            ).textContent =
+                employee.loom;
+
+
+            document.getElementById(
+                "shift"
+            ).textContent =
+                employee.shift;
+
+
+            document.getElementById(
+                "attendance"
+            ).textContent =
+                employee.attendance;
+
+
+            document.getElementById(
+                "production"
+            ).textContent =
+                employee.production;
+
+
+            document.getElementById(
+                "productionInfo"
+            ).textContent =
+                employee.production + " m";
+
+
+            document.getElementById(
+                "productionBottom"
+            ).textContent =
+                employee.production;
+
+
+            document.getElementById(
+                "efficiency"
+            ).textContent =
+                employee.efficiency;
+
+
+            document.getElementById(
+                "efficiencyInfo"
+            ).textContent =
+                employee.efficiency + "%";
+
+
+            document.getElementById(
+                "rpm"
+            ).textContent =
+                employee.rpm + " RPM";
+
+
+            document.getElementById(
+                "pick"
+            ).textContent =
+                employee.pick + " PPM";
+
+
+            document.getElementById(
+                "runtime"
+            ).textContent =
+                formatMinutes(
+                    employee.runtimeMinutes
+                );
+
+
+            document.getElementById(
+                "downtime"
+            ).textContent =
+                formatMinutes(
+                    employee.downtimeMinutes
+                );
+
+
+            document.getElementById(
+                "currentStatus"
+            ).textContent =
+                employee.attendance === "Present"
+                    ? "Working"
+                    : employee.attendance;
+
+
+            // Avatar
+
+            const words =
+                employee.name.split(" ");
+
+
+            let initials =
+                words[0].charAt(0);
+
+
+            if (words.length > 1) {
+
+                initials +=
+                    words[1].charAt(0);
+
+            }
+
+
+            document.getElementById(
+                "avatar"
+            ).textContent =
+                initials.toUpperCase();
+
+
+            // Attendance badge
+
+            const badge =
+                document.getElementById(
+                    "attendanceBadge"
+                );
+
+
+            badge.textContent =
+                employee.attendance.toUpperCase();
+
+
+            if (
+                employee.attendance ===
+                "Present"
+            ) {
+
+                badge.className =
+                    "status-badge status-present";
+
+            }
+
+            else if (
+                employee.attendance ===
+                "Leave"
+            ) {
+
+                badge.className =
+                    "status-badge status-leave";
+
+            }
+
+            else {
+
+                badge.className =
+                    "status-badge status-absent";
+
+            }
+
+        }
+
+
+        // =========================================
+        // FORMAT TIME
+        // =========================================
+
+        function formatMinutes(minutes) {
+
+            const hours =
+                Math.floor(
+                    minutes / 60
+                );
+
+
+            const mins =
+                minutes % 60;
+
+
+            return (
+
+                String(hours)
+                    .padStart(2, "0")
+
+                +
+
+                "h "
+
+                +
+
+                String(mins)
+                    .padStart(2, "0")
+
+                +
+
+                "m"
+
+            );
+
+        }
+
+
+        // =========================================
+        // LIVE SIMULATION
+        // =========================================
+
+        function simulateEmployee() {
+
+
+            if (
+                employee.attendance ===
+                "Present"
+            ) {
+
+
+                employee.production +=
+                    Math.floor(
+                        Math.random() * 5
+                    );
+
+
+                employee.efficiency =
+                    80 +
+                    Math.floor(
+                        Math.random() * 15
+                    );
+
+
+                employee.rpm =
+                    480 +
+                    Math.floor(
+                        Math.random() * 100
+                    );
+
+
+                employee.pick =
+                    380 +
+                    Math.floor(
+                        Math.random() * 60
+                    );
+
+
+                employee.runtimeMinutes +=
+                    1;
+
+            }
+
+
+            renderEmployee();
+
+        }
+
+
+        // =========================================
+        // START
+        // =========================================
+
+        updateDate();
+
+        renderEmployee();
+
+
+        setInterval(
+            simulateEmployee,
+            3000
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

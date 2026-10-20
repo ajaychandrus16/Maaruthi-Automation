@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Settings - MAARUTHI AUTOMATION
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =========================================
+           SETTINGS CONTAINER
+        ========================================= */
+
+        .settings-container {
+
+            padding: 25px;
+
+        }
+
+
+        /* =========================================
+           SETTINGS GRID
+        ========================================= */
+
+        .settings-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 20px;
+
+        }
+
+
+        /* =========================================
+           SETTINGS CARD
+        ========================================= */
+
+        .settings-card {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+
+        }
+
+
+        .settings-card.full-width {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        .settings-card-header {
+
+            margin-bottom: 20px;
+
+            padding-bottom: 14px;
+
+            border-bottom:
+                1px solid #eee;
+
+        }
+
+
+        .settings-card-header h2 {
+
+            margin: 0;
+
+            color:
+                #4a250f;
+
+            font-size:
+                19px;
+
+        }
+
+
+        .settings-card-header p {
+
+            margin:
+                6px 0 0;
+
+            color:
+                #888;
+
+            font-size:
+                13px;
+
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+
+        }
+
+
+        .form-group {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                7px;
+
+        }
+
+
+        .form-group.full {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        .form-group label {
+
+            font-size:
+                13px;
+
+            font-weight:
+                600;
+
+            color:
+                #5a3017;
+
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            padding:
+                11px 13px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius:
+                8px;
+
+            font-size:
+                14px;
+
+            outline:
+                none;
+
+            background:
+                white;
+
+            box-sizing:
+                border-box;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color:
+                #c46b20;
+
+        }
+
+
+        /* =========================================
+           TOGGLE ROW
+        ========================================= */
+
+        .setting-row {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            padding:
+                14px 0;
+
+            border-bottom:
+                1px solid #eee;
+
+        }
+
+
+        .setting-row:last-child {
+
+            border-bottom:
+                none;
+
+        }
+
+
+        .setting-name {
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
+
+            color:
+                #4a250f;
+
+        }
+
+
+        .setting-description {
+
+            margin-top:
+                4px;
+
+            font-size:
+                12px;
+
+            color:
+                #888;
+
+        }
+
+
+        /* =========================================
+           SWITCH
+        ========================================= */
+
+        .switch {
+
+            position:
+                relative;
+
+            width:
+                46px;
+
+            height:
+                24px;
+
+            display:
+                inline-block;
+
+        }
+
+
+        .switch input {
+
+            opacity:
+                0;
+
+            width:
+                0;
+
+            height:
+                0;
+
+        }
+
+
+        .slider {
+
+            position:
+                absolute;
+
+            cursor:
+                pointer;
+
+            inset:
+                0;
+
+            background:
+                #ccc;
+
+            border-radius:
+                24px;
+
+            transition:
+                0.3s;
+
+        }
+
+
+        .slider::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            height:
+                18px;
+
+            width:
+                18px;
+
+            left:
+                3px;
+
+            top:
+                3px;
+
+            background:
+                white;
+
+            border-radius:
+                50%;
+
+            transition:
+                0.3s;
+
+            box-shadow:
+                0 1px 3px
+                rgba(0,0,0,0.2);
+
+        }
+
+
+        .switch input:checked + .slider {
+
+            background:
+                #df8e18;
+
+        }
+
+
+        .switch input:checked + .slider::before {
+
+            transform:
+                translateX(22px);
+
+        }
+
+
+        /* =========================================
+           IOT CONNECTION
+        ========================================= */
+
+        .connection-box {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            padding:
+                16px;
+
+            border:
+                1px solid #eee;
+
+            border-radius:
+                9px;
+
+            background:
+                #fffaf5;
+
+            margin-bottom:
+                12px;
+
+        }
+
+
+        .connection-box:last-child {
+
+            margin-bottom:
+                0;
+
+        }
+
+
+        .connection-left {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+        }
+
+
+        .connection-icon {
+
+            width:
+                40px;
+
+            height:
+                40px;
+
+            border-radius:
+                8px;
+
+            background:
+                #fff0df;
+
+            color:
+                #b66300;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                18px;
+
+        }
+
+
+        .connection-name {
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+
+            color:
+                #4a250f;
+
+        }
+
+
+        .connection-detail {
+
+            margin-top:
+                3px;
+
+            font-size:
+                11px;
+
+            color:
+                #888;
+
+        }
+
+
+        .connection-status {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                6px;
+
+            color:
+                #287a38;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .connection-dot {
+
+            width:
+                9px;
+
+            height:
+                9px;
+
+            background:
+                #2eaa4f;
+
+            border-radius:
+                50%;
+
+        }
+
+
+        /* =========================================
+           SAVE BAR
+        ========================================= */
+
+        .save-bar {
+
+            display:
+                flex;
+
+            justify-content:
+                flex-end;
+
+            gap:
+                10px;
+
+            margin-top:
+                20px;
+
+        }
+
+
+        .reset-button {
+
+            padding:
+                11px 18px;
+
+            border:
+                1px solid #ddd;
+
+            background:
+                white;
+
+            color:
+                #555;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .reset-button:hover {
+
+            background:
+                #f7f7f7;
+
+        }
+
+
+        .save-button {
+
+            padding:
+                11px 20px;
+
+            border:
+                none;
+
+            background:
+                #df8e18;
+
+            color:
+                white;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .save-button:hover {
+
+            background:
+                #c87b0c;
+
+        }
+
+
+        /* =========================================
+           LOGOUT SECTION
+        ========================================= */
+
+        .logout-card {
+
+            margin-top:
+                20px;
+
+            background:
+                white;
+
+            border:
+                1px solid #eadfd7;
+
+            border-radius:
+                12px;
+
+            padding:
+                22px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                20px;
+
+        }
+
+
+        .logout-info h2 {
+
+            margin:
+                0 0 6px;
+
+            color:
+                #4a250f;
+
+            font-size:
+                19px;
+
+        }
+
+
+        .logout-info p {
+
+            margin:
+                0;
+
+            color:
+                #888;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .logout-button {
+
+            padding:
+                11px 22px;
+
+            border:
+                1px solid #c94a3a;
+
+            background:
+                white;
+
+            color:
+                #c0392b;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+
+            white-space:
+                nowrap;
+
+            transition:
+                0.2s;
+
+        }
+
+
+        .logout-button:hover {
+
+            background:
+                #c0392b;
+
+            color:
+                white;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .settings-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .settings-card.full-width {
+
+                grid-column:
+                    auto;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .form-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .form-group.full {
+
+                grid-column:
+                    auto;
+
+            }
+
+
+            .settings-container {
+
+                padding:
+                    15px;
+
+            }
+
+
+            .logout-card {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .logout-button {
+
+                width:
+                    100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+
+            <div class="brand-icon">
+                M
+            </div>
+
+
+            <div>
+
+                <h2>
+                    MAARUTHI
+                </h2>
+
+                <span>
+                    AUTOMATION
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <nav class="navigation">
+
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="looms.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▦
+                </span>
+
+                Looms
+
+            </a>
+
+
+            <a
+                href="employees.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                Employees
+
+            </a>
+
+
+            <a
+                href="attendance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ◷
+                </span>
+
+                Attendance
+
+            </a>
+
+
+            <a
+                href="production.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▤
+                </span>
+
+                Production
+
+            </a>
+
+
+            <a
+                href="payroll.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ₹
+                </span>
+
+                Payroll
+
+            </a>
+
+
+            <a
+                href="maintenance.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Maintenance
+
+            </a>
+
+
+            <a
+                href="reports.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                Reports
+
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="nav-link active"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Settings
+
+            </a>
+
+
+        </nav>
+
+
+
+        <div class="sidebar-footer">
+
+            <strong>
+                Textile Automation
+            </strong>
+
+            <span>
+                for a Smarter Future
+            </span>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================= -->
+
+    <main class="main-content">
+
+
+        <!-- =====================================
+             TOP HEADER
+        ===================================== -->
+
+        <header class="top-header">
+
+
+            <div>
+
+                <h1 class="page-title">
+                    Settings
+                </h1>
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <span class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    System Live
+
+                </span>
+
+
+                <span
+                    class="date"
+                    id="currentDate"
+                ></span>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =====================================
+             SETTINGS CONTENT
+        ===================================== -->
+
+        <div class="settings-container">
+
+
+            <div class="settings-grid">
+
+
+                <!-- =================================
+                     COMPANY INFORMATION
+                ================================= -->
+
+                <section class="settings-card">
+
+
+                    <div class="settings-card-header">
+
+                        <h2>
+                            Company Information
+                        </h2>
+
+                        <p>
+                            Basic company details
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                Company Name
+                            </label>
+
+                            <input
+                                type="text"
+                                value="MAARUTHI AUTOMATION"
+                                id="companyName"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                value="loomautomation@gmail.com"
+                                id="companyEmail"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                Address
+                            </label>
+
+                            <input
+                                type="text"
+                                value="D.No:109,C Brindhavan Nagar, Opp CTC dippo, Karumathampatti (PO), Coimbatore - 641659"
+                                id="companyAddress"
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================
+                     SYSTEM SETTINGS
+                ================================= -->
+
+                <section class="settings-card">
+
+
+                    <div class="settings-card-header">
+
+                        <h2>
+                            System Settings
+                        </h2>
+
+                        <p>
+                            Application configuration
+                        </p>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <div class="setting-name">
+                                Live Loom Monitoring
+                            </div>
+
+                            <div class="setting-description">
+                                Enable real-time loom monitoring
+                            </div>
+
+                        </div>
+
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="liveMonitoring"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <div class="setting-name">
+                                Production Simulation
+                            </div>
+
+                            <div class="setting-description">
+                                Simulate live production data
+                            </div>
+
+                        </div>
+
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="productionSimulation"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <div class="setting-name">
+                                Automatic Refresh
+                            </div>
+
+                            <div class="setting-description">
+                                Refresh dashboard every few seconds
+                            </div>
+
+                        </div>
+
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="automaticRefresh"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================
+                     PRODUCTION SETTINGS
+                ================================= -->
+
+                <section class="settings-card">
+
+
+                    <div class="settings-card-header">
+
+                        <h2>
+                            Production Settings
+                        </h2>
+
+                        <p>
+                            Configure loom production parameters
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Daily Target
+                            </label>
+
+                            <input
+                                type="number"
+                                value="10000"
+                                id="dailyTarget"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Target Unit
+                            </label>
+
+                            <select id="targetUnit">
+
+                                <option value="Picks">
+                                    Picks
+                                </option>
+
+                                <option value="Meters">
+                                    Meters
+                                </option>
+
+                                <option value="Kg">
+                                    Kg
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Efficiency Warning
+                            </label>
+
+                            <input
+                                type="number"
+                                value="75"
+                                id="efficiencyWarning"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                RPM Warning
+                            </label>
+
+                            <input
+                                type="number"
+                                value="500"
+                                id="rpmWarning"
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================
+                     NOTIFICATIONS
+                ================================= -->
+
+                <section class="settings-card">
+
+
+                    <div class="settings-card-header">
+
+                        <h2>
+                            Notifications
+                        </h2>
+
+                        <p>
+                            Manage system alerts
+                        </p>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <div class="setting-name">
+                                Loom Fault Alerts
+                            </div>
+
+                            <div class="setting-description">
+                                Alert when a loom stops unexpectedly
+                            </div>
+
+                        </div>
+
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="loomFaultAlerts"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <div class="setting-name">
+                                Low Efficiency Alerts
+                            </div>
+
+                            <div class="setting-description">
+                                Alert when efficiency falls below threshold
+                            </div>
+
+                        </div>
+
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="lowEfficiencyAlerts"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <div class="setting-name">
+                                Maintenance Alerts
+                            </div>
+
+                            <div class="setting-description">
+                                Notify about pending maintenance
+                            </div>
+
+                        </div>
+
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="maintenanceAlerts"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================
+                     IOT CONNECTION
+                ================================= -->
+
+                <section class="settings-card full-width">
+
+
+                    <div class="settings-card-header">
+
+                        <h2>
+                            IoT & Device Connections
+                        </h2>
+
+                        <p>
+                            Monitor communication with loom controllers
+                        </p>
+
+                    </div>
+
+
+                    <div class="connection-box">
+
+
+                        <div class="connection-left">
+
+                            <div class="connection-icon">
+                                ⌁
+                            </div>
+
+                            <div>
+
+                                <div class="connection-name">
+                                    Loom Gateway
+                                </div>
+
+                                <div class="connection-detail">
+                                    Main gateway for loom controllers
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="connection-status">
+
+                            <span class="connection-dot"></span>
+
+                            Connected
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="connection-box">
+
+
+                        <div class="connection-left">
+
+                            <div class="connection-icon">
+                                ⇄
+                            </div>
+
+                            <div>
+
+                                <div class="connection-name">
+                                    IoT API
+                                </div>
+
+                                <div class="connection-detail">
+                                    Communication API for live loom data
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="connection-status">
+
+                            <span class="connection-dot"></span>
+
+                            Connected
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 SAVE BUTTONS
+            ================================= -->
+
+            <div class="save-bar">
+
+
+                <button
+                    class="reset-button"
+                    onclick="resetSettings()"
+                >
+
+                    Reset
+
+                </button>
+
+
+                <button
+                    class="save-button"
+                    onclick="saveSettings()"
+                >
+
+                    Save Settings
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 LOGOUT
+            ================================= -->
+
+            <section class="logout-card">
+
+
+                <div class="logout-info">
+
+                    <h2>
+                        Logout
+                    </h2>
+
+                    <p>
+                        Sign out of the MAARUTHI AUTOMATION management system.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="logout-button"
+                    onclick="confirmLogout()"
+                >
+
+                    ↪ Logout
+
+                </button>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         AUTHENTICATION
+    ========================================= -->
+
+    <script src="js/auth.js"></script>
+
+
+
+    <script>
+
+
+        // =========================================
+        // DATE
+        // =========================================
+
+        function updateDate() {
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+
+                new Date().toLocaleDateString(
+                    "en-IN",
+                    {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric"
+                    }
+                );
+
+        }
+
+
+
+        // =========================================
+        // SAVE SETTINGS
+        // =========================================
+
+        function saveSettings() {
+
+
+            const settings = {
+
+                companyName:
+                    document.getElementById(
+                        "companyName"
+                    ).value,
+
+                companyEmail:
+                    document.getElementById(
+                        "companyEmail"
+                    ).value,
+
+                companyAddress:
+                    document.getElementById(
+                        "companyAddress"
+                    ).value,
+
+                dailyTarget:
+                    document.getElementById(
+                        "dailyTarget"
+                    ).value,
+
+                targetUnit:
+                    document.getElementById(
+                        "targetUnit"
+                    ).value,
+
+                efficiencyWarning:
+                    document.getElementById(
+                        "efficiencyWarning"
+                    ).value,
+
+                rpmWarning:
+                    document.getElementById(
+                        "rpmWarning"
+                    ).value,
+
+                liveMonitoring:
+                    document.getElementById(
+                        "liveMonitoring"
+                    ).checked,
+
+                productionSimulation:
+                    document.getElementById(
+                        "productionSimulation"
+                    ).checked,
+
+                automaticRefresh:
+                    document.getElementById(
+                        "automaticRefresh"
+                    ).checked,
+
+                loomFaultAlerts:
+                    document.getElementById(
+                        "loomFaultAlerts"
+                    ).checked,
+
+                lowEfficiencyAlerts:
+                    document.getElementById(
+                        "lowEfficiencyAlerts"
+                    ).checked,
+
+                maintenanceAlerts:
+                    document.getElementById(
+                        "maintenanceAlerts"
+                    ).checked
+
+            };
+
+
+            sessionStorage.setItem(
+                "maaruthiSettings",
+                JSON.stringify(settings)
+            );
+
+
+            alert(
+                "SETTINGS SAVED\n\n" +
+                "Company information and system configuration have been saved successfully."
+            );
+
+        }
+
+
+
+        // =========================================
+        // RESET SETTINGS
+        // =========================================
+
+        function resetSettings() {
+
+
+            const confirmReset =
+                confirm(
+                    "Reset all settings to default values?"
+                );
+
+
+            if (
+                !confirmReset
+            ) {
+
+                return;
+
+            }
+
+
+            document.getElementById(
+                "companyName"
+            ).value =
+                "MAARUTHI AUTOMATION";
+
+
+            document.getElementById(
+                "companyEmail"
+            ).value =
+                "loomautomation@gmail.com";
+
+
+            document.getElementById(
+                "companyAddress"
+            ).value =
+                "D.No:109,C Brindhavan Nagar, Opp CTC dippo, Karumathampatti (PO), Coimbatore - 641659";
+
+
+            document.getElementById(
+                "dailyTarget"
+            ).value =
+                "10000";
+
+
+            document.getElementById(
+                "targetUnit"
+            ).value =
+                "Picks";
+
+
+            document.getElementById(
+                "efficiencyWarning"
+            ).value =
+                "75";
+
+
+            document.getElementById(
+                "rpmWarning"
+            ).value =
+                "500";
+
+
+            document.getElementById(
+                "liveMonitoring"
+            ).checked =
+                true;
+
+
+            document.getElementById(
+                "productionSimulation"
+            ).checked =
+                true;
+
+
+            document.getElementById(
+                "automaticRefresh"
+            ).checked =
+                true;
+
+
+            document.getElementById(
+                "loomFaultAlerts"
+            ).checked =
+                true;
+
+
+            document.getElementById(
+                "lowEfficiencyAlerts"
+            ).checked =
+                true;
+
+
+            document.getElementById(
+                "maintenanceAlerts"
+            ).checked =
+                true;
+
+
+            sessionStorage.removeItem(
+                "maaruthiSettings"
+            );
+
+
+            alert(
+                "All settings have been reset to default values."
+            );
+
+        }
+
+
+
+        // =========================================
+        // LOGOUT CONFIRMATION
+        // =========================================
+
+        function confirmLogout() {
+
+
+            const confirmLogoutAction =
+                confirm(
+                    "Are you sure you want to logout?"
+                );
+
+
+            if (
+                confirmLogoutAction
+            ) {
+
+                logoutUser();
+
+            }
+
+        }
+
+
+
+        // =========================================
+        // START
+        // =========================================
+
+        updateDate();
+
+
+    </script>
+
+
+</body>
+
+</html>
