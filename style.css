@@ -1,0 +1,1020 @@
+/* =========================================================
+   MAARUTHI AUTOMATION
+   TEXTILE LOOM MANAGEMENT DASHBOARD
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f5f2;
+    color: #4a2c1a;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 255px;
+    height: 100vh;
+    background: #3b2418;
+    color: white;
+    padding: 20px 14px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    margin-bottom: 30px;
+}
+
+
+.brand-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #d88927;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+
+.brand h2 {
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+
+.brand span {
+    display: block;
+    margin-top: 3px;
+    font-size: 11px;
+    color: #e7b36b;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 12px;
+    border-radius: 6px;
+    color: #f4e8dd;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+
+.nav-link span {
+    width: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+
+.nav-link:hover {
+    background: #563522;
+}
+
+
+.nav-link.active {
+    background: #d88927;
+    color: white;
+}
+
+
+/* =========================================================
+   SIDEBAR FOOTER
+   ========================================================= */
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.sidebar-footer strong {
+    font-size: 12px;
+}
+
+
+.sidebar-footer span {
+    font-size: 10px;
+    color: #cdb8a8;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.main-content {
+    margin-left: 255px;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   TOP HEADER
+   ========================================================= */
+
+.top-header {
+    height: 78px;
+    background: white;
+    border-bottom: 1px solid #e3ddd7;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+
+.menu-icon {
+    font-size: 24px;
+    color: #4a2c1a;
+}
+
+
+.page-title h1 {
+    font-size: 23px;
+    color: #4a2c1a;
+}
+
+
+.page-title p {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #806d60;
+}
+
+
+/* =========================================================
+   HEADER RIGHT
+   ========================================================= */
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    font-size: 13px;
+}
+
+
+.date {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+
+.live-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: bold;
+}
+
+
+.live-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #27a745;
+}
+
+
+/* =========================================================
+   DASHBOARD CONTENT
+   ========================================================= */
+
+.dashboard-content {
+    padding: 25px;
+}
+
+
+.dashboard-heading {
+    margin-bottom: 20px;
+}
+
+
+.dashboard-heading h2 {
+    color: #8b4513;
+    font-size: 25px;
+}
+
+
+.dashboard-heading p {
+    margin-top: 6px;
+    color: #806d60;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   KPI GRID
+   ========================================================= */
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+
+.kpi-card {
+    background: white;
+    border: 1px solid #e4ddd6;
+    border-radius: 8px;
+    padding: 18px;
+    min-height: 95px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 2px 6px rgba(70, 45, 30, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+
+.kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(70, 45, 30, 0.10);
+}
+
+
+.kpi-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    flex-shrink: 0;
+}
+
+
+.kpi-icon.orange {
+    background: #fff0dc;
+    color: #d88927;
+}
+
+
+.kpi-icon.green {
+    background: #e3f6e8;
+    color: #249442;
+}
+
+
+.kpi-icon.red {
+    background: #fde4e4;
+    color: #d83a3a;
+}
+
+
+.kpi-icon.purple {
+    background: #eee5f7;
+    color: #7b4aa8;
+}
+
+
+.kpi-icon.production {
+    background: #fff0dc;
+    color: #c87517;
+}
+
+
+.kpi-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+.kpi-label {
+    color: #806d60;
+    font-size: 12px;
+}
+
+
+.kpi-info strong {
+    color: #4a2c1a;
+    font-size: 23px;
+}
+
+
+/* =========================================================
+   MAIN DASHBOARD GRID
+   ========================================================= */
+
+.dashboard-main-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(330px, 0.9fr);
+    gap: 18px;
+    margin-top: 18px;
+    align-items: start;
+}
+
+
+.right-dashboard-column {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
+/* =========================================================
+   GENERAL PANEL
+   ========================================================= */
+
+.dashboard-panel {
+    background: white;
+    border: 1px solid #e4ddd6;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(70, 45, 30, 0.06);
+    overflow: hidden;
+}
+
+
+.panel-header {
+    min-height: 76px;
+    padding: 16px 18px;
+    border-bottom: 1px solid #eee7e1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.panel-header h3 {
+    font-size: 17px;
+    color: #4a2c1a;
+}
+
+
+.panel-header p {
+    margin-top: 4px;
+    font-size: 12px;
+    color: #806d60;
+}
+
+
+.panel-live {
+    font-size: 11px;
+    font-weight: bold;
+    color: #249442;
+}
+
+
+/* =========================================================
+   LOOM TABLE
+   ========================================================= */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+.loom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+
+.loom-table th {
+    background: #f5f0eb;
+    color: #5b4333;
+    font-weight: bold;
+    text-align: left;
+    padding: 11px 12px;
+    border-bottom: 1px solid #e4ddd6;
+    white-space: nowrap;
+}
+
+
+.loom-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee9e4;
+    color: #5b514b;
+    white-space: nowrap;
+}
+
+
+.loom-table tbody tr:hover {
+    background: #fff9f2;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+
+.status.running {
+    background: #dff4e4;
+    color: #21863b;
+}
+
+
+.status.stopped {
+    background: #fbdede;
+    color: #c72f2f;
+}
+
+
+/* =========================================================
+   SHIFT
+   ========================================================= */
+
+.shift-content {
+    padding: 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+
+.shift-card {
+    padding: 15px;
+    border-radius: 7px;
+    min-height: 130px;
+}
+
+
+.shift-one {
+    background: #e9f4ff;
+}
+
+
+.shift-two {
+    background: #f0edff;
+}
+
+
+.shift-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+
+.shift-one .shift-title {
+    color: #2866c7;
+}
+
+
+.shift-two .shift-title {
+    color: #6743bd;
+}
+
+
+.shift-time {
+    font-size: 13px;
+    font-weight: bold;
+    color: #4a2c1a;
+    margin-bottom: 14px;
+}
+
+
+.shift-status {
+    font-size: 11px;
+    color: #6d625b;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.shift-status strong {
+    color: #21863b;
+}
+
+
+.shift-two .shift-status strong {
+    color: #806d60;
+}
+
+
+.shift-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
+.green-dot {
+    background: #249442;
+}
+
+
+.grey-dot {
+    background: #9aa0a6;
+}
+
+
+/* =========================================================
+   EMPLOYEE TABLE
+   ========================================================= */
+
+.employee-table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+.employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+
+.employee-table th {
+    background: #f5f0eb;
+    color: #5b4333;
+    text-align: left;
+    padding: 11px 10px;
+    border-bottom: 1px solid #e4ddd6;
+    white-space: nowrap;
+}
+
+
+.employee-table td {
+    padding: 12px 10px;
+    color: #5b514b;
+    border-bottom: 1px solid #eee9e4;
+    white-space: nowrap;
+}
+
+
+.employee-table tbody tr:hover {
+    background: #fff9f2;
+}
+
+
+.employee-table td:first-child {
+    font-weight: bold;
+    color: #8b4513;
+}
+
+
+/* =========================================================
+   BOTTOM GRID
+   ========================================================= */
+
+.bottom-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(420px, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+}
+
+
+/* =========================================================
+   WEEKLY CHART
+   ========================================================= */
+
+.weekly-panel {
+    min-height: 330px;
+}
+
+
+.chart-legend {
+    display: flex;
+    gap: 15px;
+    font-size: 11px;
+    color: #806d60;
+}
+
+
+.chart-legend span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.legend-box {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+
+.legend-box.shift1 {
+    background: #d88927;
+}
+
+
+.legend-box.shift2 {
+    background: #8c63bd;
+}
+
+
+/* =========================================================
+   CHART AREA
+   ========================================================= */
+
+.chart-area {
+    height: 245px;
+    display: flex;
+    padding: 15px 18px 12px 12px;
+}
+
+
+.y-axis {
+    width: 55px;
+    height: 195px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-right: 10px;
+    font-size: 9px;
+    color: #8b7d72;
+}
+
+
+.bar-chart {
+    position: relative;
+    flex: 1;
+    height: 215px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    border-bottom: 1px solid #dcd4cd;
+    padding: 0 8px;
+}
+
+
+.grid-lines {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+
+.grid-lines span {
+    width: 100%;
+    border-top: 1px dashed #e6e0da;
+}
+
+
+.bar-group {
+    height: 100%;
+    width: 12%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+
+.bars {
+    height: 195px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 3px;
+}
+
+
+.bar {
+    width: 14px;
+    min-height: 3px;
+    border-radius: 3px 3px 0 0;
+    transition: 0.2s;
+    position: relative;
+}
+
+
+.bar:hover {
+    opacity: 0.75;
+    transform: translateY(-2px);
+}
+
+
+.bar.shift1 {
+    background: #d88927;
+}
+
+
+.bar.shift2 {
+    background: #8c63bd;
+}
+
+
+.bar-group > span {
+    margin-top: 8px;
+    font-size: 10px;
+    color: #6d625b;
+}
+
+
+/* =========================================================
+   PRODUCTION SUMMARY
+   ========================================================= */
+
+.summary-panel {
+    min-height: 330px;
+}
+
+
+.summary-table-container {
+    overflow-x: auto;
+}
+
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+
+.summary-table th {
+    background: #f5f0eb;
+    color: #5b4333;
+    text-align: left;
+    padding: 12px 10px;
+    border-bottom: 1px solid #e4ddd6;
+    white-space: nowrap;
+}
+
+
+.summary-table td {
+    padding: 15px 10px;
+    border-bottom: 1px solid #eee9e4;
+    color: #5b514b;
+    white-space: nowrap;
+}
+
+
+.summary-table tbody tr:hover {
+    background: #fff9f2;
+}
+
+
+.summary-table .total-row {
+    background: #faf6f1;
+}
+
+
+.summary-table .total-row td {
+    font-weight: bold;
+    color: #4a2c1a;
+}
+
+
+/* =========================================================
+   EMPLOYEE PRODUCTION
+   ========================================================= */
+
+.employee-production-panel {
+    margin-top: 18px;
+    margin-bottom: 25px;
+}
+
+
+.employee-production-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+.employee-production-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+
+.employee-production-table th {
+    background: #f5f0eb;
+    color: #5b4333;
+    text-align: left;
+    padding: 13px 14px;
+    border-bottom: 1px solid #e4ddd6;
+    white-space: nowrap;
+}
+
+
+.employee-production-table td {
+    padding: 13px 14px;
+    color: #5b514b;
+    border-bottom: 1px solid #eee9e4;
+    white-space: nowrap;
+}
+
+
+.employee-production-table tbody tr:hover {
+    background: #fff9f2;
+}
+
+
+.employee-production-table td:first-child {
+    font-weight: bold;
+    color: #8b4513;
+}
+
+
+.employee-production-table td:last-child {
+    font-weight: bold;
+    color: #4a2c1a;
+}
+
+
+.employee-total-row {
+    background: #faf6f1;
+}
+
+
+.employee-total-row td {
+    font-weight: bold;
+    color: #4a2c1a !important;
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1350px) {
+
+    .dashboard-main-grid {
+        grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.9fr);
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 1100px) {
+
+    .kpi-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .dashboard-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .right-dashboard-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        width: 70px;
+    }
+
+    .brand h2,
+    .brand span {
+        display: none;
+    }
+
+    .nav-link {
+        justify-content: center;
+    }
+
+    .nav-link:not(.active) {
+        font-size: 0;
+    }
+
+    .nav-link:not(.active) span {
+        font-size: 18px;
+    }
+
+    .main-content {
+        margin-left: 70px;
+    }
+
+    .header-right {
+        display: none;
+    }
+
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .right-dashboard-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .shift-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .dashboard-content {
+        padding: 15px;
+    }
+
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-title h1 {
+        font-size: 17px;
+    }
+
+    .page-title p {
+        font-size: 11px;
+    }
+
+    .shift-content {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-legend {
+        display: none;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
